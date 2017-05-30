@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+   http://www.springframework.org/schema/beans     
+   http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+   http://www.springframework.org/schema/context 
+   http://www.springframework.org/schema/context/spring-context-4.0.xsd
+   http://www.springframework.org/schema/mvc
+   http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+   http://www.springframework.org/schema/util
+   http://www.springframework.org/schema/util/spring-util-3.0.xsd
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop.xsd
+   http://www.springframework.org/schema/tx 
+   http://www.springframework.org/schema/tx/spring-tx.xsd"
+   >
+
+	<mvc:annotation-driven />
+	
+	<context:component-scan base-package="com.matjo.web" />
+
+	<util:properties id="config" location="classpath:/config.properties"/>
+	
+	<!-- DB연결정보 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="org.mariadb.jdbc.Driver" />
+		<property name="url" value="jdbc:mariadb://localhost:3306/matjo" />
+		<property name="username" value="matjo" />
+		<property name="password" value="matjo" />
+	</bean>
+
+	<!-- MyBatis 설정연결 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="/WEB-INF/mybatis-config.xml" />
+		<property name="typeAliasesPackage" value="com.matjo.web" />
+		<property name="mapperLocations"
+			value="classpath*:com/matjo/web/**/dao/mapper/*Mapper.xml" />
+	</bean>
+
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	
+	<!-- AOP Transaction 설정 -->
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	  <property name="dataSource" ref="dataSource"/>
+	 </bean>
+ 
+	 <tx:advice id="txAdvice" transaction-manager="transactionManager">
+	  <tx:attributes>
+   		<tx:method name="*" rollback-for="Exception"/>
+  	  </tx:attributes>
+ 	 </tx:advice>
+
+ 	<aop:config>
+	  <aop:pointcut id="txPointcut" expression="execution(* com.matjo.web.*.service.*ServiceImpl.*(..))" />
+  	  <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+ 	</aop:config>
+
+	<!-- dao 스캔 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.matjo.web.**.dao" />
+	</bean>
+
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<mvc:interceptors>
+	    
+	    <mvc:interceptor>
+	        <mvc:mapping path="/**"/>
+	        
+	        <!-- 예외 -->
+	        <mvc:exclude-mapping path="/member/*login*" />
+	        <mvc:exclude-mapping path="/member/insertMember*" />
+	        <mvc:exclude-mapping path="/member/findMember*" />
+	        <mvc:exclude-mapping path="/member/newPasswordMember*" />
+	        <mvc:exclude-mapping path="/member/selectMemberProc*" />
+	        <mvc:exclude-mapping path="/member/updateMemberProc*" />
+	        <mvc:exclude-mapping path="/searchAddress*" />
+	         
+	        <bean class="com.matjo.web.common.SessionInterceptor" />
+	        
+	    </mvc:interceptor>
+	    
+	</mvc:interceptors>
+	
+	<!-- MultipartResolver 설정 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="100000000" />
+        <property name="maxInMemorySize" value="100000000" />
+    </bean>
+	
+</beans>
+

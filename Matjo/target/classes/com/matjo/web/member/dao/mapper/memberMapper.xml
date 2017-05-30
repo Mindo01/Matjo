@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.matjo.web.member.dao.MemberDao">
+    
+    <sql id="memberColumns">
+    	member_no AS memberNo,
+		member_id AS memberId,
+		member_pw AS memberPw,
+		member_name AS memberName,
+		member_hp AS memberHp,
+		member_city AS memberCity,
+		member_local AS memberLocal,
+		member_question AS memberQuestion,
+		member_answer AS memberAnswer,
+		member_date AS memberDate,
+		member_img AS memberImg
+    </sql>
+    
+	<!-- 회원정보 1건 조회 -->
+	<select id="selectMember" resultType="memberBean" parameterType="memberBean">
+	    SELECT
+	    	<include refid="memberColumns"/>
+	    FROM
+	    	member
+	    WHERE
+  			member_id = #{memberId} 
+  			<if test="memberPw != null and memberPw != ''">
+  				AND member_pw = PASSWORD(#{memberPw})
+  			</if>
+	</select>
+	
+	<!-- 회원정보 List 조회 -->
+	<select id="selectMemberList" resultType="memberBean" parameterType="memberBean">
+	    SELECT
+	    	<include refid="memberColumns"/>
+	    FROM
+	    	member
+	</select>
+	
+	<!-- 회원정보 1건 저장 -->
+	<insert id="insertMember" parameterType="memberBean">
+	    INSERT INTO member
+ 		(
+			member_id,
+			member_pw,
+			member_name,
+			member_hp,
+			member_city,
+			member_local,
+			member_question,
+			member_answer,
+			member_img
+ 		)
+		VALUES
+ 		(
+ 			#{memberId}, 
+ 			PASSWORD(#{memberPw}), 
+ 			#{memberName}, 
+ 			#{memberHp},
+ 			#{memberCity},
+ 			#{memberLocal},
+ 			#{memberQuestion},
+ 			#{memberAnswer},
+ 			#{memberImg}
+ 		)
+ 		<selectKey order="AFTER" keyProperty="no" resultType="string">
+	   		SELECT LAST_INSERT_ID()        
+		</selectKey>
+	</insert>
+	
+	<!-- 회원정보 수정 -->
+	<update id="updateMember" parameterType="memberBean">
+		UPDATE member SET
+			member_id = #{memberId}
+			<if test="memberPw != null and memberPw != ''">
+			,member_pw = PASSWORD(#{memberPw})
+			</if>
+			<if test="memberName != null and memberName != ''">
+			,member_name = #{memberName}
+			</if>
+			<if test="memberHp != null and memberHp != ''">
+			,member_hp = #{memberHp}
+			</if>
+			<if test="memberCity != null and memberCity != ''">
+			,member_city = #{memberCity}
+			</if>
+			<if test="memberLocal != null and memberLocal != ''">
+			,member_local = #{memberLocal}
+			</if>
+			<if test="memberQuestion != null and memberQuestion != ''">
+			,member_question = #{memberQuestion}
+			</if>
+			<if test="memberAnswer != null and memberAnswer != ''">
+			,member_answer = #{memberAnswer}
+			</if>
+			<if test="memberImg != null and memberImg != ''">
+			,member_img = #{memberImg}
+			</if>
+		WHERE
+			member_id = #{memberId}
+	</update>
+	
+	<!-- 회원정보 삭제 -->
+	<delete id="deleteMember" parameterType="memberBean">
+	    DELETE FROM
+	    	member
+	    WHERE
+	    	member_id = #{memberId}
+	</delete>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="findMember" resultType="memberBean" parameterType="memberBean">
+	    SELECT
+	    	<include refid="memberColumns"/>
+	    FROM
+	    	member
+	    WHERE
+  			member_id = #{memberId}
+  			AND member_question = #{memberQuestion}
+  			AND member_answer = #{memberAnswer}
+	</select>
+	
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 데코레이터 기본 폴더 -->
+
+<decorators defaultdir="/WEB-INF/view/layout">
+
+ <!-- 예외 URL 패턴 -->
+ 	<excludes>
+ 	    <pattern>*login*</pattern>
+ 	</excludes>
+
+ 	<decorator name="header-footer-layout" page="header-footer-layout.jsp">
+  		<pattern>*</pattern>
+ 	</decorator>
+
+</decorators> 
