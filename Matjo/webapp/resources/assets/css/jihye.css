@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+#promo .promotion_row #promoclick1{ 
+    display: inline-block;
+    position: relative;
+    background: url(../../images/promo.png) no-repeat center center; 
+    width: 390px;
+    height: 300px;
+    border: 1px solid white;
+    background-size: 100%;
+    margin-right: 20px;
+}
+#text1{
+    color: white;        
+    position: absolute;
+    top: 100px;
+    left: 35%;
+    width: 200px;
+}
+ #text2{
+    font-size: 15px;
+    color: white;        
+    position: absolute;
+    top: 140px;
+    left: 35%;
+    width: 150px;
+    border: block;
+    line-height: 20px;
+}
+#restaimage{
+    position: absolute;
+    top: 100px;
+    left: 20px;  
+
+}
+.promotion{
+    margin-left: 3%;
+}
+.promotion_row:after {
+        clear:both;
+        display: block;
+        content: '';
+ }
+.promotion_row{
+ width: 100%;
+ margin: 0 auto;
+}
+#promo {
+    width: 100%;
+    margin-top: 160px;
+    margin-left: 10px;
+    margin-bottom: 100px;
+}    
+.paging{
+    color: red;
+    text-align: center;
+}
+
+/* 탭플릿 */
+@media screen and (max-width:1300px) {
+    #promotion_row{
+      display: block;
+    }
+
+}

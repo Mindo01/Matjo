@@ -1,0 +1,104 @@
+
+.login_content {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.login_content:target {
+    opacity:1;
+    pointer-events: auto;
+}
+.login_content > div {
+     position: fixed;
+	top: 25%;
+	left: 25%;
+	width: 420px;
+	height: 45%;
+	padding: 16px;
+	border: 10px solid #EEEEEE;
+	background-color: #EEEEEE;
+	overflow: auto;	
+    margin-left: 10%;
+}
+.loginbox{
+    width: 400px;
+}
+.btn_global{
+    height: 45px;
+    width: 325px;
+    background-color: deepskyblue;
+    color: aliceblue;
+    font-weight: 300;
+    box-sizing: content-box;
+    font-size: 14px;
+    font-weight: 300;
+     border: 0;
+}
+.btn_sns{
+    height: 45px;
+     width: 325px;
+    background-color: yellow;
+    line-height: normal;
+     box-sizing: content-box;
+     font-size: 12px;
+    border: 0;
+}
+.find_info{
+    text-align: center;
+}
+#logo{
+    margin: auto;
+    padding-left: 5px;
+}
+#loginbutton{
+    margin-top: 20px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+}
+#cacaologinbutton{
+  padding-bottom: 10px;
+    padding-right: 20px;
+ 
+}
+#pw{
+    height: 40px;
+    width: 332PX;
+    margin-left: 10px;
+}
+#id{
+    height: 40px;
+    width: 100PX;
+    margin-left: 10px;
+}
+.input_row{
+    margin-top: 10px;
+    margin-bottom:15px;
+    
+}
+.check_info{
+     
+     margin-left: 30px;
+}
+#email{
+    height: 40px;
+    width: 100PX;
+}
+#emailselect{
+    width: 100PX;
+    height: 45px;
+}
+
+
+.login_check_box{
+   float: left;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}

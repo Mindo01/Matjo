@@ -1,0 +1,406 @@
+@charset "utf-8";
+
+
+/* 맛집 검색 결과 검색창 커스터마이징 */
+.search_area_resta {
+    margin: 0 0 20px;
+}
+.search_window_resta {
+    width: 70%;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+.search_window_resta .sch_smit {
+    padding: 0;
+}
+/* 검색창 커스터마이징 */
+.search_window {
+    width: 50%;
+    margin: 20px auto;
+    box-sizing: border-box;
+    padding: 0;
+    vertical-align: middle;
+}
+/* 검색 선택창 커스터마이징*/
+.search_window select {
+    cursor: pointer;
+    display: inline-block;
+    width: 15%;
+    height: 40px;
+    font-size: 16px;
+    border: 3px solid #FF3D00;
+    outline: none;
+}
+.search_window select option {
+    color: inherit;
+    font: inherit;
+}
+/* span태그에 class 줘서 사용 */
+.orange_window {
+	display: inline-block;
+	width: 68%; height: 40px;
+	border: 3px solid #FF3D00; /* Deep Orange A400 */
+	background: white;
+}
+.input_text {
+	width: 96%; height: 21px;
+	margin: 6px 0 0 9px;
+	border: 0;
+	line-height: 21px;
+	font-weight: bold;
+	font-size: 16px;
+	outline: none;
+}
+/* 버튼 커스터마이징 */
+.sch_smit {
+	width: 15%; height: 40px;
+	margin: 0; 
+    border: 0;
+    padding : 0 5px 0 5px;
+	vertical-align: middle;
+	background: #FF3D00; /* Deep Orange A400 */
+	color: white;
+	font-weight: bold;
+    font-size: 14px;
+	border-radius: 1px;
+	cursor: pointer;
+}
+.sch_smit:hover {
+    /* Deep Orange A200 */
+	background: #FF6E40;
+}
+
+
+/* 테이블 커스터마이징 */
+/* notice */
+
+.notice {
+    width: 1000px;
+    margin: 10px auto;
+}
+.notice:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.notice .other_btn {
+    width: 40%;
+}
+.notice .other_btn button,
+.notice .other_btn div,
+.notice .other_btn div button {
+    display: inline-block;
+    width: 49%;
+}
+
+.notice table {
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
+}
+.notice table tr th {
+    text-align: center;
+    vertical-align: middle;
+    padding: 3px !important;
+    border-bottom: 2px solid #000;
+    color: #000;
+    background-color: #f2f2f2;
+}
+.notice table tr td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 3px !important;
+    border-bottom: 1px solid #ddd;
+}
+.notice table tr td a {
+    display: block;
+    width: 100%;
+    padding: 0;
+    color: #333;
+    font-size: 16px;
+}
+.notice table tr td a:hover {
+    background-color: #FF6E40;
+    color: #fff;
+}
+/* 테이블 상세 게시글 부분 */
+.notice table.detail tr td.title {
+    font-weight: bold;
+    font-size: 18px;
+    text-align: justify;
+}
+.notice table.detail tr td:not(.count) {
+    text-align: justify;
+}
+.notice table.detail tr:nth-child(1) td,
+.notice table.detail tr:nth-child(1) th {
+    border: 0;
+    border-top: 2px solid #000;
+}
+.notice table.detail tr:nth-child(2) td, 
+.notice table.detail tr:nth-child(2) th {
+/*    border-bottom: 2px solid #000;*/
+    border: 0;
+}
+.notice table.detail tr:last-child td {
+    border-bottom: 2px solid #000;
+}
+/* 게시글 작성하기 */
+.notice table tr td input[type="text"] {
+    font-size: 16px;
+    height: 16px;
+}
+.notice table tr td textarea {
+    font-size: 16px;
+}
+.notice table tr td.submit_btn button {
+    /* 작성완료, 취소 버튼 반반 크기 할당*/
+    width: 49%;
+}
+.notice table tr td.submit_btn button:only-child {
+    /* 문의사항 답글 버튼에 대해 */
+    /* 작성완료 버튼 너비 넓히기*/
+    width: 100% !important;
+}
+/* 테이블 내부 버튼 커스터마이징 */
+.notice table tr td button[value="need_answer"] {
+    padding: 0;
+    text-align: center;
+    font-size: 12px;
+    width:80%;
+    height: 25px;
+    background-color: #FF3D00;
+}
+.notice table tr td button[value="need_answer"]:hover {
+    background-color: #FF6E40;
+}
+.notice table tr td button[value="finish_answer"] {
+    padding: 0;
+    text-align: center;
+    font-size: 12px;
+    width:80%;
+    height: 25px;
+    background-color: dimgray;
+}
+
+
+/* 페이징 커스터마이징 */
+div .paging_number {
+    margin: 10px auto;
+    width: 400px;
+    text-align: center;
+}
+div .paging_number span a {
+    width: 100%;
+}
+div .paging_number span a:hover {
+    font-weight: 500;
+    color: #fff;
+    background-color: coral;
+}
+
+
+
+/* 탭 버튼 - 랭크 보기 */
+/* 탭 선택 시 표시할 요소(div) 정의(1번 탭 선택 시 첫 번째 div 요소 표시) */
+#tab_area input:nth-of-type(1), 
+#tab_area input:nth-of-type(1) ~ div:nth-of-type(1),
+#tab_area input:nth-of-type(2), 
+#tab_area input:nth-of-type(2) ~ div:nth-of-type(2),
+#tab_area input:nth-of-type(3), 
+#tab_area input:nth-of-type(3) ~ div:nth-of-type(3) {
+    display:none
+}
+#tab_area input:nth-of-type(1):checked ~ div:nth-of-type(1),
+#tab_area input:nth-of-type(2):checked ~ div:nth-of-type(2),
+#tab_area input:nth-of-type(3):checked ~ div:nth-of-type(3) {
+    display:block
+}
+/* 라벨 기본 스타일 지정 */
+#tab_area {
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+}
+#tab_area > label {
+    display:inline-block;
+    font-variant:small-caps;
+    font-size:1.1em;
+    padding:5px;
+    margin-bottom:50px;
+    text-align:center;
+    width:30%;
+    line-height:3em;
+    font-weight:700;
+    background:#eee;
+    color:#777;
+    border:1px solid #ccc;
+    border-width:1px 1px 0;
+}
+#tab_area > label:hover {
+    cursor:pointer;
+    background: #FF6E40 !important;
+    color:#fff;
+}
+
+/* 선택된 라벨, 커서를 올린 라벨 스타일 지정 */
+#tab_area input:nth-of-type(1):checked ~ label:nth-of-type(1),
+#tab_area input:nth-of-type(2):checked ~ label:nth-of-type(2) {
+    background: #FF3D00;
+    color:#fff;
+}
+/* 기타 스타일 */
+#tab_area {
+    font-family:'nanumgothic', '나눔고딕', 'malgun gothic', '맑은 고딕', 'dotum', '돋움', sans-serif;
+}
+
+/* 맛집 검색 조건 설정하는 필터 라벨은 따로 스타일 지정 */
+.tab_filter_area > label {
+    width:70% !important;
+    margin: 0px auto !important;
+}
+.tab_filter_area div.tab_resta_content {
+    width:70% !important;
+    border: 1px solid #FF3D00;
+    margin: 0px auto !important;
+}
+
+/* 실제 내용이 담긴 div 요소 스타일 지정 */
+#tab_area .tab_group_content, #tab_area .tab_resta_content {
+    padding:1.5em;
+    margin: 0 auto;
+    width:90%;
+    height:100%
+}
+
+/* 랭크 아이템들 */
+/* 구분 소제목 */
+#tab_area h3,
+/* 테이블 캡션도 같이 적용시켜줌 */
+table caption {
+    margin: 8px;
+    text-align: justify;
+}
+/* 랭크 - 부문별 랭크 */
+#tab_area div {
+    margin: 0 auto;
+    padding: 10px 0;
+    width: 1000px;
+}
+#tab_area div:after {
+    content: "";
+    display: block;
+    clear:both;
+}
+#tab_area div.rank_box_area {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    padding: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+#tab_area div.rank_box_area:before {
+    display: inline-block;
+    width: 1px;
+    content: '';
+}
+#tab_area div.rank_box_area:after {
+    display: inline-block;
+    width: 1px;
+    content: '';
+}
+#tab_area div article {
+    padding: 50px 0 50px 0;
+    margin: 0;
+    display: inline-block;
+    display: inline-block;
+    text-align: center;
+}
+#tab_area div article h4 {
+    text-align: center;
+    color: #FF3D00;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+#tab_area div article p {
+    line-height: 30px;
+    text-align: center;
+    font-size: 22px;
+}
+#tab_area div article p a:hover {
+    background-color: #FF6E40;
+    color: #fff;
+}
+#tab_area div .rank_hr {
+    width: 1px;
+    height: 50px;
+    border-top: 1px solid #aaa;
+    margin: 0px auto
+}
+
+/* 전체 랭크 */
+
+#tab_area div img:after {
+    content: "";
+    display: block;
+    clear:both;
+}
+#tab_area div div img {
+    /* 프로필 이미지 둥글게 */
+    float: right;
+    display: inline;
+    border-radius: 100%;
+    background-color: #fff;
+    width: 100px;
+    height: 100px;
+}
+#tab_area div div img:hover {
+    opacity: 0.7;
+}
+#tab_area div .running_area {
+    margin: 0 auto;
+    padding: 0;
+    /* 한 줄씩 차지하도록 */
+    display: block;
+    width: 500px;    /* 배경화면 너비와 동일하게 */
+}
+#tab_area div .running_area:nth-child(1) {
+    padding-top: 20px;
+}
+#tab_area div .running_area:nth-child(2) {
+    padding-right: 170px;
+}
+#tab_area div .running_area:nth-child(3) {
+    padding-right: 350px;
+}
+#tab_area div .running_man {
+    padding: 0;
+    width: 60%;
+}
+#tab_area div .running_man p {
+    /* 설명 텍스트 */
+    clear: both;
+    text-align: right;
+    
+    color: #fff;
+    font-weight: bold;
+}
+#tab_area div div.background {
+    /* 달리기 운동장 배경화면 설정*/
+    width: 100%;
+    height: 500px;
+    background: url(../../images/runway.png) no-repeat center center;
+    background-size: 650px;
+    
+}

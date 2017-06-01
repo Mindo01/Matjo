@@ -1,0 +1,19 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+/* 드래그 선택 시 색상 : color=글씨색 background=배경색 */
+::selection {color:#fff; background-color: #000;}
+/* 기본 세팅 */
+
+/* 한글 폰트 세팅 */
+*:lang(ko) {
+    font-family:'Nanum Gothic', serif;
+}
+.title_ko :lang(ko) {
+    font-family:'Hanna', serif, 'Noto Sans KR'; 
+}
+
+article header p {
+    font-size: 20px;
+}
+

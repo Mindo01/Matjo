@@ -83,6 +83,8 @@
 	        <mvc:mapping path="/**"/>
 	        
 	        <!-- 예외 -->
+	        <mvc:exclude-mapping path="/index*"/>
+	        
 	        <mvc:exclude-mapping path="/member/*login*" />
 	        <mvc:exclude-mapping path="/member/insertMember*" />
 	        <mvc:exclude-mapping path="/member/findMember*" />

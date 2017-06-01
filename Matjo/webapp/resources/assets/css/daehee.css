@@ -1,0 +1,424 @@
+/* 직접추가(대희) */
+
+
+/* main.css 에서 수정한내용*/
+
+hr:before,
+hr:after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    display: block;
+    width: 1px;
+    height: 21px;
+    /* 불필요 선 제거 */
+    /*background: rgba(128, 128, 128, 0.2);*/
+}
+
+.image img {
+    display: block;
+    width: 100%;
+    height: 175px;
+    /* 이미지 세로크기 잡아줌 */
+}
+
+
+/* 버튼 */
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+button,
+.button {
+    position: relative;
+    display: inline-block;
+    background: #FF3D00;
+    /* 버튼 색상 변경을위해 수정 */
+    color: #fff;
+    text-align: center;
+    border-radius: 0.5em;
+    text-decoration: none;
+    padding: 0.65em 3em 0.65em 3em;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+    font-weight: 300;
+    -moz-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    -webkit-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    -ms-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+    transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+}
+
+
+/* 버튼 호버 */
+
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+button:hover,
+.button:hover {
+    color: #fff;
+    background: #DD2C00;
+}
+
+
+/* 헤더 */
+
+#header {
+    position: relative;
+    background-image: url("../../images/food_background.jpg");
+    /* 헤더 이미지 변경 */
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    color: #fff;
+    text-align: center;
+    padding: 7.5em 0 2em 0;
+    cursor: default;
+}
+
+
+/* 헤더 이너(맛집찾기 영역) */
+
+#header .inner {
+    width: 30%;
+    /* 너비 조정 */
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+/* 이너 안에있는 헤더. 이너크기를 30%로 제한하고 헤더를 그 안에서 모두 채우도록했음... ㅠㅠ! */
+
+#header header {
+    width: 100%;
+    display: inline-block;
+}
+
+
+/* 모임-맛집 찾기 전환버튼 스타일링 */
+
+#header header>p {
+    text-shadow: 1px 1px 5px #333;
+    font-size: 1.25em;
+    margin: 0;
+    font-weight: bold;
+}
+
+#header header>p>a {
+    color: white;
+}
+
+#header header>p>a:hover {
+    color: coral;
+}
+
+
+/* 사진때문에 글자 가독성이 떨어져서 셰도우 처리 */
+
+#header h1 {
+    color: #fff;
+    font-size: 3em;
+    line-height: 1em;
+    text-shadow: 1px 1px 5px #222;
+    font-family: Hanna;
+}
+
+
+/* 상단 네비게이션 영역 - main.css에 통합함 */
+
+
+/* merge..? */
+
+.contact_inner_div {
+    display: inline-block;
+    width: 100%;
+}
+
+.contact_inner_div_left {
+    width: 50%;
+    float: left;
+}
+
+.contact_inner_div_left img {
+    float: left;
+}
+
+.contact_inner_div_left div {}
+
+.contact_inner_div_center {
+    width: 25%;
+    float: left;
+}
+
+.contact_inner_div_right {
+    width: 25%;
+    float: left;
+}
+
+
+/* 검색결과 아이템 테두리 스타일 */
+
+.carousel article {
+    display: inline-block;
+    width: 18em;
+    background: #fff;
+    text-align: center;
+    padding: 0 1em 3em 1em;
+    margin: 0 2em 0 0;
+    white-space: normal;
+    opacity: 1.0;
+    -moz-transition: opacity 0.75s ease-in-out;
+    -webkit-transition: opacity 0.75s ease-in-out;
+    -ms-transition: opacity 0.75s ease-in-out;
+    transition: opacity 0.75s ease-in-out;
+    box-shadow: 1px 1px 5px #aaaaaa;
+}
+
+
+/* *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** */
+
+
+/* 직접 추가한 내용*/
+
+/* 검색창 힌트글씨 색상 수정 */
+#header header input::placeholder {
+    /* Chrome/Opera/Safari */
+    color: white;
+}
+
+#header footer a {
+    text-decoration: none;
+}
+
+#header footer a:hover {
+    text-decoration: none;
+}
+
+#header header input {
+    border: none;
+    border-right: 0px;
+    border-top: 0px;
+    border-left: 0px;
+    border-bottom: 3px solid #ffffff;
+    color: white;
+    padding: 0 1em;
+    height: 2.75em;
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.4);
+    font-family: 'Nanum Gothic';
+    font-weight: bold;
+}
+
+#header header input:focus {
+    outline-color: darkorange;
+    outline-width: 0;
+}
+
+.promo {
+    width: 100%;
+    text-align: center;
+}
+
+.promo p {
+    text-align: center;
+}
+
+.promo_form {
+    width: 80%;
+    display: inline-block;
+}
+
+.promo_form_right {}
+
+.promo_form_right {
+    display: inline-block;
+    width: 30%;
+    height: 100%;
+    margin-left: 20px;
+}
+
+.promo_form_left {
+    display: inline-block;
+    width: 30%;
+    height: 100%;
+    margin-right: 20px;
+}
+
+.promo_form_left input {
+    margin-top: 40px;
+    width: 200px;
+}
+
+.promo_form_right_row1 {
+    width: 100%;
+    clear: both;
+    display: inline-block;
+}
+
+.promo_form_right_row2 {
+    width: 100%;
+    clear: both;
+    display: inline-block;
+}
+
+.promo_form_right_row3 {
+    width: 100%;
+    clear: both;
+    display: inline-block;
+}
+
+.promo_form_right_row1>* {
+    float: left;
+}
+
+.promo_form_right_row2>* {
+    float: left;
+}
+
+.promo_form_right_row3>* {
+    float: left;
+}
+
+.promo_form_right_row1 p {
+    width: 20%;
+    padding-top: 5px;
+}
+
+.promo_form_right_row1 input {
+    width: 80%;
+}
+
+.promo_form_right_row2 p {
+    width: 20%;
+    padding-top: 5px;
+}
+
+.promo_form_right_row2 input {
+    width: 80%;
+    height: 100px;
+    padding-top: 5px;
+}
+
+.promo_form_right_row3 p {
+    width: 20%;
+    padding-top: 5px;
+}
+
+.promo_form_right_row3 select {
+    color: black;
+    border-radius: 3px 3px;
+    height: 35px;
+    outline-color: darkorange;
+}
+
+.promo_form_right_row3 button {
+    float: right;
+}
+
+#header .inner .search_form button {
+    width: auto;
+    padding: 7px 15px;
+    font-family: 'Nanum Gothic';
+    font-weight: bold;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+#header .inner .search_form button a {
+    color: white;
+    font-family: 'Nanum Gothic';
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#header .inner .search_form button a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.high_rank_div {
+    text-align: center;
+}
+
+.rank_area {
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.rank_area:before {
+    display: inline-block;
+    width: 1px;
+    content: '';
+}
+
+.rank_area:after {
+    display: inline-block;
+    width: 1px;
+    content: '';
+}
+
+.item {
+    display: inline-block;
+    border: 1px solid #0d48a1;
+    background-color: #1565c0;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+}
+
+.rank_item_box {
+    padding: 20px 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px #aaaaaa;
+    width: 500px;
+    height: 300px;
+}
+
+.rank_item_box p {
+    text-align: center;
+    font-family: 'Nanum Gothic';
+}
+
+.rank_star {
+    color: #ff3d00;
+}
+
+.rank_item_box img {
+    margin-bottom: 20px;
+}
+
+.rank_item_left {
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+    border-right: 1px solid #ccc;
+}
+
+.rank_item_right {
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+}
+
+
+.bxslider {
+    box-shadow: none;
+    border: 0;
+}

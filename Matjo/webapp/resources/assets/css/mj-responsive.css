@@ -1,0 +1,128 @@
+/* Responsive Web Settings */
+@charset "utf-8";
+
+
+/* media - tablet */
+@media screen and (max-width:1024px) {
+/* 공지, 문의 게시판 */
+    /* Table */
+    .notice {
+        margin: 0 auto;
+        width: 100%;
+    }
+    .notice .other_btn {
+        width: 100%;
+    }
+    .notice .other_btn>button,
+    .notice .other_btn>div {
+        display: inline-block;
+        width: 49%;
+    }
+    .notice .other_btn>div>button {
+        display: inline-block;
+        width: 49%;
+    }
+    .notice table {
+        width: 100%;
+    }
+    .notice table tr td,
+    .notice table tr th {
+        font-size: 0.8em !important;
+    }
+    .notice table tr td.submit_btn{
+        width: 25%;
+    }
+    .notice table tr td.submit_btn button {
+        width: 48%;
+        box-sizing: border-box;
+        font-size: 0.9em !important;
+    }
+    .notice table tr td.submit_btn button:only-child {
+        width: 100%;
+    }
+    
+    /* Search Window */
+    .search_window {
+        width:90%;
+    }
+}
+/* media - mobile*/
+@media screen and (max-width:768px) {
+/* 공지, 문의 게시판 */
+    /* Table */
+    .notice table {
+        text-align: center;
+    }
+    .notice table tr td:first-child,
+    .notice table tr th:first-child {
+        column-width: 0;
+        overflow: hidden;
+    }
+    .notice table tr td.submit_btn {
+        width: 50%;
+    }
+    .notice table tr td.submit_btn button {
+        display: inline-block;
+        box-sizing: border-box;
+        margin-top: 2px;
+    }
+    
+    /* Search Window */
+    .search_window {
+        width: 100%;
+        
+    }
+    .search_window button {
+        margin-top: 2px;
+        width: 100%;
+    }
+    
+/* 랭크 */
+    /* 랭크 탭 화면 */
+    #tab_area h3 {
+        /* 소제목 글씨 가운데 정렬 */
+        text-align: center;
+    }
+    #tab_area>div {
+        /* 탭에 따른 토글 화면 키우기 */
+        padding: 0 !important;
+        width: 100% !important;
+    }
+    #tab_area div div.rank_box_area {
+        /* 부문별 랭크 박스 너비 키우기*/
+        margin: 0 0 10px ;
+        width: 100% !important;
+    }
+    /* 부문별 랭크 글씨 조절 */
+    #tab_area * h4 {
+        font-size: 0.85em !important;
+    }
+    #tab_area * p {
+        font-size: 1em !important;
+    }
+    /* 전체 랭크 이미지 조절 및 배경 조절 */
+    #tab_area div div img {
+        /* 프로필 이미지 둥글게 */
+        clear: both;
+        content: "";
+        display: inline-block;
+        width: 90px;
+        height: 90px;
+    }
+    #tab_area div .running_man {
+        width: 100%;
+    }
+    #tab_area div .running_man p {
+        text-align: center;
+    }
+    #tab_area div .running_area {
+        margin: 0 auto;
+        padding: 0 !important;
+        /* 한 줄씩 차지하도록 */
+        display: block;
+        width: 100px;    /* 배경화면 너비와 동일하게 */
+    }
+    #tab_area div .running_man:first-child {
+        padding-top: 20px;
+    }
+}
