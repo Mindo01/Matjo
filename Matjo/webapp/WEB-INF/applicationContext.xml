@@ -92,6 +92,7 @@
 	        <mvc:exclude-mapping path="/member/selectMemberProc*" />
 	        <mvc:exclude-mapping path="/member/updateMemberProc*" />
 	        <mvc:exclude-mapping path="/searchAddress*" />
+	        <mvc:exclude-mapping path="/resta/**"/>
 	         
 	        <bean class="com.matjo.web.common.SessionInterceptor" />
 	        
