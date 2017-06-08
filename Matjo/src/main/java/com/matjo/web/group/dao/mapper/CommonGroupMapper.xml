@@ -1,8 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.matjo.web.member.dao.CommonGroupDao">
+<mapper namespace="com.matjo.web.group.dao.CommonGroupDao">
     
+    <!-- INSERT : 내 모임 등록 -->
+    <insert id="insertMyGroup" parameterType="groupBean">
+        INSERT INTO mygroup
+        (
+        	mygroup_member,
+        	mygroup_group
+        )
+        VALUES
+        (
+        	#{memberNo},
+        	#{groupNo}
+        )
+    </insert>
     
+    <!-- INSERT : 모임 가입 신청 임시 저장 -->
+    <insert id="insertApply" parameterType="groupBean">
+        INSERT INTO apply
+        (
+        	apply_member,
+        	apply_group,
+        	apply_content,
+        	apply_ischeck
+        )
+        VALUES
+        (
+        	#{memberNo},
+        	#{groupNo},
+        	#{applyContent},
+        	false
+        )
+    </insert>
     
+    <!-- DELETE : 모임 가입 신청 승인/거절 이후 삭제 -->
+    <delete id="deleteApply" parameterType="groupBean">
+        DELETE FROM apply
+        WHERE
+        	apply_member=#{memberNo}
+        	AND
+        	apply_group=#{groupNo}
+    </delete>
 </mapper>

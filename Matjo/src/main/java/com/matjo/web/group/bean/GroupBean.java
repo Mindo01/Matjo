@@ -3,12 +3,21 @@ package com.matjo.web.group.bean;
 /** 모임 Bean */
 public class GroupBean extends CommonGroupBean {
 //	String groupNo;		// 모임 고유번호 (CommonGroupBean)
-//	String groupLeader;	// 모임장 회원번호 (CommonGroupBean)
-	String groupName;	// 모임장 이름
+	String groupLeader;	// 모임장 회원이름
+	String groupName;	// 모임 이름
 //	String groupDate;	// 모임 등록일자 (CommonGroupBean)
 	String groupInfo;	// 모임 정보
 	String groupImg;	// 모임 대표 이미지
 	
+	String groupSize;	// 모임 인원수
+	
+	
+	public String getGroupLeader() {
+		return groupLeader;
+	}
+	public void setGroupLeader(String groupLeader) {
+		this.groupLeader = groupLeader;
+	}
 	public String getGroupName() {
 		return groupName;
 	}
@@ -27,5 +36,12 @@ public class GroupBean extends CommonGroupBean {
 	public void setGroupImg(String groupImg) {
 		this.groupImg = groupImg;
 	}
+	public String getGroupSize() {
+		return groupSize;
+	}
+	public void setGroupSize(String groupSize) {
+		this.groupSize = groupSize;
+	}
+	
 	
 }
