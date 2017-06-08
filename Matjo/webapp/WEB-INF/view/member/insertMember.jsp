@@ -1,166 +1,136 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-	
-<script type="text/javascript">
-		$(function() {
-			
-			// 주소 조회
-			$.ajax({
-				type: "post",
-				url: "/searchAddressCityProc.do",
-				dataType: "json",
-				success: function(data) {
-					console.log(data);
-					HoldOn.close();
-					$.each(data.list, function(i, list) {
-						var str = "";
-						
-						str +=	"<option value='"+list.name+"'>"+list.name+"</option>"
-						
-						$("#memberCity").append(str);
-					
-					});
-				},
-				error: function(xhr, status, error) {
-					HoldOn.close();
-					console.log(xhr);
-					alert("error\nxhr : " + xhr + ", status : " 
-							+ status + ", error : " + error);      
-				}
-			});
-			$("#memberCity").change(function() {
-				$("#memberLocal").remove();
-				var local = "";
-				local += "<select id='memberLocal' name='memberLocal'>"
-				local += "</select>"
-				$("#divLocal").append(local);
-				$.ajax({
-					type: "post",
-					url: "/searchAddressLocalProc.do",
-					data: $("#memberForm").serialize(),
-					dataType: "json",
-					success: function(data) {
-						console.log(data);
-						HoldOn.close();
-						$.each(data.list, function(i, list) {
-							var str = "";
-							
-							str +=	"<option value='"+list.name+"'>"+list.name+"</option>"
-							
-							$("#memberLocal").append(str);
-							
-						});
-					},
-					error: function(xhr, status, error) {
-						HoldOn.close();
-						console.log(xhr);
-						alert("error\nxhr : " + xhr + ", status : " 
-								+ status + ", error : " + error);      
-					}
-				});
-			});
-			
-			$("#btnInsertMember").click(function() {
-		    	//휴대폰 번호 결합
-				var memberHp = $("#hp1").val() + "-" + $("#hp2").val() + "-" + $("#hp3").val();
-		    	$("#memberHp").val(memberHp);
-							    	  
-		        $.ajax({
-		            type:"POST",
-		            url:"/member/insertMemberProc.do",
-		            data: $("#memberForm").serialize(),
-		            dataType:'json',
-		            success:function(data) {
-				        if(data.result == "success"){
-							location.replace("/member/loginMemberForm.do");
-				  			return;
-				        } else {
-				        	alert(data.resultMsg);
-				        }
-				    },
-			        error:function(xhr, status, error) {
-			            alert("error\nxhr : "+xhr+" status : "+status+" error : "+error);
-			       	}
-			    });
-			});
-		});
-</script>
+<title>맛조::회원가입</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+<link rel="stylesheet" href="/resources/assets/css/main.css" />
+<link rel="stylesheet" href="/resources/assets/css/font-kor.css" />
+<link rel="stylesheet" href="/resources/assets/css/mj-custom.css" />
+<link rel="stylesheet" href="/resources/assets/css/mj-responsive.css" />
+<link rel="stylesheet"
+	href="/resources/assets/css/insertMemberFormSub.css" />
+<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+<script type="text/javascript" src="/js/common/angular/angular.js"></script>
+<script type="text/javascript" src="/js/common/jquery/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="/js/common/common.js"></script>
+<script type="text/javascript" src="/js/member/memberApp.js"></script>
+<script type="text/javascript" src="/js/member/memberController.js"></script>
+<script type="text/javascript" src="/js/common/holdon/HoldOn.js"></script>
+
 </head>
 <body>
-
-	<h1 align="center">회원가입</h1>
 	
-	<form id="memberForm">
-		<table align="center" border="1" cellspacing="0" cellpadding="10">
-		
-			<tr>
-				<td>ID</td>
-				<td><input type="text" name="memberId" maxlength="13" required /></td>
-			</tr>
-			
-			<tr>
-				<td>PW</td>
-				<td><input type="password" name="memberPw" maxlength="20" required /></td>
-			</tr>
-			
-			<tr>
-				<td>이름</td>
-				<td><input type="text" name="memberName" maxlength="20" /></td>
-			</tr>
-			
-			<tr>
-				<td>휴대폰번호</td>
-				<td>
-				<select id="hp1" name="hp1">
-					<option value="010">010</option>
-					<option value="070">070</option>
-				</select>
-				- <input type="number" id="hp2" name="hp2" maxlength="4" placeholder="휴대폰 가운데 자리">
-				- <input type="number" id="hp3" name="hp3" maxlength="4" placeholder="휴대폰 뒷자리">
-				<input type="hidden" id="memberHp" name="memberHp" />
-				</td>
-			</tr>
-			
-			<tr>
-				<td>지역</td> 
-				<td>
-				<div id="divLocal">
-					<select id="memberCity" name="memberCity">
-					</select>
-				
-					<select id="memberLocal" name="memberLocal">
-					</select>
-				</div>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>질문 선택</td> 
-				<td>
-					<select name="memberQuestion">
-						<option value="0">나의 보물 1호는?</option>
-						<option value="1">잘생긴 사람은?</option>
-					</select>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>질문 답</td>
-				<td><input type="text" name="memberAnswer" maxlength="50" /></td>
-			</tr>
-			
-			<tr>
-				<td colspan="2" align="center">
-					<button type="button" id="btnInsertMember">회원가입하기</button> &nbsp;&nbsp;
-					<button type="button" onclick="javascript:history.back();">취소</button>
-				</td>
-			</tr>
-		</table>
-	</form>
-	<br>
+	<div ng-app="memberApp" ng-controller="MemberController" ng-init="searchAddressCityProc()">
+		<div class="wrapper style1">
+			<div class="container">
+				<article id="main" class="special">
+					<header>
+						<h2 class="title_ko" lang="ko">
+							<a>회원가입</a>
+						</h2>
+					</header>
+					<section>
+					
+						<!-- content -->
+						<div id="content">
+							<div class="insert_rorw" id="id_area">
+								<span class="input_box"> 
+									<input type="text" placeholder="이메일" maxlength="20" ng-model="memberBean.mId">@
+									<input type="text" maxlength="25" ng-model="memberBean.mEmail"> 
+									<input type="hidden" ng-model="memberBean.memberId" />
+										
+									<select id="emailselect" ng-model="selectEmail" ng-change="settingEmail()">
+										<option value="" selected="selected">직접입력</option>
+										<option value="gmail.com">gmail.com</option>
+										<option value="naver.com">naver.com</option>
+										<option value="daum.net">daum.net</option>
+									</select>
+								</span>
+							</div>
+							
+							<div class="insert_rorw" id="pw_area">
+								<span class="input_box"> 
+									<input type="password" placeholder="비밀번호" maxlength="20" ng-model="memberBean.mPw">
+								</span>
+							</div>
+							
+							<div class="insert_rorw" id="pw_area">
+								<span class="input_box"> 
+									<input type="password" placeholder="비밀번호재확인" maxlength="20" ng-model="memberBean.mPwCheck"> 
+									<input type="hidden" ng-model="memberBean.memberPw" />
+								</span>
+							</div>
+						</div>
+						
+						<div class="insert_rorw" id="pw_area">
+							<span class="input_box"> 
+								<input type="text" placeholder="닉네임" maxlength="16" ng-model="memberBean.memberName">
+							</span>
+						</div>
+						
+						<div class="phoneselect" id="phon">
+							<span class="phoneselectbox"> 
+								<select ng-model="memberBean.hp1">
+										<option value="010" selected="selected">010</option>
+										<option value="011">011</option>
+										<option value="017">017</option>
+										<option value="070">070</option>
+								</select>
+							</span> 
+							
+							<input type="text" maxlength="8" placeholder=" ' - ' 없이 입력" ng-model="memberBean.hp2"> 
+							<input type="hidden" ng-model="memberBean.memberHp" />
+							
+						</div>
+						
+						<div class="addressbox_row">
+							<span class="addressbox">
+								<label id="address">주소 </label>
+								<select ng-model="memberBean.memberCity" ng-options="city.name as city.name for city in cityList" ng-change="searchAddressLocalProc()">
+									<option value="">선택하여 주세요</option>
+								</select> 
+								
+								<select ng-model="memberBean.memberLocal" ng-options="local.name as local.name for local in localList">
+									<option value="">선택하여 주세요</option>
+								</select>
+							</span>
 
+						</div>
+						<div class="question_row" id="">
+							<span class="questionbox"> 
+								<label for="quest" id="question">질문</label>
+								
+								<select id="memberQuestion" value="memberQuestion" ng-model="memberBean.memberQuestion">
+										<option value="0">나의 학창시절 별명은?</option>
+										<option value="1">나의 보물 제 1호는?</option>
+										<option value="2">나의 가족 수는?</option>
+										<option value="3">나의 애완동물 이름은?</option>
+								</select>
+								
+							</span>
+						</div>
+						
+						<div class="answer">
+							<span class="answerbox"> 
+								<label for="anserinput" id="ans">답</label>
+								<input type="text" maxlength="20" placeholder="질문의 답을 입력하세요." ng-model="memberBean.memberAnswer">
+							</span>
+						</div>
+						
+						<button type="button" ng-click="insertMemberProc()">회원가입하기</button>
+					</section>
+				</article>
+				<hr />
+			</div>
+		</div>
+	</div>
+	
 </body>
 </html>

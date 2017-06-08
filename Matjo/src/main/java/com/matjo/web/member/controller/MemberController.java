@@ -57,12 +57,6 @@ public class MemberController {
 		return resMap;
 	}
 	
-	// 로그인 화면
-	@RequestMapping("/member/loginMemberForm")
-	public String loginMemberForm(){
-		return "/member/loginMember";
-	}
-	
 	// 로그인 처리
 	@RequestMapping("/member/loginMemberProc")
 	@ResponseBody
@@ -85,6 +79,14 @@ public class MemberController {
 			
 		}
 		return resMap;
+	}
+	
+	// 로그아웃 처리
+	@RequestMapping("/member/logoutMemberProc")
+	@ResponseBody
+	public Map<String, Object> logoutMemberProc(HttpServletRequest request){
+		request.getSession().invalidate();
+		return null;
 	}
 	
 	// 회원정보 수정화면
