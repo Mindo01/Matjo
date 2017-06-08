@@ -6,6 +6,8 @@ public class CommonGroupBean {
 	String memberNo;	// 회원 고유번호
 	String groupDate;	// 가입일
 	
+	String applyContent;// 가입 신청내용
+	
 	public String getMemberNo() {
 		return memberNo;
 	}
@@ -24,4 +26,11 @@ public class CommonGroupBean {
 	public void setGroupDate(String groupDate) {
 		this.groupDate = groupDate;
 	}
+	public String getApplyContent() {
+		return applyContent;
+	}
+	public void setApplyContent(String applyContent) {
+		this.applyContent = applyContent;
+	}
+	
 }

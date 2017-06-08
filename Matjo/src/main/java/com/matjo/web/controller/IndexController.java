@@ -18,7 +18,18 @@ public class IndexController {
 
 	@RequestMapping("/index")
 	public String index() {
-		return "index";		
+//		return "index";
+		return "test";	// 임시 링크 화면
+	}
+	
+	@RequestMapping("/main")
+	public String main() {
+		return "index";
+	}
+	
+	@RequestMapping("/test")
+	public String test() {
+		return "/board/selectInquiryList";
 	}
 	
 	// 광역시/도 조회
