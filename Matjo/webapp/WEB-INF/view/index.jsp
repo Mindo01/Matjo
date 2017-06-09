@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
-    <link rel="stylesheet" href="../../resources/assets/css/daehee.css" />
+    <link rel="stylesheet" href="/resources/assets/css/daehee.css" />
 
     <link href="/resources/assets/css/jquery.bxslider.css" rel="stylesheet" />
         <!-- Scripts -->

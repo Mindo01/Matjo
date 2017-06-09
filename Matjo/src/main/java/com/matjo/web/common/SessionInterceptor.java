@@ -14,12 +14,12 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception 
 	{
-		MemberBean mBean = (MemberBean) request.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
+		/*MemberBean mBean = (MemberBean) request.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
 		if( mBean != null ) return true;
 		
-		response.sendRedirect("/member/loginMemberForm.do");
+		response.sendRedirect("/member/loginMemberForm.do");*/
 		
-		return false;
+		return true;
 	} // end of preHandle
 	
 } // end of class

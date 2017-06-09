@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.matjo.web.notice.dao.NoticeDao">
+    
+    <sql id="noticeColumns">
+	
+        notice_no AS noticeNo,
+        notice_title AS noticeTitle,
+        notice_content AS noticeContent,
+        notice_cnt AS noticeCnt,
+        notice_date AS noticeDate,
+        notice_update AS noticeUpdate
+    </sql>
+    
+    <!-- 게시글 상세보기 -->
+    <select id="selectNoticeInfo" parameterType="pagingBean" resultType="noticeBean">
+        SELECT
+           <include refid="noticeColumns"/>
+        FROM
+            notice
+        WHERE
+            notice_no = #{noticeNo}       
+</select>
+
+<!-- 게시글 정보 1건 조회  -->
+	<select id="selectNotice" resultType="noticeBean" parameterType="noticeBean">
+	    SELECT
+	    	<include refid="noticeColumns"/>,
+	    	(SELECT member_id
+	    	 FROM 
+	    	 	member 
+	    	 WHERE 
+	    		member.member_id = notice.member_id) AS memberId,
+	    	(SELECT COUNT(*) FROM board_reply WHERE notice_no=notice.memberNo) AS replyTotCount
+	    FROM
+	    	notice
+	    WHERE
+  			notice_no = #{noticeNo}
+	</select>
+	
+<!-- 	  List 조회   -->
+	<select id="selectNoticeList" resultType="noticeBean" parameterType="pagingBean">
+	    SELECT
+	    	<include refid="noticeColumns"/>
+	    FROM
+	    	notice
+	    WHERE
+	    	1=1
+	    	<if test="searchType == 'title'">
+	    	    AND notice_title like CONCAT('%', #{searchText}, '%')
+	    	</if>
+	    	<if test="searchType == 'content'">
+	    	    AND notice_content like CONCAT('%', #{searchText}, '%')
+	    	</if>
+	    	ORDER BY notice_no DESC
+	    LIMIT #{startRow}, #{endRow}
+	</select>
+	
+<!--  전체 레코드 갯수 조회 -->
+	<select id="selectNoticeListTotalCount" resultType="int" parameterType="pagingBean">
+	    SELECT 
+	    	COUNT(*) 
+	    FROM 
+	    	notice
+	    WHERE
+	    	1=1
+	    	<if test="searchType == 'id'">
+	    	    AND member_id like CONCAT('%', #{searchText}, '%')
+	    	</if>
+	</select>
+	
+<!-- 	게시글 저장 -->
+	<insert id="insertNotice" parameterType="noticeBean">
+	    INSERT INTO notice
+	    (
+	    	notice_title,
+	    	notice_content
+	    )
+	    VALUES
+	    (
+	    	#{noticeTitle},
+	    	#{noticeContent}
+	    )
+	    <selectKey order="AFTER" keyProperty="no" resultType="string">
+	        SELECT LAST_INSERT_ID()
+	    </selectKey>
+	</insert>
+	
+ <!-- 게시글 수정  -->
+	<update id="noticeUpdate" parameterType="noticeBean">
+		UPDATE notice SET
+			    notice_title =#{noticeTitle}
+			<if test="noticeContent != null and noticeContent != ''">
+				,notice_content = #{noticeContent}
+				</if>
+			<if test="noticeUpdate != null and noticeUpdate != ''">
+				,notice_update = #{noticeUpdate}
+			</if>
+		WHERE
+			notice_no = #{noticeNo}
+	</update>
+	
+		
+	<!-- 게시글 삭제 -->
+	<delete id="noticeDelete" parameterType="noticeBean">
+	    DELETE FROM 
+	    	notice
+	    WHERE
+	    	notice_no = #{noticeNo}
+	</delete>
+	
+	<!-- 게시글 조회수 수정 -->
+	<update id="noticeCount" parameterType="int">
+		UPDATE notice SET
+			 notice_cnt = notice_cnt+1
+		WHERE
+			notice_no = #{noticeNo}
+	</update>
+	
+</mapper>

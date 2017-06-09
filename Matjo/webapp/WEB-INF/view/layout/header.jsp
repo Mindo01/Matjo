@@ -5,8 +5,6 @@
 
 
 <!-- 공통 CSS -->
-
-
 <link rel="stylesheet" href="../../resources/assets/css/main.css" />
 
 <link rel="stylesheet" href="../../resources/assets/css/font-kor.css" />
@@ -32,4 +30,12 @@
     <!-- 합쳐지고 최소화된 최신 CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    
+    <script>
+            $(document).ready(function() {
+                $(".login").click(function() {
+                    $('div.modal').modal();
+                });
+            });
+    </script>   
