@@ -64,7 +64,7 @@
 						${ sessionScope.memberLoginBean.memberName }</td>
 					</tr>
 					<tr>
-						<td style="vertical-align: middle;">모임 설명</td>
+						<td style="vertical-align: middle;">가입 신청 내용</td>
 						<td><textarea name="groupInfo" style="width:100%;" cols="30" rows="7" maxlength="120" required></textarea></td>
 					</tr>
 					<tr>
