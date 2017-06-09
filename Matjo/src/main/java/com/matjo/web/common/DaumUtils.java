@@ -51,7 +51,10 @@ public class DaumUtils {
 					+ "apikey=" + DAUM_API_KEY_1  
 					+ "&image=only"
 					+ "&sort=1"
-					+ "page=" + (pagingBean.getPageNo())
+					+ "&count" + 15 // 한 페이지가 갖는 아이템 갯수
+					+ "&page=" + (pagingBean.getPageNo())
+					+ ( (pagingBean.getLocation() != null && pagingBean.getLocation() != "," && pagingBean.getLocation() != "null") ? "&location=" + pagingBean.getLocation() : "") // 위치값
+					+ ( (pagingBean.getRadius() > 0) ? "&radius=" + (pagingBean.getRadius()*1000) : "" ) // 반경값
 					+ "&query=" + URLEncoder.encode(pagingBean.getSearchText(), "UTF-8");
 		} catch (UnsupportedEncodingException e1) {
 			// TODO Auto-generated catch block

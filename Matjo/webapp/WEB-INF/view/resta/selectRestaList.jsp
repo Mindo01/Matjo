@@ -32,9 +32,24 @@
 <script type="text/javascript" src="/js/common/angular/angular.js"></script>
 <script type="text/javascript" src="/js/resta/restaApp.js"></script>
 <script type="text/javascript" src="/js/resta/restaController.js"></script>
+<!-- <script type="text/javascript">
+function getLoc() {
+	// HTML5의 geolocation을 사용할 수 있는지 확인한다. 
+	if (navigator.geolocation) {
+	    // GeoLocation을 이용해서 접속 위치를 얻어온다.
+	    navigator.geolocation.getCurrentPosition(function(position) {
+	        var lat = position.coords.latitude, // 위도
+	            lon = position.coords.longitude; // 경도
+	            alert(lat + ', ' + lon); // 콘솔로 좌표 확인
+	      });
+	} else { // HTML5의 GeoLocation을 사용할 수 없을때
+		// 처리
+	}
+}
+</script> -->
 </head>
 <body class="no-sidebar">
-	<div ng-app="restaApp" ng-controller="RestaController"
+	<div ng-app="restaApp" ng-controller="RestaController" ng-init=""
 		id="page-wrapper">
 
 		<!-- Modal -->
@@ -115,8 +130,7 @@
 						<ul>
 							<li><a href="selectNoticeList.html">공지사항</a></li>
 							<li><a href="selectInquiryList.html">문의사항</a></li>
-						</ul>
-					</li>
+						</ul></li>
 				</ul>
 				<div class="member_menu">
 					<a class="login">로그인</a> <a class="register"
@@ -135,7 +149,7 @@
 						<h2 class="title_ko" lang="ko">
 							<a href="#">맛집 검색 결과</a>
 						</h2>
-						<p lang="ko">[가산]에 대한 검색결과 6건</p>
+						<p lang="ko" id="textKeyword"></p>
 					</header>
 					<section class="search_area_resta">
 						<!-- 검색 창 -->
@@ -156,7 +170,17 @@
 							<label for="tab_resta" class="tab_filter">검색 조건 설정</label>
 							<!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 -->
 							<!-- 탭버튼 클릭 시 화면 -->
-							<div class="tab_resta_content">검색 필터입니다</div>
+							<div class="tab_resta_content">
+								검색 필터입니다 <br /> <input type="radio" name="search" value="normal"
+									ng-model="searchType" checked />일반검색&nbsp;&nbsp;&nbsp; <input
+									type="radio" name="search" value="location"
+									ng-model="searchType" />위치기반 검색<br /> <input type="radio"
+									name="radius" value="5" ng-model="pagingBean.radius" checked />5km&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="radius" value="10"
+									ng-model="pagingBean.radius" />10km&nbsp;&nbsp;&nbsp; <input
+									type="radio" name="radius" value="20"
+									ng-model="pagingBean.radius" />20km
+							</div>
 						</div>
 					</section>
 					<section>
@@ -212,7 +236,7 @@
 								</tr>
 								<tr ng-repeat="resta in restaList">
 									<td>{{resta.restaId}}</td>
-									<td><a href="#">{{resta.restaTitle}}</a></td>
+									<td><a href="#" ng-click="goDetailPage(resta)">{{resta.restaTitle}}</a></td>
 									<td>{{resta.restaCate}}</td>
 									<td>130</td>
 								</tr>
@@ -221,13 +245,22 @@
 					</section>
 				</article>
 				<!-- 페이지 -->
-				<div class="paging">
-					<div class="paging_number">
-						<span><a href="#">[1]</a></span> <span><a href="#">[2]</a></span>
-						<span><a href="#">[3]</a></span> <span><a href="#">[4]</a></span>
-						<span><a href="#">[5]</a></span>
-					</div>
-				</div>
+				<button type="button" ng-click="addRestaItem(pagingBean.pageNo+1)">더
+					보기</button>
+
+				<!-- 특정 업소 선택시 화면이동을 하며 dlBean 을 보낸다 -> 앵귤러만으로 구현이 안되기에 JS 코드와 함께 작동시킴 -->
+				<form id="sendForm" method="post">
+					<input type="hidden" id="restaId" name="restaId"> 
+					<input type="hidden" id="restaTitle" name="restaTitle">
+					<input type="hidden" id="restaCate" name="restaCate"> 
+					<input type="hidden" id="restaAddr" name="restaAddr"> 
+					<input type="hidden" id="restaImgUrl" name="restaImgUrl">
+					<input type="hidden" id="restaLat" name="restaLat">
+					<input type="hidden" id="restaLng" name="restaLng">
+					<input type="hidden" id="restaUrl" name="restaUrl">
+					<input type="hidden" id="restaPhone" name="restaPhone">
+				</form>
+
 				<hr />
 			</div>
 
@@ -266,22 +299,8 @@
 				</ul>
 			</div>
 		</div>
-		
-		<button type="button" ng-click="addRestaItem(pagingBean.pageNo+1)">더 보기</button>
+
 	</div>
-
-	<!-- Scripts -->
-	<script src="/resources/assets/js/jquery.min.js"></script>
-	<script src="/resources/assets/js/jquery.dropotron.min.js"></script>
-	<script src="/resources/assets/js/jquery.scrolly.min.js"></script>
-	<script src="/resources/assets/js/jquery.onvisible.min.js"></script>
-	<script src="/resources/assets/js/skel.min.js"></script>
-	<script src="/resources/assets/js/util.js"></script>
-	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-	<script src="/resources/assets/js/main.js"></script>
-
-	<!--부트스트랩-->
-
 
 	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 	<script

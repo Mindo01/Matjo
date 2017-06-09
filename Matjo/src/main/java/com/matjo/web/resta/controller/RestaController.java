@@ -52,13 +52,13 @@ public class RestaController {
 	public Map<String, Object> selectRestaListProc(PagingBean pagingBean) {
 		Map<String, Object> resMap = new HashMap<String, Object>();
 		resMap.put("result", "fail");
-		resMap.put("resultMsg", "POI 조회에 실패 하였습니다.");
+		resMap.put("resultMsg", "목록 조회에 실패 하였습니다.");
 		
 		try {
 			List<DaumLocalBean> list = DaumUtils.searchDataForKeyword(pagingBean);
 			if (list.size() > 0) {
 				resMap.put("result", "ok");
-				resMap.put("resultMsg", "POI 조회에 성공 하였습니다.");
+				resMap.put("resultMsg", "목록 조회에 성공 하였습니다.");
 				resMap.put("list", list);
 				resMap.put("pagingBean", pagingBean);
 			}
@@ -81,6 +81,18 @@ public class RestaController {
 		model.addAttribute("dlBean", dlBean);
 		return "resta/selectRestaForm";
 	}
+	
+	/**
+	 * 음식점 상세정보 화면 (템플릿, AngularJS 적용)
+	 * @param dlBean dlBean API 로 부터 받은 음식점 목록에서, 클릭한 음식점의 데이터 객체
+	 * @param model 넘겨받은 DaumLocalBean 을 model 에 심어 페이지를 리턴할 목적
+	 * @return 뷰(jsp) 리턴
+	 */
+	@RequestMapping("resta/selectRestaDetail")
+	public String selectRestaDetail(DaumLocalBean dlBean, Model model) {
+		model.addAttribute("dlBean", dlBean);
+		return "resta/selectRestaDetail";
+	} // end of selectRestaDetail
 	
 	
 	/**

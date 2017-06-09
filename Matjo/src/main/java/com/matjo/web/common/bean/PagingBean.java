@@ -41,6 +41,13 @@ public class PagingBean {
 	private int pageEndNo;
 	
 	
+	/** 위치값('위도,경도') **/
+	private String location;
+	
+	/** 반지름값(반경) **/
+	private int radius; // default: 5000, min: 0, max: 20000
+	
+	
 	/**
 	 * 화면에 표시할 페이징 변수정보를 계산한다.
 	 * @param totalRecordCount 전체 레코드 갯수
@@ -182,6 +189,23 @@ public class PagingBean {
 	public void setSearchText(String searchText) {
 		this.searchText = searchText;
 	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public int getRadius() {
+		return radius;
+	}
+
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+	
 } // end of class
 
 
