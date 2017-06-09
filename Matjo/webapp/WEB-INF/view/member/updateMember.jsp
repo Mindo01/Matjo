@@ -42,19 +42,19 @@
 						<div id="content">
 							<div class="insert_rorw" id="id_area">
 								<span class="input_box"> 
-									<span ng-model="memberBean.memberId">{{memberBean.memberId}}</span>
+									<span id="span_text" ng-model="memberBean.memberId">{{memberBean.memberId}}</span>
 								</span>
 							</div>
 							
 							<div class="insert_rorw" id="pw_area">
 								<span class="input_box"> 
-									<input type="password" placeholder="비밀번호" maxlength="20" ng-model="memberBean.mPw">
+									<input type="password" id="pw" placeholder="비밀번호" maxlength="20" ng-model="memberBean.mPw">
 								</span>
 							</div>
 							
 							<div class="insert_rorw" id="pw_area">
 								<span class="input_box"> 
-									<input type="password" placeholder="비밀번호재확인" maxlength="20" ng-model="memberBean.mPwCheck"> 
+									<input type="password" id="pw" placeholder="비밀번호재확인" maxlength="20" ng-model="memberBean.mPwCheck"> 
 									<input type="hidden" ng-model="memberBean.memberPw" />
 								</span>
 							</div>
@@ -62,24 +62,26 @@
 						
 						<div class="insert_rorw" id="pw_area">
 							<span class="input_box"> 
-								<input type="text" placeholder="닉네임" maxlength="16" ng-model="memberBean.memberName">
+								<input type="text" id="pw" placeholder="닉네임" maxlength="16" ng-model="memberBean.memberName">
 							</span>
 						</div>
 						
 						<div class="phoneselect" id="phon">
-							<span class="phoneselectbox">
-								<span ng-model="memberBean.memberHp">{{memberBean.memberHp}}</span> 
-							</span>
+							<div id="margin_bottom">
+								<span class="phoneselectbox">
+									<span id="span_text" ng-model="memberBean.memberHp">{{memberBean.memberHp}}</span> 
+								</span>
+							</div>
 						</div>
 						
 						<div class="addressbox_row">
 							<span class="addressbox">
-								<label id="address">주소 </label>
-								<select ng-model="memberBean.memberCity" ng-options="city.name as city.name for city in cityList" ng-change="searchAddressLocalProc()">
+								<label id="address">주소 </label>&nbsp;
+								<select id="addr" ng-model="memberBean.memberCity" ng-options="city.name as city.name for city in cityList" ng-change="searchAddressLocalProc()">
 									<option value="">선택하여 주세요</option>
 								</select> 
 								
-								<select ng-model="memberBean.memberLocal" ng-options="local.name as local.name for local in localList">
+								<select id="addr" ng-model="memberBean.memberLocal" ng-options="local.name as local.name for local in localList">
 									<option value="">선택하여 주세요</option>
 								</select>
 							</span>
@@ -87,9 +89,9 @@
 						</div>
 						<div class="question_row" id="">
 							<span class="questionbox"> 
-								<label for="quest" id="question">질문</label>
+								<label for="quest" id="question">질문</label>&nbsp;
 								
-								<select id="memberQuestion" value="memberQuestion" ng-model="memberBean.memberQuestion">
+								<select id="quest" ng-model="memberBean.memberQuestion">
 										<option value="0">나의 학창시절 별명은?</option>
 										<option value="1">나의 보물 제 1호는?</option>
 										<option value="2">나의 가족 수는?</option>
@@ -101,12 +103,12 @@
 						
 						<div class="answer">
 							<span class="answerbox"> 
-								<label for="anserinput" id="ans">답</label>
-								<input type="text" maxlength="20" placeholder="질문의 답을 입력하세요." ng-model="memberBean.memberAnswer">
+								<label for="anserinput" id="ans">답</label>&nbsp;
+								<input type="text" id="anserinput" maxlength="20" placeholder="질문의 답을 입력하세요." ng-model="memberBean.memberAnswer">
 							</span>
 						</div>
 						
-						<button type="button" ng-click="updateMemberProc()">회원정보 수정하기</button>
+						<button type="button" class="btn_insert" ng-click="updateMemberProc()">회원정보 수정하기</button>
 					</section>
 				</article>
 				<hr />
