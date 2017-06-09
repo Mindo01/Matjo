@@ -34,7 +34,7 @@
 						var notice = data.inquiryBean;
 						
 						//수정날짜 입력
-						//notice.noticeUpdate = NowTime;
+						notice.noticeUpdate = NowTime;
 
 						$("#inquiryTitle").val( notice.inquiryTitle );
 						$("#inquiryContent").val( notice.inquiryContent );
