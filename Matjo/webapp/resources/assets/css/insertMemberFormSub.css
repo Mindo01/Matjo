@@ -97,15 +97,16 @@ section {
     width: 300px;
 }
 .btn_insert{
-    height: 45px;
-    width: 325px;
+    height: 25px;
+    width: 200px;
     background-color: #FF3D00 !important;
     color: aliceblue;
     font-weight: 300;
     box-sizing: content-box;
-    font-size: 14px;
-    font-weight: 300;
-     border: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    border: 0;
+    align-content: center;
 }
 .btn_insert:hover {
     background-color: #FF6E40 !important;
@@ -164,6 +165,9 @@ label{
     width: 100PX;
     margin-left: 10px;
 }
+#span_text{
+	font-size: 1.5em;
+}
 .input_row{
     margin-top: 10px;
     margin-bottom:15px;
@@ -181,7 +185,9 @@ label{
     width: 100PX;
     height: 45px;
 }
-
+#margin_bottom{
+	margin-bottom: 10px;
+}
 .close{
              margin-left: 380px;
              border: none;
