@@ -109,6 +109,7 @@ public class MemberController {
 			int res = memberService.updateMember(memberBean);
 			
 			if(res > 0) {
+				memberBean = memberService.selectMember(memberBean);
 				request.getSession().setAttribute(Constants.MEMBER_LOGIN_BEAN, memberBean);
 				
 				resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
