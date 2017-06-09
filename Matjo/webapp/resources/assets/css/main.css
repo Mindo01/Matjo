@@ -3183,15 +3183,21 @@
 .modal-footer {
     text-align: center;
 }
-    .modal-footer input {
-        background-color: #FF3D00;
-    }
-    .modal-footer input:hover {
-        background-color: #FF6E40;
-    }
+.modal-footer input {
+background-color: #FF3D00;
+}
+.modal-footer input:hover {
+    background-color: #FF6E40;
+}
 
-
-
+#findPassword {
+	display: block;
+	margin-top: 10px;
+	text-decoration: underline;
+}
+#findPassword:hover {
+	color: #FF6E40;
+}
 
 /* mobile */
 @media screen and (max-width:768px) {

@@ -68,6 +68,10 @@
 								<span id="cacaologinbutton"> 
 									<input type="button" value="카카오톡 로그인" class="btn_sns" lang="ko"/>
 								</span>
+								
+								<br>
+								
+								<label id="findPassword" ng-click="findMemberForm()">비밀번호를 잃어버리셨나요?</label>
 							</div>
 							
 						</div>
