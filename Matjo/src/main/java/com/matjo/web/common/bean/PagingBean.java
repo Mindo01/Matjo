@@ -5,7 +5,7 @@ package com.matjo.web.common.bean;
  * @author dev.james.jeong (Daehee Jeong)
  *
  */
-public class PagingBean {
+public class PagingBean extends CommonBean{
 	
 	/** 한 페이지 당 보여지는 레코드의 갯수 **/
 	public static final int COUNT_PER_RECORD = 3;

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.matjo.web.inquiry.dao.InquiryDao">
+    
+    <sql id="inquiryColumns">
+	
+        inquiry_no AS inquiryNo,
+        inquiry_member AS inquiryMember,
+        inquiry_title AS inquiryTitle,
+        inquiry_content AS inquiryContent,
+        inquiry_cnt AS inquiryCnt,
+        inquiry_date AS inquiryDate,
+        inquiry_update AS inquiryUpdate,
+        inquiry_isopen AS inquiryIsOpen,
+        inquiry_reply AS inquiryReply,
+        inquiry_repdate AS inquiryRepDate
+    </sql>
+    
+    <!-- 게시글 상세보기 화면 -->
+        <select id="selectInquiryInfo" parameterType="pagingBean" resultType="inquiryBean">
+        SELECT
+        <include refid="inquiryColumns"/>
+        FROM
+            inquiry
+        WHERE
+            inquiry_no = #{inquiryNo}       
+	</select>
+	
+<!-- 게시글 정보 1건 조회   -->
+	<select id="selectInquiry" resultType="inquiryBean" parameterType="inquiryBean">
+	    SELECT
+	    	<include refid="inquiryColumns"/>,
+	    	(SELECT member_id
+	    	 FROM 
+	    	 	member 
+	    	 WHERE 
+	    		member.member_id = inquiry.member_id) AS memberId,
+	    	(SELECT COUNT(*) FROM inquiry_reply WHERE inquiry_no=inquiry.inquiryNo) AS replyTotCount
+	    FROM
+	    	inquiry
+	    WHERE
+  			inquiry_no = #{inquiryNo}
+	</select>
+	
+<!-- 	 게시글 List 조회  -->
+	<select id="selectInquiryList" resultType="inquiryBean" parameterType="pagingBean">
+	    SELECT
+	    	<include refid="inquiryColumns"/>
+	    FROM
+	    	inquiry
+	    WHERE
+	    	1=1
+	    	<if test="searchType == 'title'">
+	    	    AND inquiry_title like CONCAT('%', #{searchText}, '%')
+	    	</if>
+	    	<if test="searchType == 'content'">
+	    	    AND inquiry_content like CONCAT('%', #{searchText}, '%')
+	    	</if>
+	    	ORDER BY inquiry_no DESC
+	    LIMIT #{startRow}, #{endRow}
+	</select>
+	
+<!--  전체 레코드 갯수 조회  -->
+	<select id="selectInquiryListTotalCount" resultType="int" parameterType="pagingBean">
+	    SELECT 
+	    	COUNT(*) 
+	    FROM 
+	    	inquiry
+	    WHERE
+	    	1=1
+	    	<if test="searchType == 'titleContent'">
+	    	    AND inquiry_title like CONCAT('%', #{searchText}, '%')
+	    	</if>
+	</select>
+	
+	
+<!--  	게시글 저장 -->
+	<insert id="inquiryInsert" parameterType="inquiryBean">
+	    INSERT INTO inquiry
+	    (
+	    	inquiry_title,
+	    	inquiry_content
+	    )
+	    VALUES
+	    (
+	    	#{inquiryTitle},
+	    	#{inquiryContent}
+	    )
+   <selectKey order="AFTER" keyProperty="no" resultType="string">
+        SELECT LAST_INSERT_ID()
+ 	    </selectKey> 
+	</insert>
+	
+	
+		
+ <!-- 게시글 수정  -->
+	<update id="inquiryUpdate" parameterType="inquiryBean">
+		UPDATE inquiry SET
+			inquiry_title =#{inquiryTitle}
+			<if test="inquiryContent != null and inquiryContent != ''">
+				,inquiry_content = #{inquiryContent}
+				</if>
+			<if test="inquiryDate != null and inquiryDate != ''">
+				,inquiry_update = CURRENT_TIMESTAMP 
+			</if>
+			<if test="inquiryReply != null and inquiryReply != ''">
+				, inquiry_isopen =  inquiry_isopen+"답변완료"
+			</if>
+		WHERE
+			inquiry_no = #{inquiryNo}
+	</update>
+	
+		
+	<!-- 게시글 삭제 -->
+	<delete id="inquiryDelete" parameterType="inquiryBean">
+	    DELETE FROM 
+	    	inquiry
+	    WHERE
+	    	inquiry_no = #{inquiryNo}
+	</delete>
+	
+	<!-- 게시글 조회수 수정 -->
+	<update id="inquiryCount" parameterType="int">
+		UPDATE inquiry SET
+			 inquiry_cnt = inquiry_cnt+1
+		WHERE
+			inquiry_no = #{inquiryNo}
+	</update>
+	
+	
+		<!--게시글 댓글 -->
+	<update id="inquiryReplyInsert" parameterType="inquiryBean">
+	 UPDATE inquiry SET
+			inquiry_reply = #{inquiryReply},
+			inquiry_repdate = current_timestamp
+	   WHERE
+			inquiry_no = #{inquiryNo}
+	</update>
+	
+<!-- 	 댓글 올라간 게시글 확인-->
+<!-- 	<select id="inquiryReplyInsertInfo" resultType="inquiryBean" parameterType="pagingBean"> -->
+<!-- 	    SELECT -->
+<!--         <include refid="inquiryColumns"/> -->
+<!--         FROM -->
+<!--             inquiry -->
+<!--         WHERE -->
+<!--             inquiry_no = #{inquiryNo}     -->
+<!-- 	</select> -->
+</mapper>

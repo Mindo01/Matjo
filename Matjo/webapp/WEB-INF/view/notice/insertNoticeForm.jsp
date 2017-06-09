@@ -92,10 +92,9 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" class="table_blank">
-                                                
+                                            <td colspan="1" class="table_blank">
                                             </td>
-                                            <td class="submit_btn" >
+                                            <td class="submit_btn" colspan="2" >
                                                 <button class="sch_smit" type="button" onclick="writeBoard(); return false;">작성 완료</button>
                                                 <button class="sch_smit" type="button" onclick="history.back()">취소</button>
                                             </td>
