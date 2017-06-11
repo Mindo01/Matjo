@@ -12,6 +12,8 @@ public class ReviewBean {
 	private String reviewIsOpen;
 	private List<PereviewBean> pereviewList;
 	
+	private String reviewGroupName;
+	
 	/* Constructors */
 	public ReviewBean() {
 	}
@@ -61,6 +63,12 @@ public class ReviewBean {
 	}
 	public void setPereviewList(List<PereviewBean> pereviewList) {
 		this.pereviewList = pereviewList;
+	}
+	public String getReviewGroupName() {
+		return reviewGroupName;
+	}
+	public void setReviewGroupName(String reviewGroupName) {
+		this.reviewGroupName = reviewGroupName;
 	}
 	
 } // end of class

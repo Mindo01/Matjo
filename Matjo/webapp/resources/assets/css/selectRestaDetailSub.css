@@ -39,7 +39,6 @@
 
 /* Content */
 #review {
-    height: 280px;
     background-color: #fafafa;
     box-shadow: 2px 2px 6px 1px #555;
     /* 수평거리 수직거리 블러 확장거리 컬러*/
@@ -78,12 +77,9 @@
 }
 .review_detail {
     width: 600px;
-    background-color: #f9f9f9;
-    box-shadow: 2px 2px 6px 1px #555;
     /* 수평거리 수직거리 블러 확장거리 컬러*/
     padding: 10px 0px 10px 20px;
     margin: 10px 0px 0px 0px;
-    position: absolute;
     z-index: 101;
 }
 #review_detail_member_img {

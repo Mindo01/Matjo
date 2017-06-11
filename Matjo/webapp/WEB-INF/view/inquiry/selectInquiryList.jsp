@@ -62,7 +62,14 @@
 									<td>${bean.inquiryCnt}</td>
 									<td><span style="font-size: 11px;">${bean.inquiryDate}</span></td>
 									<td><span style="font-size: 11px;">${bean.inquiryUpdate}</span></td>
-									<td><button type="button" value="need_answer" class ="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryDetail.do?inquiryNo=${bean.inquiryNo}';">답변하기</button></td>
+									<td>
+									<c:if test="${bean.inquiryReply eq ''}">
+									<button type="button" value="need_answer" class ="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryDetail.do?inquiryNo=${bean.inquiryNo}';">답변하기</button>
+									</c:if>
+									<c:if test="${bean.inquiryReply ne '' }">
+									<button type="button" value="finish_answer" class ="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryDetail.do?inquiryNo=${bean.inquiryNo}';">답변완료</button>
+									</c:if>
+									</td>
 							</tr>
 							</c:forEach>
 						</table>

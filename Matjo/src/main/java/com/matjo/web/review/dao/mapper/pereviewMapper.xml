@@ -3,13 +3,13 @@
 
 <!-- 맵퍼가 쿼리를 수행 -->
 
-<mapper namespace="com.kosta148.matjo.review.dao.PereviewDao">
+<mapper namespace="com.matjo.web.review.dao.PereviewDao">
 
 	<!-- 회원 목록 조회 -->
 	<sql id="pereviewColumns">
 		pereview_no AS pereviewNo,
 		(
-			SELECT member_id FROM member WHERE no = pereview.pereview_member
+			SELECT member_id FROM member WHERE member_no = pereview.pereview_member
 		) AS pereviewMemId,
 		pereview_review AS pereviewReviewNo,
 		pereview_content AS pereviewContent,

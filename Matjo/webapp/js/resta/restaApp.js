@@ -8,6 +8,8 @@ restaApp.factory("RestaService", function($http) {
 	var service = {};
 
 	service.selectRestaListProc = selectRestaListProc;
+	service.selectRestaForm = selectRestaForm;
+	service.selectRestaProc = selectRestaProc;
 	return service;
 
 	// 음식점 목록 조회
@@ -21,6 +23,16 @@ restaApp.factory("RestaService", function($http) {
 	};
 
 	// 음식점 1개 조회
+	function selectRestaForm(objParam) {
+		return $http({
+			url: "/resta/selectRestaForm.do",
+			method: "post",
+			data : json2PostParams(objParam),
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(handleSuccess, handleError);
+	};
+	
+	// 음식점 1개 조회시 해당 리뷰 호출
 	function selectRestaProc(objParam) {
 		return $http({
 			url: "/resta/selectRestaProc.do",

@@ -64,6 +64,10 @@
 						groupSize*=1;
 						groupSize--;
 						$("#sidebar_group_members").html("● "+gBean.groupLeader+" 외 "+groupSize+"명");
+						var imgPath = gBean.groupImg;
+						if (imgPath != null && imgPath != '') {
+							$("#sidebar_img").attr("src", "/upload/"+imgPath);
+						}
 					} else {
 						// 정보 조회 실패
 						alert(data.resultMsg);
@@ -131,7 +135,7 @@
                                     <span id="sidebar_group_info">${ gBean.groupInfo }</span>
                                     <br/>
                                     <!-- 그룹 대표 이미지 -->
-                                    <img src="${ gBean.groupImg != null && gBean.groupImg != '' ? gBean.groupImg:'/resources/images/group_1.png'}" id="sidebar_img" />
+                                    <img src="/resources/images/group_1.png" id="sidebar_img" />
                                     <br/>
                                     <table>
                                         <tr>

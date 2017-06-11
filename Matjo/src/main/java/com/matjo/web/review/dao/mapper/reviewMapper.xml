@@ -3,7 +3,7 @@
 
 <!-- 맵퍼가 쿼리를 수행 -->
 
-<mapper namespace="com.kosta148.matjo.review.dao.ReviewDao">
+<mapper namespace="com.matjo.web.review.dao.ReviewDao">
 
 	<!-- 회원 목록 조회 -->
 	<sql id="reviewColumns">
@@ -12,7 +12,12 @@
 		review_resta_no AS reviewRestaNo,
 		review_resta_name AS reviewRestaName,
 		review_resta_cate AS reviewRestaCate,
-		review_isopen AS reviewIsOpen
+		review_isopen AS reviewIsOpen,
+		(
+			SELECT group_name
+			FROM groups 
+			WHERE review.review_group = groups.group_no
+		) AS reviewGroupName
 	</sql>
 
 	<!-- 리뷰 목록 조회 -->

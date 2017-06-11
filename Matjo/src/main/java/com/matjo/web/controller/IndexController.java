@@ -27,11 +27,6 @@ public class IndexController {
 		return "index";
 	}
 	
-	@RequestMapping("/test")
-	public String test() {
-		return "/board/selectInquiryList";
-	}
-	
 	// 광역시/도 조회
 	@RequestMapping("/searchAddressCityProc")
 	@ResponseBody

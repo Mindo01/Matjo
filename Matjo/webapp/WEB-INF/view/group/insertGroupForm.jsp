@@ -11,11 +11,9 @@
 	<script type="text/javascript">
 		function insertGroup() {
 			var groupForm = document.getElementById("insertGroup");
-//			var groupForm = $(#insertGroup).serialize();
 			groupForm.method = "post";
 			groupForm.action = "/group/insertGroupProc.do";
 			groupForm.submit();
-//			location.href="/group/insertGroupProc.do?"+formData;
 		};
 	</script>
 </head>
@@ -62,7 +60,7 @@
 					</tr>
 					<tr>
 						<td>모임 이미지 첨부</td>
-						<td><input type="file" /></td>
+						<td><input type="file" name="imgFile"/></td>
 					</tr>
 					<tr>
 						<td colspan="2">
