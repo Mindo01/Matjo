@@ -141,16 +141,22 @@ public class GroupController {
 		gBean.setMemberNo(memberNo);
 		
 		// Service Call : 모임 가입 : 내모임에 회원정보+모임정보 INSERT
-		int res = groupService.insertGroupApply(gBean);	// TODO 아직 ServiceImpl 안건드렸음! 확인 필요!
+		int res = groupService.insertGroupApply(gBean);
 		if (res > 0) {
 			// 성공
-			// TODO redirect 해서 해당 모임 상세정보 화면으로 이동
-			// return "redirect:/group/selectGroupDetailView.do?groupNo=gBean.groupNo";
+			// redirect 해서 해당 모임 상세정보 화면으로 이동
+			return "redirect:/group/selectGroupDetailView.do?groupNo="+gBean.getGroupNo();
 		}
 		
 		// 실패 : 원래 페이지로 돌아가기
 		model.addAttribute("groupNo", gBean.getGroupNo());
 		return "/group/selectGroupDetailView";
+	}
+	
+	/** F-2 : 모임 가입 자식창 - 가입할 모임 검색 */
+	@RequestMapping("/group/selectGroupToApply")
+	public String selectGroupToApply() {
+		return "/group/selectGroupToApply";
 	}
 	
 	/** P : 모임 구독 처리 AJAX */

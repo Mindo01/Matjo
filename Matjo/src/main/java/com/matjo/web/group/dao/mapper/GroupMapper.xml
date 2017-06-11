@@ -90,4 +90,13 @@
 			mygroup_group = #{groupNo}
     </select>
     
+    <select id="selectGroupByName" parameterType="groupBean" resultType="groupBean">
+        SELECT
+        	group_no AS groupNo
+        FROM
+        	groups
+        WHERE
+        	group_name = #{groupName}
+    </select>
+    
 </mapper>
