@@ -5,12 +5,17 @@
 <decorators defaultdir="/WEB-INF/view/layout">
 
  <!-- 예외 URL 패턴 -->
- 	<excludes>
- 	    <pattern>/member/**</pattern>
- 	</excludes>
+ 	<!-- <excludes>
+ 	    <pattern>/</pattern>
+ 	</excludes> -->
 
  	<decorator name="header-footer-layout" page="header-footer-layout.jsp">
-  		<pattern>*</pattern>
+  		<pattern>/*</pattern>
  	</decorator>
+ 	
+ 	<decorator name="header-footer-layout2" page="header-footer-layout2.jsp">
+  		<pattern>/member/*</pattern>
+ 	</decorator>
+	
+</decorators>
 
-</decorators> 

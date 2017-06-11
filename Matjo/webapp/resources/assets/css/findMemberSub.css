@@ -1,0 +1,20 @@
+.btn_insert{
+    height: 12px;
+    width: 120px;
+    background-color: #FF3D00 !important;
+    color: aliceblue;
+    font-weight: 300;
+    font-size: 1em;
+    font-weight: bold;
+    align-content: center;
+    box-sizing: content-box;
+    border: 0;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+#quest{
+    height: 43px;
+    width: 312px;
+    margin-bottom: 20px;
+}

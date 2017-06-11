@@ -17,13 +17,6 @@
 	href="/resources/assets/css/insertMemberFormSub.css" />
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 
-<script type="text/javascript" src="/js/common/angular/angular.js"></script>
-<script type="text/javascript" src="/js/common/jquery/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="/js/common/common.js"></script>
-<script type="text/javascript" src="/js/member/memberApp.js"></script>
-<script type="text/javascript" src="/js/member/memberController.js"></script>
-<script type="text/javascript" src="/js/common/holdon/HoldOn.js"></script>
-
 </head>
 <body>
 	
