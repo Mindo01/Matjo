@@ -53,6 +53,10 @@
 						<td>민주</td>
 						<td><a href="/group/insertGroupForm.do">새모임등록</a></td>
 					</tr>
+					<tr>
+						<td>민주</td>
+						<td><a href="/group/insertGroupMemberForm.do">모임가입신청</a></td>
+					</tr>
 				</table>
 			</div>
 		</div>

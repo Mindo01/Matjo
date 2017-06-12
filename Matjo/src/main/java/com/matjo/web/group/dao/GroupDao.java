@@ -12,8 +12,13 @@ public interface GroupDao {
 	public GroupBean selectGroupDetail(GroupBean gBean);
 	/** SELECT : 모임 소속 회원 목록 조회 */
 	public List<MemberBean> selectGroupMember(GroupBean gBean);
+
+	/** SELECT : 모임 이름으로 검색 */
+	public GroupBean selectGroupByName(GroupBean gBean);
 	
 	/** INSERT : 새 모임 등록 */
 	public int insertGroup(GroupBean gBean);
+	
+	
 	
 }

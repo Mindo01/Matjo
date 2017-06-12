@@ -16,6 +16,11 @@
  	<decorator name="header-footer-layout2" page="header-footer-layout2.jsp">
   		<pattern>/member/*</pattern>
  	</decorator>
+ 	
+ 	<!-- 예외 URL - 자식창 (민주 추가) -->
+ 	<decorator name="header-footer-layout-simple" page="header-footer-layout-simple.jsp">
+ 	    <pattern>/group/selectGroupToApply*</pattern>
+ 	</decorator>
 	
 </decorators>
 

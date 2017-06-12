@@ -82,6 +82,13 @@ public class GroupServiceImpl implements GroupService {
 	@Override
 	public int insertGroupApply(GroupBean gBean) {
 		// apply TABLE에 모임 가입 신청 등록
+		
+		// gBean의 Name만 들어올때! (No값이 없을 때 검색해서 넘기기)
+		if (gBean.getGroupNo() == null || gBean.getGroupNo().equals("")) {
+			GroupBean nBean = groupDao.selectGroupByName(gBean);
+			gBean.setGroupNo(nBean.getGroupNo());
+		}
+		
 		return commonGroupDao.insertApply(gBean);
 	}
 	
