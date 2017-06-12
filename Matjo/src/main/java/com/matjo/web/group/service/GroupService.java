@@ -3,6 +3,7 @@ package com.matjo.web.group.service;
 import java.util.List;
 import java.util.Map;
 
+import com.matjo.web.common.bean.PagingBean;
 import com.matjo.web.group.bean.GroupBean;
 import com.matjo.web.member.bean.MemberBean;
 
@@ -10,7 +11,7 @@ public interface GroupService {
 	/** 모임 정보 1건 조회 */
 	public Map<String, Object> selectGroupDetail(GroupBean gBean);
 	/** 모임 목록 조회 */
-	public List<GroupBean> selectGroupList();
+	public List<GroupBean> selectGroupList(PagingBean pBean);
 	/** 모임소속회원 조회 */
 	public List<MemberBean> selectGroupMember(GroupBean gBean);
 	/** 회원이 소속된 모임들 조회 */

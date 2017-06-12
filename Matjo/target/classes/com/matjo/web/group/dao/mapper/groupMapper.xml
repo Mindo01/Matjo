@@ -38,6 +38,47 @@
         </selectKey>
     </insert>
     
+    <!-- SELECT : 모임 목록 조회 -->
+	<select id="selectGroupList" parameterType="pagingBean" resultType="groupBean">
+	    SELECT
+	    	<include refid="groupsColumns"/>
+	    	, (SELECT member_name FROM member WHERE member.member_no = groups.group_leader) AS groupLeader
+	    	, (SELECT COUNT(*) FROM mygroup WHERE mygroup_group = #{groupNo}) AS groupSize
+	    FROM
+	    	groups
+	    WHERE
+	    	1=1
+	    	<if test="searchType == 'group_name'">
+	    	    AND group_name like CONCAT('%', #{searchText}, '%')
+	    	</if>
+	    	<if test="searchType == 'group_leader'">
+	    	    AND groupLeader like CONCAT('%', #{searchText}, '%')
+	    	</if>
+	    	<if test="searchType == 'group_content'">
+	    	    AND group_info like CONCAT('%', #{searchText}, '%')
+	    	</if>
+	    LIMIT #{startRow}, #{endRow}
+    </select>
+    
+	<!-- SELECT : COUNT(*) 모임 전체 개수 조회 -->
+	<select id="selectGroupCount" resultType="int">
+	    SELECT
+	    	COUNT(*)
+	    FROM
+	    	groups
+	    WHERE
+	    	1=1
+	    	<if test="searchType == 'group_name'">
+	    	    AND group_name like CONCAT('%', #{searchText}, '%')
+	    	</if>
+	    	<if test="searchType == 'group_leader'">
+	    	    AND group_no IN (SELECT member_no FROM member WHERE member.member_name like CONCAT('%', #{searchText}, '%'))
+	    	</if>
+	    	<if test="searchType == 'group_content'">
+	    	    AND group_info like CONCAT('%', #{searchText}, '%')
+	    	</if>
+	</select>
+    
     <!-- SELECT : 모임 1건 상세 정보 조회 -->
     <select id="selectGroupDetail" parameterType="groupBean" resultType="groupBean">
         SELECT
@@ -90,6 +131,7 @@
 			mygroup_group = #{groupNo}
     </select>
     
+    <!-- SELECT : 모임명으로 조회 -->
     <select id="selectGroupByName" parameterType="groupBean" resultType="groupBean">
         SELECT
         	group_no AS groupNo

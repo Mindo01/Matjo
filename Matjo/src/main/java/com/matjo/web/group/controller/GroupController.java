@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.matjo.web.common.Constants;
 import com.matjo.web.common.Util;
+import com.matjo.web.common.bean.PagingBean;
 import com.matjo.web.group.bean.GroupBean;
 import com.matjo.web.group.service.GroupService;
 import com.matjo.web.member.bean.MemberBean;
@@ -53,6 +54,32 @@ public class GroupController {
 	@RequestMapping("/group/selectGroupList")
 	public String selectGroupList() {
 		return "/group/selectGroupList";
+	}
+	
+	/** P : 모임 목록 처리 AJAX */
+	@RequestMapping("/group/selectGroupListProc")
+	@ResponseBody
+	public Map<String, Object> selectGroupListProc(PagingBean pBean) {
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		// 기본 설정 : 실패
+		resMap.put(Constants.RESULT_MSG, "모임 목록 조회에 실패했습니다");
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		
+		// Service Call : 검색 조건과 값 받아서 모임 전체 조회 (검색 조건과 값이 없으면 전체 조회)
+		List<GroupBean> gList = groupService.selectGroupList(pBean);
+		
+		resMap.put("pBean", pBean);
+		
+		if (gList != null && gList.size() > 0 /* 조회가 성공적일 때 */) {
+			resMap.put("gList", gList);
+			// 성공 설정
+			resMap.put(Constants.RESULT_MSG, "모임 목록 조회에 성공했습니다");
+			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+		} else if (gList.size() == 0) {
+			resMap.put(Constants.RESULT, "해당하는 모임이 존재하지 않습니다");
+		}
+		
+		return resMap;
 	}
 	
 	/** F : 모임 소속 회원 정보 화면 */
@@ -144,13 +171,12 @@ public class GroupController {
 		int res = groupService.insertGroupApply(gBean);
 		if (res > 0) {
 			// 성공
-			// redirect 해서 해당 모임 상세정보 화면으로 이동
-			return "redirect:/group/selectGroupDetailView.do?groupNo="+gBean.getGroupNo();
+			model.addAttribute("groupNo", gBean.getGroupNo());
+			return "/group/selectGroupDetailView";
 		}
+		// 실패 : 다시 작성 폼으로 돌아가기
+		return "redirect:/group/insertGroupMemberForm.do";
 		
-		// 실패 : 원래 페이지로 돌아가기
-		model.addAttribute("groupNo", gBean.getGroupNo());
-		return "/group/selectGroupDetailView";
 	}
 	
 	/** F-2 : 모임 가입 자식창 - 가입할 모임 검색 */

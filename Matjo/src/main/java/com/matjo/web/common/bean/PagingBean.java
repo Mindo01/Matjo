@@ -29,6 +29,8 @@ public class PagingBean extends CommonBean{
 	private String searchType;
 	/** 검색 내용 **/
 	private String searchText;
+	/** 검색된 개수 **/
+	private String searchCount;
 	
 	/** 전체 페이지의 그룹 갯수 **/
 	private int totalGroupCount;
@@ -188,6 +190,14 @@ public class PagingBean extends CommonBean{
 
 	public void setSearchText(String searchText) {
 		this.searchText = searchText;
+	}
+
+	public String getSearchCount() {
+		return searchCount;
+	}
+
+	public void setSearchCount(String searchCount) {
+		this.searchCount = searchCount;
 	}
 
 	public String getLocation() {

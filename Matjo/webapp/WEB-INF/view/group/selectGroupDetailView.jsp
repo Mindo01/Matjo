@@ -12,6 +12,7 @@
         <!-- Floating side bar -->
         <script type="text/javascript">
         $(function(){
+        	
             var $win = $(window);
             var top = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
 

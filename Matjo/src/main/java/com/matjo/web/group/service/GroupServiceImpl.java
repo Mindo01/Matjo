@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.matjo.web.common.Constants;
+import com.matjo.web.common.bean.PagingBean;
 import com.matjo.web.group.bean.GroupBean;
 import com.matjo.web.group.dao.CommonGroupDao;
 import com.matjo.web.group.dao.GroupDao;
@@ -46,9 +47,10 @@ public class GroupServiceImpl implements GroupService {
 
 	/** 모임 목록 조회 */
 	@Override
-	public List<GroupBean> selectGroupList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<GroupBean> selectGroupList(PagingBean pBean) {
+		// TODO 페이징 처리와 검색 값 처리
+		pBean.calcPage(groupDao.selectGroupCount());
+		return groupDao.selectGroupList(pBean);
 	}
 
 	/** 모임소속회원 조회 */
