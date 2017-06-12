@@ -12,7 +12,7 @@ public interface GroupDao {
 	/** SELECT : 모임 목록 조회 */
 	public List<GroupBean> selectGroupList(PagingBean pBean);
 	/** SELECT : 모임 전체 개수 조회 */
-	public int selectGroupCount();
+	public int selectGroupCount(PagingBean pBean);
 	/** SELECT : 모임 상세정보 조회 */
 	public GroupBean selectGroupDetail(GroupBean gBean);
 	/** SELECT : 모임 소속 회원 목록 조회 */

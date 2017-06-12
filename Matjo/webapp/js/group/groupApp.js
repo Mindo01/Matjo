@@ -11,16 +11,6 @@ groupApp.factory("GroupService", function($http) {
    
    return service;
    
-   //예시 로그인
-   function loginProcAjax(objParam) {
-      return $http({
-         url: "/member/loginProcAjax.do",
-         method: "post",
-         data : json2PostParams(objParam),
-         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-      }).then(handleSuccess, handleError);
-   };
-   
    //모임 목록 조회
    function selectGroupList(objParam) {
 	   return $http({

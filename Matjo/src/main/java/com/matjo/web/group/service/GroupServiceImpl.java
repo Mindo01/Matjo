@@ -48,8 +48,11 @@ public class GroupServiceImpl implements GroupService {
 	/** 모임 목록 조회 */
 	@Override
 	public List<GroupBean> selectGroupList(PagingBean pBean) {
-		// TODO 페이징 처리와 검색 값 처리
-		pBean.calcPage(groupDao.selectGroupCount());
+		if (pBean.getSearchText() == null) {
+			pBean.setSearchText("");
+		}
+		// 페이징 처리와 검색 값 처리
+		pBean.calcPage(groupDao.selectGroupCount(pBean));
 		return groupDao.selectGroupList(pBean);
 	}
 

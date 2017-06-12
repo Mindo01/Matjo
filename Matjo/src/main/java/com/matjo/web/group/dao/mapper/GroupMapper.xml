@@ -48,31 +48,41 @@
 	    	groups
 	    WHERE
 	    	1=1
+	    	<if test="searchType == 'all'">
+	    	    AND (group_name like CONCAT('%', #{searchText}, '%') 
+	    	    OR group_leader IN (SELECT member_no FROM member WHERE member.member_name like CONCAT('%', #{searchText}, '%'))
+	    	    OR group_info like CONCAT('%', #{searchText}, '%'))
+	    	</if>
 	    	<if test="searchType == 'group_name'">
-	    	    AND group_name like CONCAT('%', #{searchText}, '%')
+	    	    AND group_name like CONCAT('%', #{searchText}, '%') 
 	    	</if>
 	    	<if test="searchType == 'group_leader'">
-	    	    AND groupLeader like CONCAT('%', #{searchText}, '%')
+	    	    AND group_leader IN (SELECT member_no FROM member WHERE member.member_name like CONCAT('%', #{searchText}, '%'))
 	    	</if>
 	    	<if test="searchType == 'group_content'">
-	    	    AND group_info like CONCAT('%', #{searchText}, '%')
+	    	    AND group_info like CONCAT('%', #{searchText}, '%') 
 	    	</if>
 	    LIMIT #{startRow}, #{endRow}
     </select>
     
 	<!-- SELECT : COUNT(*) 모임 전체 개수 조회 -->
-	<select id="selectGroupCount" resultType="int">
+	<select id="selectGroupCount" parameterType="pagingBean" resultType="int">
 	    SELECT
 	    	COUNT(*)
 	    FROM
 	    	groups
 	    WHERE
 	    	1=1
+	    	<if test="searchType == 'all'">
+	    	    AND (group_name like CONCAT('%', #{searchText}, '%') 
+	    	    OR group_leader IN (SELECT member_no FROM member WHERE member.member_name like CONCAT('%', #{searchText}, '%'))
+	    	    OR group_info like CONCAT('%', #{searchText}, '%'))
+	    	</if>
 	    	<if test="searchType == 'group_name'">
 	    	    AND group_name like CONCAT('%', #{searchText}, '%')
 	    	</if>
 	    	<if test="searchType == 'group_leader'">
-	    	    AND group_no IN (SELECT member_no FROM member WHERE member.member_name like CONCAT('%', #{searchText}, '%'))
+	    	    AND group_leader IN (SELECT member_no FROM member WHERE member.member_name like CONCAT('%', #{searchText}, '%'))
 	    	</if>
 	    	<if test="searchType == 'group_content'">
 	    	    AND group_info like CONCAT('%', #{searchText}, '%')

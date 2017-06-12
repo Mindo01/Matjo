@@ -32,7 +32,7 @@
 							<header>
 								<h2 class="title_ko" lang="ko"><a href="#">모임 검색 결과</a></h2>
 								<p lang="ko">
-									[{{ pBean.searchText == null || pBean.searchText == '' ? '전체' : pBean.searchText }}]에 대한 검색결과 {{ pBean.totalRecordCount }}건
+									[{{ whatToSearch }}]에 대한 검색결과 {{ pBean.totalRecordCount }}건
 								</p>
 							</header>
 							<section>
