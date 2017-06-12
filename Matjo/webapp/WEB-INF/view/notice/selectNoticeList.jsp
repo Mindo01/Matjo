@@ -16,6 +16,14 @@
 		
 		location.href="/notice/selectNoticeList.do?searchType="+searchType+"&searchText="+searchText;
 	}
+	$(function() {
+		var myElem3 = document.getElementById('insertNoticeButton');
+		if(${noticeBean.memberId} = "관리자" ){
+			myElem3.style.visibility="visible";
+		}else{
+			myElem3.style.visibility="hidden";
+		}
+});	
 </script>
 </head>
 <body class="no-sidebar">
@@ -37,8 +45,8 @@
 							</header>
 							<section>
                                  <div class="notice">
-                                    <div>
-                                        <button type="button" class="sch_smit" onclick="javascript:location.href='/notice/insertNoticeForm.do';">글쓰기</button>
+                                    <div style="visibility:hidden;" id="insertNoticeButton">
+                                        <button type="button"class="sch_smit" onclick="javascript:location.href='/notice/insertNoticeForm.do';">글쓰기</button>
                                     </div>
 									<table>
                                          <colgroup>
