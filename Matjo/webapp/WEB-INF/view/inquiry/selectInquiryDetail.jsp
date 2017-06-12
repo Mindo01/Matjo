@@ -4,18 +4,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>맛조::고객의 소리</title>
+<title>맛조::고객의 소리-게시글 상세보기</title>
 	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/resources/assets/css/mj-custom.css" />
 		<link rel="stylesheet" href="/resources/assets/css/mj-responsive.css" />
 	
 	<script type="text/javascript">
+	
 	function updateInquiryPage(){
 		location.href="/inquiry/updateInquiryForm.do?inquiryNo=${param.inquiryNo}";
 	}
 	$(function() {
-		
 			selectInquiry();
 			
 		});//end ready
@@ -33,11 +33,18 @@
 					printLog(data);
 					if(data.result == "ok") {
 						var inquiry = data.inquiryBean;
-						
 						if(inquiry == null) {
 							alert("글조회에 실패 하였습니다.");
 							return;
 						}	
+						var myElem1 = document.getElementById('inputInquiryReply');
+						var myElem2 = document.getElementById('inquiryButton');
+						var myElem3 = document.getElementById('replynoticeDiv');
+						if(inquiry.inquiryReply == ""){
+							myElem3.style.visibility="visible";
+						}else{
+							myElem3.style.visibility="hidden";
+						}
 						$("#inquiryNo").text(inquiry.inquiryNo);
 						$("#inquiryMember").text(inquiry.inquiryMember);
 						$("#inquiryTitle").text( inquiry.inquiryTitle );
@@ -47,8 +54,6 @@
 						$("#inquiryUpdate").text( inquiry.inquiryUpdate );
 						$("#inquiryReply").text( inquiry.inquiryReply );
 						$("#inquiryRepDate").text( inquiry.inquiryRepDate );
-						
-						
 					} else {
 						alert(data.resultMsg);
 					}
@@ -89,7 +94,7 @@
 		};//end of inquiryDelete
 		
 		function inquiryReplyProc() {
-
+			count = "t";
 			$.ajax({
 					type: "post",
 					url: "/inquiry/inquiryReplyProc.do",
@@ -102,6 +107,8 @@
 	                	alert(data.resultMsg);
 	                	if(data.result == "ok") {
 	                		//화면이동 처리
+	                		$("#hidden").hide();
+	                		
 							selectInquiry();
 							return;
 						} else {
@@ -115,7 +122,6 @@
 								+ status + ", error : " + error);      
 					}
 	            });
-
 		};//end function
 	</script>
 </head>
@@ -168,9 +174,8 @@
                                         
                                         <!-- 댓글 보여주기 -->
                                         <tr>
-                                           <th>게시글[
-							                  <span id="inquiryNo"></span>
-							                  	]의 답변
+                                           <th>관리자 답변
+							                  <span id="inquiryNo" style="visibility:hidden;"></span>
 							                  </th>
 							                  <td>
 							                  <span id="inquiryReply"></span>
@@ -179,28 +184,29 @@
                                     </table>
                                      <button type="button" class="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryList.do';">목록</button>
                                      <br/>
-                                </div>
+                                </div >
                                    <a name="reply"></a>
+                                   <div id="replynoticeDiv" style="border:none; visibility:hidden;"  >
                                 <div class="notice">
                                     <form action="/inquiry/inquiryDetailView.do?inquiryNo=${inquiry.inquiryNo}" method="get">
-                                    <table class="detail">
+                                    <table class="detail" >
                                       <caption>:■ 답글달기</caption>
                                        <colgroup>
                                            <col width="20%">
                                            <col width="*">
                                            <col width="20%">
                                        </colgroup>
-                                    <tr>
+                                    <tr id>
                                             <th colspan="3">
-                                                <!-- RE) 게시글 제목 -->
-                                               <span id="inquiryTitle"> RE) </span> 
+                                                	게시글에 대한 답변
+                                               <span id="inquiryTitle"> </span> 
                                             </th>
                                         </tr>
-                                        <tr>
+                                        <tr id>
                                             <th>작성자</th>
                                             <td colspan="2">관리자</td>
                                         </tr>
-                                	 	<tr>
+                                	 	<tr id>
                                            <td class="table_content" colspan="3">
                                             <textarea cols="20" rows="10" id="inputInquiryReply"></textarea>
                                             </td>
@@ -214,6 +220,7 @@
                                         </tr>
                                     </table>
                                    </form>
+                                </div>
                                 </div>
                             </section>
 						</article>

@@ -4,19 +4,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>맛조: 고객의 소리</title>
+<title>맛조: 고객의 소리-게시글 리스트</title>
 <meta http-equiv="Content-Type" content="text/htm" charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="/resources/assets/css/mj-custom.css" />
 <link rel="stylesheet" href="/resources/assets/css/mj-responsive.css" />
+	<script type="text/javascript">
+	function search() {
+		var searchType = $("#searchType").val();
+		var searchText = $("#searchText").val();
+		
+		location.href="/inquiry/selectInquiryList.do?searchType="+searchType+"&searchText="+searchText;
+	}
+	</script>
 </head>
 <body class="no-sidebar">
- <div id="page-wrapper">
        <div id="header">
 	<!-- Inner -->
 		<div class="inner">
 		</div>
-	</div>
 	</div>
 	<!-- Main -->
 	<div class="wrapper style1">
@@ -79,6 +85,8 @@
 	  <!-- 페이지 -->
 	  <div class="paging">
 	  <div class ="paging_number">
+	  	<tr>
+			<td colspan="7">
 									<!--  &lt;&lt;처음&nbsp;&nbsp;&nbsp;
 								 &lt;이전 [1] [2] [3] [4] 다음&gt; 
 								 &nbsp;&nbsp;&nbsp;마지막&gt;&gt; --> 
@@ -99,32 +107,27 @@
 									<c:if test="${pBean.groupNo < pBean.totalGroupCount}">
 										<a href="/inquiry/selectInquiryList.do?pageNo=${pBean.pageEndNo + 1}">다음&gt;</a>
 									</c:if>
+									</td>
+									</tr>
 									</div>
 									</div>
 								
-  		<!-- 검색 창 -->
        				 <section >
+       				 <!-- 검색 창 -->
        				 <div class = "search_window">
-									<select name="searchType">
+									<select name="searchType" id="searchType">
 										<option value="titleContent">검색</option>
 										<option value="title">제목</option>
 										<option value="content">내용</option>
 									</select> 
 									<span class = "orange_window">
-									<input type="text" name="searchText" class="input_text" placeholder="" /> 
+									<input type="text" name="searchText" id="searchText" class="input_text" /> 
 									</span>
-									<button type="submit" class="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryList.do';" value="검색" >검색</button>
+									<button type="submit" class="sch_smit" onclick="search();">검색</button>
 								</div>
 						</section>
 						<hr/>
 						</div>
-						     <!-- Copyright -->
-                    <div class="copyright">
-                        <ul class="menu">
-                            <li>&copy; Matjo 2017 05. All rights reserved.</li>
-                            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-                        </ul>
-                    </div>
                 </div>
 </body>
 </html>
