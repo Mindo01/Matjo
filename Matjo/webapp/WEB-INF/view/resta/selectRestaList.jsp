@@ -197,48 +197,17 @@ function getLoc() {
 									<th>카테고리</th>
 									<th>조회수</th>
 								</tr>
-								<tr>
-									<td>1</td>
-									<td><a href="#">최고로 맛있는 집</a></td>
-									<td>한식</td>
-									<td>130</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td><a href="#">정말로 맛있는 집</a></td>
-									<td>양식</td>
-									<td>130</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td><a href="#">디이따 맛있는 집</a></td>
-									<td>중식</td>
-									<td>130</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td><a href="#">대박 맛있는 집</a></td>
-									<td>한식</td>
-									<td>130</td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td><a href="#">둘이 먹다 하나가 죽는 집</a></td>
-									<td>일식</td>
-									<td>130</td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td><a href="#">차칸치키니</a></td>
-									<td>술집</td>
-									<td>130</td>
-								</tr>
 								<tr ng-repeat="resta in restaList">
 									<td>{{resta.restaId}}</td>
 									<td><a href="#" ng-click="goDetailPage(resta)">{{resta.restaTitle}}</a></td>
 									<td>{{resta.restaCate}}</td>
 									<td>130</td>
 								</tr>
+								<!-- <tr ng-if="restaList == null || restaList.length == 0">
+									<td colspan="4">
+										데이터가 없습니다.
+									</td>
+								</tr> -->
 							</table>
 						</div>
 					</section>
