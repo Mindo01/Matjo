@@ -65,8 +65,26 @@
                 } else {
                     review_detail.style.display = 'block'; // 숨김 상태이면 나타내라
                 }
-        }
+        	}
+        
+        	// 모임원들 보기 창
+        	function showMembers() {
+        		var groupName = $("#sidebar_group_title").text();
+        		window.open("/group/selectGroupMemberList.do?groupNo=${gBean.groupNo}&groupName="+groupName, "", 
+				"top=200, left=100, width=750, height=450, directories=yes, location=no, resizable=no, status=yes, toolbar=no");
+        	}
         </script>
+        <style type="text/css">
+        	.show_member {
+        		text-decoration: none;
+        		color:black;
+        	}
+        	.show_member:hover {
+        		text-decoration: none;
+        		color:white;
+        		background-color: #FF3D00;
+        	}
+        </style>
 	</head>
 	<body class="left-sidebar" onload="init()">
 	<div ng-modules="groupApp" ng-controller="GroupController" ng-init="selectGroupDetailProc(${gBean.groupNo})">
@@ -92,7 +110,8 @@
                                     <span id="sidebar_group_title">{{ gBean.groupName }}</span>
                                     <br/>
                                     <!-- 그룹 구성원  -->
-                                    <span id="sidebar_group_members">{{ gBean.groupLeader }}외{{ gBean.groupSize*1-1 }}명</span>
+                                    <span id="sidebar_group_members">
+                                    <a class="show_member" href="javascript:showMembers();">{{ gBean.groupLeader }}외{{ gBean.groupSize*1-1 }}명</a></span>
                                     <br/>
                                     <!-- 그룹 소개 -->
                                     <span id="sidebar_group_info">{{ gBean.groupInfo }}</span>
@@ -114,7 +133,8 @@
                                         </tr>
                                     </table>
                                     <br/>
-                                    <button class="subs" id="subs" 
+                                    <!-- 로그인한 상태에서만 구독하기 버튼이 보이도록 설정 -->
+                                    <button class="subs" ng-show="gBean.hasSubsGroup == 'true' || gBean.hasSubsGroup == 'false'" id="subs" 
                                     	value="{{ gBean.hasSubsGroup }}" style="width:100% !important;" type="button" 
                                     	ng-click="subsGroupTry(gBean.hasSubsGroup)">
                                     	{{ gBean.hasSubsGroup == 'true' ? '구독 해제' : '구독' }}

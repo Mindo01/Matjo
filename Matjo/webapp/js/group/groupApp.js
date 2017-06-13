@@ -12,6 +12,7 @@ groupApp.factory("GroupService", function($http) {
    service.selectGroupDetailProc = selectGroupDetailProc;
    service.insertSubsGroupProc = insertSubsGroupProc;
    service.deleteSubsGroupProc = deleteSubsGroupProc;
+   service.selectGroupMemberProc = selectGroupMemberProc;
    return service;
    
    //모임 목록 조회
@@ -38,6 +39,16 @@ groupApp.factory("GroupService", function($http) {
    function selectGroupDetailProc(objParam) {
 	   return $http({
 		   url: "/group/selectGroupDetailProc.do",
+		   method: "post",
+		   data: json2PostParams(objParam),
+		   headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+	   }).then(handleSuccess, handleError);
+   }
+   
+   // 모임 소속 회원 목록 불러오기
+   function selectGroupMemberProc(objParam) {
+	   return $http({
+		   url: "/group/selectGroupMemberProc.do",
 		   method: "post",
 		   data: json2PostParams(objParam),
 		   headers : {'Content-Type': 'application/x-www-form-urlencoded'}

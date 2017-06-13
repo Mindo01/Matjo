@@ -140,6 +140,35 @@ function GroupController($rootScope, $scope, GroupService){
     	});
     }
     
+    // 모임 소속 회원 목록 창 띄우기
+//    $scope.selectGroupMemberForm = function() {
+//    	
+//    }
+    
+    // 모임 소속 회원 목록 조회
+    $scope.selectGroupMemberProc = function(groupNo) {
+    	
+    	HoldOn.open();
+    	if ($scope.gBean == undefined) {
+			$scope.gBean = {
+    		};
+    	}
+    	$scope.gBean.groupNo = groupNo;
+    	GroupService.selectGroupMemberProc( $scope.gBean ).then(function(data) {
+    		console.log(JSON.stringify(data));
+    		
+			HoldOn.close();
+			
+			if(data.result == 'success') {
+				$scope.grp = data.gBean;
+				$scope.memberList = data.memberList;
+			} else {
+				// 정보 조회 실패
+				alert(data.resultMsg);
+			}
+    	});
+    }
+    
     // 모임 가입 - 부모창으로 돌아가기
     $scope.sendSelectedGroup = function(group) {
     	opener.document.insertGroupMember.groupNo.value=group.groupNo;
@@ -147,5 +176,7 @@ function GroupController($rootScope, $scope, GroupService){
 		opener.document.insertGroupMember.groupLeader.value=group.groupLeader;
         window.close();
     };
+    
+    // 
    
 };// end controller
