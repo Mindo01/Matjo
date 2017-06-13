@@ -2,7 +2,7 @@ package com.matjo.web.common.bean;
 
 public class PagingLocalBean extends PagingBean{
 	private String location;		// 중심좌표 		ex) 37.56331,126.97590
-	private String radius;			// 반경거리
+	private int radius;			// 반경거리
 	private String image;			// 이미지 존재 여부	ex) all(모두), only(있는것만), not(없는것만)
 	private String count;			// 요청 단위 건수
 	private String page;			// 페이지 번호
@@ -14,10 +14,10 @@ public class PagingLocalBean extends PagingBean{
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getRadius() {
+	public int getRadius() {
 		return radius;
 	}
-	public void setRadius(String radius) {
+	public void setRadius(int radius) {
 		this.radius = radius;
 	}
 	public String getImage() {

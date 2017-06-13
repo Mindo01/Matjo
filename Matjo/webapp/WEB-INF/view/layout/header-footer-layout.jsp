@@ -94,7 +94,7 @@
 							<li><a href="showHistory.html">히스토리</a></li>
 							<li><a href="showMembers.html">멤버</a></li>
 						</ul></li>
-					<li><a href="selectRank.html">랭크</a></li>
+					<li><a href="/rank/selectRankForm.do">랭크</a></li>
 					<li><a href="selectPromo.html">프로모션</a></li>
 					<li><a href="selectNoticeList.html">맛조센터</a>
 						<ul>
