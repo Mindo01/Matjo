@@ -16,11 +16,27 @@ public interface ReviewService {
 	
 	
 	/**
+	 * 1개 모임 대상 리뷰 목록 조회
+	 * @param reviewBean
+	 * @return
+	 */
+	public List<ReviewBean> selectReviewListForGroup(ReviewBean reviewBean);
+	
+	
+	/**
 	 * 1개 업소 대상 모임+개인리뷰 목록 조회
 	 * @param reviewBean 업소번호 조회를 위해 인자로 사용
 	 * @return 모임리뷰목록을 반환, 각 모임리뷰에는 개인리뷰목록을 포함한다.
 	 */
 	public List<ReviewBean> selectReviewPereviewList(ReviewBean reviewBean);
+	
+	
+	/**
+	 * 1개 모임 대상 모임+개인리뷰 목록 조회
+	 * @param reviewBean 업소번호 조회를 위해 인자로 사용
+	 * @return 모임리뷰목록을 반환, 각 모임리뷰에는 개인리뷰목록을 포함한다.
+	 */
+	public List<ReviewBean> selectReviewPereviewListForGroup(ReviewBean reviewBean);
 
 	
 	/**
@@ -45,5 +61,6 @@ public interface ReviewService {
 	 */
 	public int insertPereview(PereviewBean pereviewBean);
 
+	
 	
 } // end of interface

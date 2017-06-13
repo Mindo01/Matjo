@@ -18,8 +18,6 @@ import com.matjo.web.review.service.ReviewService;
 
 @Controller
 public class RestaController {
-	
-	
 	@Autowired
 	ReviewService reviewService;
 	
@@ -113,7 +111,6 @@ public class RestaController {
 		rBean.setReviewRestaNo(dlBean.getRestaId());
 		
 		try {
-//			List<ReviewBean> reviewList = reviewService.selectReviewList(rBean);
 			List<ReviewBean> reviewList = reviewService.selectReviewPereviewList(rBean);
 			if (reviewList.size() > 0) {
 				resMap.put("reviewList", reviewList);
