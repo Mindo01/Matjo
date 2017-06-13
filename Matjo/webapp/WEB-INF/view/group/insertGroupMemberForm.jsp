@@ -61,11 +61,16 @@
 					<tr>
 						<td>모임 이름</td>
 						<td>
+							<input type="hidden" name="groupNo"/>
 							<input type="text" name="groupName" maxlength="20" placeholder="찾기로 검색하세요" readonly required>
 							<button class="sch_smit" type="button" onclick="javascript:searchGroup();">찾기</button>
 						</td>
 					</tr>
 					<tr>
+						<td>모임장</td>
+						<td><input style="width:99% !important;" type="text" name="groupLeader" maxlength="20" readonly required></span></td>
+					</tr>
+					<tr>					
 						<td>가입신청자</td>
 						<td>
 						<input type="hidden" name="memberNo" value="${ sessionScope.memberLoginBean.memberNo }" />

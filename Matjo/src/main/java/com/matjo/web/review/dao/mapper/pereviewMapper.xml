@@ -33,8 +33,28 @@
 		DESC
 	</select>
 	
+	<!-- 개인리뷰 1건 저장 -->
+	<insert id="insertPereview" parameterType="pereviewBean">
+	    INSERT INTO pereview
+ 		(
+			pereview_member,
+			pereview_review,
+			pereview_content,
+			pereview_rating
+ 		)
+		VALUES
+ 		(
+ 			#{pereviewMemId}, 
+ 			#{pereviewReviewNo}, 
+ 			#{pereviewContent}, 
+ 			#{pereviewRating}
+ 		)
+ 		<selectKey order="AFTER" keyProperty="no" resultType="string">
+	   		SELECT LAST_INSERT_ID()        
+		</selectKey>
+	</insert>
+	
 </mapper>
-
 
 
 

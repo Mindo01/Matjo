@@ -8,7 +8,10 @@ groupApp.factory("GroupService", function($http) {
    var service = {};
    
    service.selectGroupList = selectGroupList;
-   
+   service.selectGroupToApply = selectGroupToApply;
+   service.selectGroupDetailProc = selectGroupDetailProc;
+   service.insertSubsGroupProc = insertSubsGroupProc;
+   service.deleteSubsGroupProc = deleteSubsGroupProc;
    return service;
    
    //모임 목록 조회
@@ -18,6 +21,46 @@ groupApp.factory("GroupService", function($http) {
 		   method: "post",
 		   data : json2PostParams(objParam),
 		   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	   }).then(handleSuccess, handleError);
+   }
+   
+   //모임 가입 신청 시 가입할 모임 조회
+   function selectGroupToApply(objParam) {
+	   return $http({
+		   url: "/group/selectGroupToApplyProc.do",
+		   method: "post",
+		   data: json2PostParams(objParam),
+		   headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+	   }).then(handleSuccess, handleError);
+   }
+   
+   // 모임 상세정보 불러오기
+   function selectGroupDetailProc(objParam) {
+	   return $http({
+		   url: "/group/selectGroupDetailProc.do",
+		   method: "post",
+		   data: json2PostParams(objParam),
+		   headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+	   }).then(handleSuccess, handleError);
+   }
+   
+   // 모임 구독하기
+   function insertSubsGroupProc(objParam) {
+	   return $http({
+		   url: "/group/insertSubsGroupProc.do",
+		   method: "post",
+		   data: json2PostParams(objParam),
+		   headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+	   }).then(handleSuccess, handleError);
+   }
+   
+   // 모임 구독 해제
+   function deleteSubsGroupProc(objParam) {
+	   return $http({
+		   url: "/group/deleteSubsGroupProc.do",
+		   method: "post",
+		   data: json2PostParams(objParam),
+		   headers : {'Content-Type': 'application/x-www-form-urlencoded'}
 	   }).then(handleSuccess, handleError);
    }
    

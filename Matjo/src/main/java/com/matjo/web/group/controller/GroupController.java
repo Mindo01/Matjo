@@ -39,13 +39,18 @@ public class GroupController {
 		return "/group/selectGroupDetailView";
 	}
 	
-	/** P : 모임 정보 조회 처리 AJAX 
+	/** P : 모임 정보 조회 처리 AngularJS
 	 * @param gBean groupNo 넘김
 	 * @return
 	 */
 	@RequestMapping("/group/selectGroupDetailProc")
 	@ResponseBody
-	public Map<String, Object> selectGroupDetailProc(GroupBean gBean) {
+	public Map<String, Object> selectGroupDetailProc(GroupBean gBean, HttpServletRequest req) {
+		// 현재 로그인한 회원 정보 넘기기
+		MemberBean mBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
+		if (mBean != null) {
+			gBean.setMemberNo(mBean.getMemberNo());
+		}
 		// Service Call : 모임 고유번호 받아서 해당 모임에 대한 정보 조회
 		return groupService.selectGroupDetail(gBean);
 	}
@@ -185,18 +190,84 @@ public class GroupController {
 		return "/group/selectGroupToApply";
 	}
 	
-	/** P : 모임 구독 처리 AJAX */
+	/** P-2 : 모임 가입 자식창 - 가입할 모임 검색 AJAX */
+	@RequestMapping("/group/selectGroupToApplyProc")
+	@ResponseBody
+	public Map<String, Object> selectGroupToApplyProc(PagingBean pBean) {
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		// 기본 설정 : 실패
+		resMap.put(Constants.RESULT_MSG, "모임 목록 조회에 실패했습니다");
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		
+		// Service Call : 검색 조건과 값 받아서 모임 전체 조회 (검색 조건과 값이 없으면 전체 조회)
+		List<GroupBean> gList = groupService.selectGroupToApply(pBean);
+		
+		resMap.put("pBean", pBean);
+		
+		if (gList != null && gList.size() > 0 /* 조회가 성공적일 때 */) {
+			resMap.put("gList", gList);
+			// 성공 설정
+			resMap.put(Constants.RESULT_MSG, "모임 목록 조회에 성공했습니다");
+			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+		} else if (gList.size() == 0) {
+			resMap.put(Constants.RESULT_MSG, "해당하는 모임이 존재하지 않습니다");
+			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+		}
+		
+		return resMap;
+	}
+	
+	/** P : 모임 구독 처리 AngularJS */
 	@RequestMapping("/group/insertSubsGroupProc")
 	@ResponseBody
 	public Map<String, Object> insertSubsGroupProc(GroupBean gBean, HttpServletRequest req) {
 		Map<String, Object> resMap = new HashMap<String, Object>();
+		// 기본 설정 : 실패
+		resMap.put(Constants.RESULT_MSG, "모임 구독을 실패했습니다");
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		gBean.setHasSubsGroup("false");
 		
 		// 현재 로그인된 멤버 ID로 모임 구독하기
 		MemberBean mBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
+		gBean.setMemberNo(mBean.getMemberNo());
 		
-		// TODO Service Call : 멤버 ID+모임 번호 받아서 모임 구독 처리하기
+		// Service Call : 멤버 ID+모임 번호 받아서 모임 구독 처리하기
+		int res = groupService.insertSubsGroup(gBean);
+		if (res > 0) {
+			// 성공 설정
+			gBean.setHasSubsGroup("true");
+			resMap.put(Constants.RESULT_MSG, "모임 구독을 성공했습니다");
+			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+		}
+		resMap.put("gBean", gBean);
+		// 원래 페이지로 돌아가서, 성공 시 UI를 모임 구독 중이라는 표시로 변경해주기
+		return resMap;
+	}
+	
+	/** P : 모임 구독 해제 처리 AngularJS */
+	@RequestMapping("/group/deleteSubsGroupProc")
+	@ResponseBody
+	public Map<String, Object> deleteSubsGroupProc(GroupBean gBean, HttpServletRequest req) {
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		// 기본 설정 : 실패
+		resMap.put(Constants.RESULT_MSG, "모임 구독 해제를 실패했습니다");
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		gBean.setHasSubsGroup("true");
 		
-		// TODO AJAX로 돌아가서, 성공 시 UI를 모임 구독 중이라는 표시로 변경해주기
+		// 현재 로그인된 멤버 ID로 모임 구독하기
+		MemberBean mBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
+		gBean.setMemberNo(mBean.getMemberNo());
+		
+		// Service Call : 멤버 ID+모임 번호 받아서 모임 구독 해제 처리하기
+		int res = groupService.deleteSubsGroup(gBean);
+		if (res > 0) {
+			// 성공 설정
+			gBean.setHasSubsGroup("false");
+			resMap.put(Constants.RESULT_MSG, "모임 구독 해제를 성공했습니다");
+			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+		}
+		resMap.put("gBean", gBean);
+		// 원래 페이지로 돌아가서, 성공 시 UI를 모임 구독 해제되어있는 표시로 변경해주기
 		return resMap;
 	}
 	
