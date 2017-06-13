@@ -88,12 +88,13 @@ public class GroupController {
 	}
 	
 	/** F : 모임 소속 회원 정보 화면 */
-	@RequestMapping("/group/selectGroupMemberForm")
-	public String selectGroupMemberForm() {
-		return "/group/selectGroupMemberForm";
+	@RequestMapping("/group/selectGroupMemberList")
+	public String selectGroupMemberList(GroupBean gBean, Model model) {
+		model.addAttribute("gBean", gBean);
+		return "/group/selectGroupMemberList";
 	}
 	
-	/** P : 모임 소속 회원 정보 조회 처리 AJAX */
+	/** P : 모임 소속 회원 정보 조회 처리 AngularJS */
 	@RequestMapping("/group/selectGroupMemberProc")
 	@ResponseBody
 	public Map<String, Object> selectGroupMemberProc(GroupBean gBean) {
@@ -101,6 +102,7 @@ public class GroupController {
 		// 기본 설정 : 실패
 		resMap.put(Constants.RESULT_MSG, "모임 소속 회원목록 조회에 실패했습니다");
 		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		
 		
 		// Service Call : 모임 고유번호 받아서 해당 모임의 소속 회원 정보 조회
 		List<MemberBean> memberList = groupService.selectGroupMember(gBean);
@@ -111,6 +113,7 @@ public class GroupController {
 			resMap.put(Constants.RESULT_MSG, "모임 소속 회원목록 조회에 성공했습니다");
 			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
 		}
+		resMap.put("gBean", gBean);
 		return resMap;
 	}
 	

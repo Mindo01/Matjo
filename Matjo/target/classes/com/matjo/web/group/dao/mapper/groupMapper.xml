@@ -139,6 +139,7 @@
 			mygroup
 		WHERE
 			mygroup_group = #{groupNo}
+		ORDER BY mygroup_date
     </select>
     
     <!-- SELECT : 모임명으로 조회 -->
