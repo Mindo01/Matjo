@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.matjo.web.rank.dao.RankDao">
+	
+	<!-- 모임순위 조회 (리뷰수) -->
+	<select id="selectReviewGroupList" resultType="rankGroupBean">
+	    SELECT
+	    	review_group as groupNo, COUNT(*) as countGroupRank
+		FROM
+		 	review
+		GROUP BY review_group 
+		ORDER BY count(*) desc
+		LIMIT 3;
+	</select>
+	
+	<!-- 모임순위 조회 (좋아요수) -->
+	<select id="selectLikeGroupList" resultType="rankGroupBean">
+		SELECT 
+		  A.review_group as groupNo, COUNT(*) as countGroupRank
+		FROM
+		  likes B LEFT OUTER JOIN review A ON A.review_no = B.like_review
+		GROUP BY A.review_group
+		ORDER BY count(*) desc
+		LIMIT 3;
+	</select>
+	
+</mapper>

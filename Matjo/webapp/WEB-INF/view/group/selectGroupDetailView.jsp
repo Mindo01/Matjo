@@ -10,6 +10,8 @@
 		<link rel="stylesheet" href="/resources/assets/css/selectGroupDetailSub.css" type="text/css" />
                 
         <!-- Floating side bar -->
+        <script type="text/javascript" src="/js/group/groupApp.js"></script>
+        <script type="text/javascript" src="/js/group/groupController.js"></script>
         <script type="text/javascript">
         $(function(){
         	
@@ -42,48 +44,7 @@
             $(window).scroll(function() {
                 $(this).scrollTop() < 1500 ? $("#sidebar").fadeIn() : $("#sidebar").fadeOut()
             });
-            HoldOn.open();
-            // AJAX 값 받아오기
-            $.ajax({
-				type: "post",
-				url: "/group/selectGroupDetailProc.do",
-				dataType: "json",
-				data: {
-					groupNo:"${gBean.groupNo}"
-				},
-				success: function(data) {
-					printLog( data );
-					HoldOn.close();
-					
-					if(data.result == "success") {
-						alert(data.resultMsg);
-						var gBean = data.gBean;
-						// 화면 정보 수정
-						$("#sidebar_group_title").html(gBean.groupName);
-						$("#sidebar_group_info").html(gBean.groupInfo);
-						var groupSize = gBean.groupSize;
-						groupSize*=1;
-						groupSize--;
-						$("#sidebar_group_members").html("● "+gBean.groupLeader+" 외 "+groupSize+"명");
-						var imgPath = gBean.groupImg;
-						if (imgPath != null && imgPath != '') {
-							$("#sidebar_img").attr("src", "/upload/"+imgPath);
-						}
-					} else {
-						// 정보 조회 실패
-						alert(data.resultMsg);
-						// 뒤로가기
-						history.back();
-					}
-					
-				},
-				error: function(xhr, status, error) {
-					console.log(xhr);
-					HoldOn.close();
-					alert("error\nxhr : " + xhr + ", status : " 
-							+ status + ", error : " + error);      
-				}
-			});
+           
         });
         
         
@@ -108,6 +69,7 @@
         </script>
 	</head>
 	<body class="left-sidebar" onload="init()">
+	<div ng-modules="groupApp" ng-controller="GroupController" ng-init="selectGroupDetailProc(${gBean.groupNo})">
 		<div id="page-wrapper">
 		
 			<!-- Header -->
@@ -127,16 +89,16 @@
 								<hr class="first" />
 								<section>
 									<!-- 그룹 명 -->
-                                    <span id="sidebar_group_title">${ gBean.groupName }</span>
+                                    <span id="sidebar_group_title">{{ gBean.groupName }}</span>
                                     <br/>
                                     <!-- 그룹 구성원  -->
-                                    <span id="sidebar_group_members">${ gBean.groupLeader }외 ${ gBean.groupSize*1-1 }명</span>
+                                    <span id="sidebar_group_members">{{ gBean.groupLeader }}외{{ gBean.groupSize*1-1 }}명</span>
                                     <br/>
                                     <!-- 그룹 소개 -->
-                                    <span id="sidebar_group_info">${ gBean.groupInfo }</span>
+                                    <span id="sidebar_group_info">{{ gBean.groupInfo }}</span>
                                     <br/>
                                     <!-- 그룹 대표 이미지 -->
-                                    <img src="/resources/images/group_1.png" id="sidebar_img" />
+                                    <img ng-src="{{gBean.groupImg}}" id="sidebar_img" />
                                     <br/>
                                     <table>
                                         <tr>
@@ -151,6 +113,12 @@
                                             <td id="sidebar_table">52</td>
                                         </tr>
                                     </table>
+                                    <br/>
+                                    <button class="subs" id="subs" 
+                                    	value="{{ gBean.hasSubsGroup }}" style="width:100% !important;" type="button" 
+                                    	ng-click="subsGroupTry(gBean.hasSubsGroup)">
+                                    	{{ gBean.hasSubsGroup == 'true' ? '구독 해제' : '구독' }}
+                                    </button>
 								</section>
 								<hr />
 								
@@ -194,7 +162,7 @@
 								            <!-- 5행 -->
 								            <tr>
 								                <td colspan="3" id="review_button">
-								                    <button type="button" onclick="showhide(1);">상세보기</button>            
+								                    <button class="smit" type="button" onclick="showhide(1);">상세보기</button>            
 								                </td>
 								                
 								            </tr>
@@ -274,7 +242,7 @@
 								            <!-- 5행 -->
 								            <tr>
 								                <td colspan="3" id="review_button">
-								                    <button type="button" onclick="showhide(2);">상세보기</button>            
+								                    <button class="smit" type="button" onclick="showhide(2);">상세보기</button>            
 								                </td>
 								                
 								            </tr>
@@ -354,7 +322,7 @@
 								            <!-- 5행 -->
 								            <tr>
 								                <td colspan="3" id="review_button">
-								                    <button type="button" onclick="showhide(3);">상세보기</button>            
+								                    <button class="smit" type="button" onclick="showhide(3);">상세보기</button>            
 								                </td>
 								                
 								            </tr>
@@ -406,6 +374,7 @@
 
 				</div>
 
+		</div>
 		</div>
 	</body>
 	

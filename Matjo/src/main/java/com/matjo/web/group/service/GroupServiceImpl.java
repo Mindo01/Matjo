@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,11 @@ public class GroupServiceImpl implements GroupService {
 		if (bean != null) {
 			// 모임 소속원들 목록 받아 넘기기
 			List<MemberBean> mBeanList = selectGroupMember(gBean);
+			// 현재 로그인한 회원의 해당 모임 구독 여부 받아 넘기기
+			if (gBean.getMemberNo() != null) {
+				int hasSubsGroup = commonGroupDao.selectHasSubsGroup(gBean);
+				bean.setHasSubsGroup(hasSubsGroup>0?"true":"false");
+			}
 			if (mBeanList.size() < 2) {
 				// TODO 2명보다 적으면 1인 모임 =>> 정식 모임으로 취급 안함
 			}
@@ -53,6 +60,18 @@ public class GroupServiceImpl implements GroupService {
 		}
 		// 페이징 처리와 검색 값 처리
 		pBean.calcPage(groupDao.selectGroupCount(pBean));
+		return groupDao.selectGroupList(pBean);
+	}
+	
+	/** 모임 목록 조회 - 페이징 없이 전체 조회*/
+	@Override
+	public List<GroupBean> selectGroupToApply(PagingBean pBean) {
+		if (pBean.getSearchText() == null) {
+			pBean.setSearchText("");
+		}
+		// 페이징 처리 없이 넘기기
+		pBean.setStartRow(0);
+		pBean.setEndRow(groupDao.selectGroupCount(pBean));
 		return groupDao.selectGroupList(pBean);
 	}
 
@@ -112,10 +131,14 @@ public class GroupServiceImpl implements GroupService {
 	/** 모임 구독 */
 	@Override
 	public int insertSubsGroup(GroupBean gBean) {
-		// TODO Auto-generated method stub
-		return 0;
+		return commonGroupDao.insertSubsGroup(gBean);
 	}
-	
-	
+
+	/** 모임 구독 해제 */
+	@Override
+	public int deleteSubsGroup(GroupBean gBean) {
+		return commonGroupDao.deleteSubsGroup(gBean);
+	}
+
 	
 }

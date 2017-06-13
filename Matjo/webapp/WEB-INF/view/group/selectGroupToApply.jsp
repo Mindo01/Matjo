@@ -17,15 +17,11 @@
 			display: inline-block !important;
 		}
 	</style>
-	<script type="text/javascript">
-		function sendSelectedGroup() {
-			var selectedVal = document.formData.searchGroup.value;
-			opener.document.insertGroupMember.groupName.value=selectedVal;
-	        window.close();
-		};
-	</script>
+	<script type="text/javascript" src="/js/group/groupApp.js"></script>
+		<script type="text/javascript" src="/js/group/groupController.js"></script>
 </head>
 <body class="no-sidebar">
+<div ng-modules="groupApp" ng-controller="GroupController">
 <div id="page-wrapper">
 
 <!-- Main -->
@@ -43,12 +39,28 @@
 			</article>
 			<div class="notice">
 				<form name="formData" method="get">
-			        <input type="text" name="searchGroup" />
-			        <button class="sch_smit" type="button" onclick="javascript:sendSelectedGroup();">확인</button>
+			        <input type="text" name="searchGroup" ng-model="pBean.searchText"/>
+			        <button class="sch_smit" type="button" ng-click="selectGroupToApply()">확인</button>
 			    </form>
 			</div>
+			<section>
+                  <div class="notice">
+                      <table>
+                          <colgroup>
+                              <col width="*">
+                          </colgroup>
+                          <tr>
+                              <th>모임명</th>
+                          </tr>
+                          <tr ng-if="searchText != ''" ng-repeat="grp in gList">
+								<td><a style="cursor:pointer;" ng-click="sendSelectedGroup(grp)">{{ grp.groupName }}</a></td>
+						  </tr>
+                      </table>
+			     </div>
+			</section>
 		</div>
 	</div>
+</div>
 </div>
 </body>
 </html>

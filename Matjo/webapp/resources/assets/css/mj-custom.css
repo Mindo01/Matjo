@@ -217,6 +217,14 @@ div .paging_number span a:hover {
 #tab_area input:nth-of-type(3):checked ~ div:nth-of-type(3) {
     display:block
 }
+
+.rank_type:hover {
+	 cursor: pointer;
+     text-decoration: none;
+     border: 2px solid transparent;
+     border-color: #FF6E40;
+     border-radius: 0.8em;
+}
 /* 라벨 기본 스타일 지정 */
 #tab_area {
     width: 90%;

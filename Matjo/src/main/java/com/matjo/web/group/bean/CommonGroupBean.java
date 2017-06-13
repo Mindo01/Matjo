@@ -8,6 +8,8 @@ public class CommonGroupBean {
 	
 	String applyContent;// 가입 신청내용
 	
+	String hasSubsGroup;// 구독여부
+	
 	public String getMemberNo() {
 		return memberNo;
 	}
@@ -31,6 +33,12 @@ public class CommonGroupBean {
 	}
 	public void setApplyContent(String applyContent) {
 		this.applyContent = applyContent;
+	}
+	public String getHasSubsGroup() {
+		return hasSubsGroup;
+	}
+	public void setHasSubsGroup(String hasSubsGroup) {
+		this.hasSubsGroup = hasSubsGroup;
 	}
 	
 }

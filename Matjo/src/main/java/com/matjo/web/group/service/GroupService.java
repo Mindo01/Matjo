@@ -12,6 +12,8 @@ public interface GroupService {
 	public Map<String, Object> selectGroupDetail(GroupBean gBean);
 	/** 모임 목록 조회 */
 	public List<GroupBean> selectGroupList(PagingBean pBean);
+	/** 모임 목록 모두 조회 (Paging 없이) */
+	public List<GroupBean> selectGroupToApply(PagingBean pBean);
 	/** 모임소속회원 조회 */
 	public List<MemberBean> selectGroupMember(GroupBean gBean);
 	/** 회원이 소속된 모임들 조회 */
@@ -24,4 +26,6 @@ public interface GroupService {
 	public int insertGroupMember(GroupBean gBean);
 	/** 모임 구독 */
 	public int insertSubsGroup(GroupBean gBean);
+	/** 모임 구독 해제*/
+	public int deleteSubsGroup(GroupBean gBean);
 }
