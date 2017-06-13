@@ -85,7 +85,7 @@
 
 			<!-- 공통 네비 메뉴 -->
 			<!-- Nav -->
-			<nav id="nav">
+			<nav id="nav" ng-modules="memberApp" ng-controller="MemberController">
 				<a href="/index.do"><img src="/resources/images/logo_white.png" /></a>
 				<ul>
 					<li><a href="/index.do">맛조?</a>

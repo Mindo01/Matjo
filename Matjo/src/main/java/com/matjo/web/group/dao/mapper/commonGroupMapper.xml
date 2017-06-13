@@ -35,6 +35,41 @@
         )
     </insert>
     
+    <!-- INSERT : 모임 구독 -->
+    <insert id="insertSubsGroup" parameterType="groupBean">
+		INSERT INTO subsgroup
+		(
+			subsgroup_member,
+			subsgroup_group
+		)
+		VALUES
+		(
+			#{memberNo},
+			#{groupNo}
+		)        
+    </insert>
+    
+    <!-- SELECT : 모임 구독 여부 조회 -->
+    <select id="selectHasSubsGroup" parameterType="groupBean" resultType="int">
+        SELECT
+        	COUNT(*)
+        FROM
+        	subsgroup
+        WHERE
+        	subsgroup_member = #{memberNo}
+        	AND
+        	subsgroup_group = #{groupNo}
+    </select>
+    
+    <!-- DELETE : 모임 구독 해제 -->
+    <delete id="deleteSubsGroup" parameterType="groupBean">
+        DELETE FROM subsgroup
+        WHERE
+        	subsgroup_member = #{memberNo}
+        	AND
+        	subsgroup_group = #{groupNo}
+    </delete>
+    
     <!-- DELETE : 모임 가입 신청 승인/거절 이후 삭제 -->
     <delete id="deleteApply" parameterType="groupBean">
         DELETE FROM apply

@@ -14,6 +14,8 @@ public interface CommonGroupDao {
 	public int insertApply(GroupBean gBean);
 	/** DELETE : 모임 가입 신청 완료 후 삭제 */
 	public int deleteApply(GroupBean gBean);
+	/** SELECT : 회원의 모임 구독 여부 조회 */
+	public int selectHasSubsGroup(GroupBean gBean);
 	/** SELECT : 한 회원의 구독 모임 조회 */
 	public List<GroupBean> selectSubsGroupList(MemberBean mBean);
 	/** INSERT : 구독 모임 등록 : 모임번호 + 회원번호 연결 */

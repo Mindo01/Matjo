@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><decorator:title default="맛조" /></title>
 <script type="text/javascript" src="/js/common/angular/angular.js"></script>
+<script type="text/javascript" src="/js/common/angular/angular.ng-modules.js"></script>
 <script type="text/javascript" src="/js/common/jquery/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="/js/common/common.js"></script>
 <script type="text/javascript" src="/js/member/memberApp.js"></script>

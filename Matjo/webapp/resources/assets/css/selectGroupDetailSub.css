@@ -85,10 +85,17 @@
     text-align: center;
 }
 /* minju : button customizing */
-#review_button button {
+button.smit,
+button.subs[value="false"]{
 	margin-top: 10px;
 	background: #FF3D00; /* Deep Orange A400 */
 	color: white;
+}
+button.subs[value="true"] {
+	margin-top: 10px;
+	background: #555; /* Deep Orange A400 */
+	color: white;
+	
 }
 #review_button button:hover {
 	background: #FF6E40;
