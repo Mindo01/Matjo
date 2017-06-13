@@ -29,7 +29,6 @@
 		});
 	});
 </script>
-<script type="text/javascript" src="/js/common/angular/angular.js"></script>
 <script type="text/javascript" src="/js/resta/restaApp.js"></script>
 <script type="text/javascript" src="/js/resta/restaController.js"></script>
 <!-- <script type="text/javascript">
@@ -49,7 +48,7 @@ function getLoc() {
 </script> -->
 </head>
 <body class="no-sidebar">
-	<div ng-app="restaApp" ng-controller="RestaController" ng-init=""
+	<div ng-modules="restaApp" ng-controller="RestaController" ng-init=""
 		id="page-wrapper">
 
 		<!-- Modal -->

@@ -7,4 +7,6 @@ import com.matjo.web.review.bean.ReviewBean;
 
 public interface PereviewDao {
 	public List<PereviewBean> selectPereviewList(ReviewBean rBean);
+
+	public int insertPereview(PereviewBean pereviewBean);
 }

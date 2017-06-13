@@ -7,5 +7,7 @@ import com.matjo.web.review.bean.ReviewBean;
 public interface ReviewDao {
 	
 	public List<ReviewBean> selectReviewList(ReviewBean reviewBean);
+
+	public int insertReview(ReviewBean reviewBean);
 	
 } // end of class

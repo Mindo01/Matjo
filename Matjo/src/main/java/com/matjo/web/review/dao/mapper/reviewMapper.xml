@@ -36,8 +36,26 @@
 		DESC
 	</select>
 	
-	
+	<!-- 모임리뷰 1건 저장 -->
+	<insert id="insertReview" parameterType="reviewBean">
+	    INSERT INTO review
+ 		(
+			review_group,
+			review_resta_no,
+			review_resta_name,
+			review_resta_cate
+ 		)
+		VALUES
+ 		(
+ 			#{reviewGroupNo}, 
+ 			#{reviewRestaNo}, 
+ 			#{reviewRestaName}, 
+ 			#{reviewRestaCate}
+ 		)
+ 		<selectKey order="AFTER" keyProperty="no" resultType="string">
+	   		SELECT LAST_INSERT_ID()        
+		</selectKey>
+	</insert>
 	
 </mapper>
-
 

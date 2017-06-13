@@ -53,7 +53,12 @@ public class ReviewServiceImpl implements ReviewService {
 	// 모임리뷰 등록
 	@Override
 	public int insertReview(ReviewBean reviewBean) {
-		return 0;
+		return reviewDao.insertReview(reviewBean);
+	}
+
+	@Override
+	public int insertPereview(PereviewBean pereviewBean) {
+		return pereviewDao.insertPereview(pereviewBean);
 	}
 	
 	
