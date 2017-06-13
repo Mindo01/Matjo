@@ -51,3 +51,21 @@ restaApp.factory("RestaService", function($http) {
 	}
 
 });
+
+restaApp.directive("rateYo", function() {
+	return {
+		restrict: "E",
+		scope: {
+			rating: "="
+		},
+		template: "<div id='rateYo'></div>",
+		link: function( scope, ele, attrs ) {
+			$(ele).rateYo({
+				rating: scope.rating,
+				starWidth: "20px",      
+				ratedFill: "#ffce59",
+				readOnly: true          
+			});
+		}
+	};
+});

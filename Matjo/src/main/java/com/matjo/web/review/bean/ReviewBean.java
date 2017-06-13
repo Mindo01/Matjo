@@ -14,6 +14,8 @@ public class ReviewBean {
 	
 	private String reviewGroupName;
 	
+	private String avgRating;
+	
 	/* Constructors */
 	public ReviewBean() {
 	}
@@ -63,12 +65,27 @@ public class ReviewBean {
 	}
 	public void setPereviewList(List<PereviewBean> pereviewList) {
 		this.pereviewList = pereviewList;
+		
+		/* 평균 계산 */
+		String avg = "0.0";
+		double sum = 0;
+		for (int i = 0; i < pereviewList.size(); i++) {
+			sum += Double.parseDouble(pereviewList.get(i).getPereviewRating());
+		}
+		avg = String.format("%.1f", (sum/pereviewList.size()));
+		this.avgRating = avg;
 	}
 	public String getReviewGroupName() {
 		return reviewGroupName;
 	}
 	public void setReviewGroupName(String reviewGroupName) {
 		this.reviewGroupName = reviewGroupName;
+	}
+	public String getAvgRating() {
+		return avgRating;
+	}
+	public void setAvgRating(String avgRating) {
+		this.avgRating = avgRating;
 	}
 	
 } // end of class

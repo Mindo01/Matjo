@@ -57,6 +57,18 @@
 						<td>민주</td>
 						<td><a href="/group/insertGroupMemberForm.do">모임가입신청</a></td>
 					</tr>
+					<tr>
+						<td>대희</td>
+						<td><a href="/review/insertReviewForm.do">모임리뷰작성</a></td>
+					</tr>
+					<tr>
+						<td>대희</td>
+						<td><a href="/review/insertPereviewForm.do">개인리뷰작성</a></td>
+					</tr>
+					<tr>
+						<td>대희</td>
+						<td><a href="/resta/selectRestaList.do">음식점검색</a></td>
+					</tr>
 				</table>
 			</div>
 		</div>
