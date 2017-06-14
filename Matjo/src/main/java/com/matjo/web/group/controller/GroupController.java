@@ -293,4 +293,34 @@ public class GroupController {
 		return resMap;
 	}
 	
+	/** F : (임시) 내 구독 모임 보기 */
+	@RequestMapping("/group/selectSubsGroupForm")
+	public String selectSubsGroupForm() {
+		return "/group/selectSubsGroupForm";
+	}
+	
+	/** P : 내 구독 모임 조회 */
+	@RequestMapping("/group/selectSubsGroupProc")
+	@ResponseBody
+	public Map<String, Object> selectSubsGroupProc(HttpServletRequest req) {
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		// 기본 설정 : 실패
+		resMap.put(Constants.RESULT_MSG, "내 구독모임 조회를 실패했습니다");
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		// 멤버빈에 회원정보 넣어주기
+		MemberBean mBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
+		mBean.setMemberNo(mBean.getMemberNo());
+		if (mBean != null) {
+			// Service Call : 멤버ID 받아서 구독한 모임들 조회하기
+			List<GroupBean> groupList = groupService.selectSubsGroup(mBean);
+			if (groupList != null) {
+				// 성공 설정
+				resMap.put(Constants.RESULT_MSG, "모임 구독 해제를 성공했습니다");
+				resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+			}
+			resMap.put("groupList", groupList);
+		}
+		return resMap;
+	}
+	
 }

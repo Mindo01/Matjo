@@ -69,6 +69,11 @@
 						<td>대희</td>
 						<td><a href="/resta/selectRestaList.do">음식점검색</a></td>
 					</tr>
+					<tr>
+						<td>민주</td>
+						<td><a href="/group/selectSubsGroupForm.do">내구독모임조회</a></td>
+					</tr>
+					
 				</table>
 			</div>
 		</div>

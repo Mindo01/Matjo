@@ -28,4 +28,6 @@ public interface GroupService {
 	public int insertSubsGroup(GroupBean gBean);
 	/** 모임 구독 해제*/
 	public int deleteSubsGroup(GroupBean gBean);
+	/** 내 구독 모임 조회 */
+	public List<GroupBean> selectSubsGroup(MemberBean gBean);
 }

@@ -129,6 +129,17 @@ function GroupController($rootScope, $scope, GroupService){
     	});
     }
     
+    // 무조건 구독 해제 : 내 구독모임 목록에서 사용
+    $scope.deleteSubsGroupStrict = function(groupNo) {
+    	if ($scope.gBean == undefined) {
+    		$scope.gBean = {};
+    	}
+    	$scope.gBean.groupNo = groupNo;
+    	$scope.deleteSubsGroupProc();
+    	
+    	$scope.selectSubsGroup();
+    }
+    
     // 모임 구독 해제
     $scope.deleteSubsGroupProc = function() {
     	HoldOn.open();
@@ -147,10 +158,23 @@ function GroupController($rootScope, $scope, GroupService){
     	});
     }
     
-    // 모임 소속 회원 목록 창 띄우기
-//    $scope.selectGroupMemberForm = function() {
-//    	
-//    }
+    // 내 구독 모임 조회
+    $scope.selectSubsGroup = function() {
+    	HoldOn.open();
+    	GroupService.selectSubsGroup().then(function(data) {
+    		console.log(JSON.stringify(data));
+    		
+			HoldOn.close();
+			
+			if(data.result == 'success') {
+				$scope.gList = data.groupList;
+			} else {
+				// 정보 조회 실패
+				alert(data.resultMsg);
+			}
+    	});
+    }
+    
     
     // 모임 소속 회원 목록 조회
     $scope.selectGroupMemberProc = function(groupNo) {
@@ -258,5 +282,6 @@ function GroupController($rootScope, $scope, GroupService){
 	    	});
 		}
 	}
+	
    
 };// end controller

@@ -141,5 +141,11 @@ public class GroupServiceImpl implements GroupService {
 		return commonGroupDao.deleteSubsGroup(gBean);
 	}
 
+	/** 내 구독 모임 조회 */
+	@Override
+	public List<GroupBean> selectSubsGroup(MemberBean mBean) {
+		return commonGroupDao.selectSubsGroupList(mBean);
+	}
+
 	
 }

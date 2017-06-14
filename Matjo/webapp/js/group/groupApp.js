@@ -12,6 +12,7 @@ groupApp.factory("GroupService", function($http) {
    service.selectGroupDetailProc = selectGroupDetailProc;
    service.insertSubsGroupProc = insertSubsGroupProc;
    service.deleteSubsGroupProc = deleteSubsGroupProc;
+   service.selectSubsGroup = selectSubsGroup;
    service.selectGroupMemberProc = selectGroupMemberProc;
    
    // 좋아요 설정/해제
@@ -73,6 +74,16 @@ groupApp.factory("GroupService", function($http) {
    function deleteSubsGroupProc(objParam) {
 	   return $http({
 		   url: "/group/deleteSubsGroupProc.do",
+		   method: "post",
+		   data: json2PostParams(objParam),
+		   headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+	   }).then(handleSuccess, handleError);
+   }
+   
+   // 내 구독 모임 조회
+   function selectSubsGroup(objParam) {
+	   return $http({
+		   url: "/group/selectSubsGroupProc.do",
 		   method: "post",
 		   data: json2PostParams(objParam),
 		   headers : {'Content-Type': 'application/x-www-form-urlencoded'}
