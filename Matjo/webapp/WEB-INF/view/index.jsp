@@ -246,15 +246,16 @@
                              	시작날짜<input type="text" name="promoStart" id="promoStart" class="form-control" placeholder="ex)2017-05-20" aria-describedby="basic-addon2">
                              	종료날짜<input type="text" name="promoEnd" id="promoStart" class="form-control" placeholder="ex)2017-06-20" aria-describedby="basic-addon2">
                                 <p>분류</p>
-                              		  		<select id = "promoCate" name="promoCate">
+                              		  		<select id = "promoCate" name="promoCate" style="width:100px; padding:0px !important;">
                                                 <option selected>카테고리 선택</option>
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>
                                             </select>
                                    </div>
-										<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                                            <button type="button" class="btn btn-default" onclick="insertPromotion();">신청하기</button>
+										<br/><br/><br/><br/><br/><br/><br/>
+										<br/>
+										<button type="button" class="btn btn-default" onclick="insertPromotion();">신청하기</button>
                             </div>
                         </div>
                     </div>
