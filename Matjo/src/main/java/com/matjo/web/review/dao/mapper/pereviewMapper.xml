@@ -11,10 +11,17 @@
 		(
 			SELECT member_id FROM member WHERE member_no = pereview.pereview_member
 		) AS pereviewMemId,
+		(
+			SELECT member_name FROM member WHERE member_no = pereview.pereview_member
+		) AS pereviewMemName,
+		(
+			SELECT member_img FROM member WHERE member_no = pereview.pereview_member
+		) AS pereviewMemImg,
 		pereview_review AS pereviewReviewNo,
 		pereview_content AS pereviewContent,
 		pereview_rating AS pereviewRating,
-		pereview_img AS pereviewImgUrl
+		pereview_img AS pereviewImgUrl,
+		pereview_date AS pereviewDate
 	</sql>
 
 	<!-- 리뷰 목록 조회 -->

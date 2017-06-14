@@ -3,18 +3,25 @@
 
 <!-- 맵퍼가 쿼리를 수행 -->
 
-<mapper namespace="com.kosta148.matjo.review.dao.PereviewDao">
+<mapper namespace="com.matjo.web.review.dao.PereviewDao">
 
 	<!-- 회원 목록 조회 -->
 	<sql id="pereviewColumns">
 		pereview_no AS pereviewNo,
 		(
-			SELECT member_id FROM member WHERE no = pereview.pereview_member
+			SELECT member_id FROM member WHERE member_no = pereview.pereview_member
 		) AS pereviewMemId,
+		(
+			SELECT member_name FROM member WHERE member_no = pereview.pereview_member
+		) AS pereviewMemName,
+		(
+			SELECT member_img FROM member WHERE member_no = pereview.pereview_member
+		) AS pereviewMemImg,
 		pereview_review AS pereviewReviewNo,
 		pereview_content AS pereviewContent,
 		pereview_rating AS pereviewRating,
-		pereview_img AS pereviewImgUrl
+		pereview_img AS pereviewImgUrl,
+		pereview_date AS pereviewDate
 	</sql>
 
 	<!-- 리뷰 목록 조회 -->
@@ -33,8 +40,29 @@
 		DESC
 	</select>
 	
-</mapper>
+	    <!-- 개인리뷰 1건 저장 -->
+    <insert id="insertPereview" parameterType="pereviewBean">
+        INSERT INTO pereview
+         (
+            pereview_member,
+            pereview_review,
+            pereview_content,
+            pereview_rating
+         )
+        VALUES
+         (
+             #{pereviewMemId}, 
+             #{pereviewReviewNo}, 
+             #{pereviewContent}, 
+             #{pereviewRating}
+         )
+         <selectKey order="AFTER" keyProperty="no" resultType="string">
+               SELECT LAST_INSERT_ID()        
+        </selectKey>
+    </insert>
 
+	
+</mapper>
 
 
 

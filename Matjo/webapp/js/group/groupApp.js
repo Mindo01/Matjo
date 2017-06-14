@@ -13,6 +13,7 @@ groupApp.factory("GroupService", function($http) {
    service.insertSubsGroupProc = insertSubsGroupProc;
    service.deleteSubsGroupProc = deleteSubsGroupProc;
    service.selectGroupMemberProc = selectGroupMemberProc;
+   
    return service;
    
    //모임 목록 조회
@@ -83,4 +84,22 @@ groupApp.factory("GroupService", function($http) {
       return res.data;
    }
    
+});
+
+groupApp.directive("rateYo", function() {
+	return {
+		restrict: "E",
+		scope: {
+			rating: "="
+		},
+		template: "<div id='rateYo'></div>",
+		link: function( scope, ele, attrs ) {
+			$(ele).rateYo({
+				rating: scope.rating,
+				starWidth: "10px",      
+				ratedFill: "#ffce59",
+				readOnly: true          
+			});
+		}
+	};
 });

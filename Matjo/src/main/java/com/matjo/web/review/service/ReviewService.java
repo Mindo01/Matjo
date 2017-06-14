@@ -62,5 +62,4 @@ public interface ReviewService {
 	public int insertPereview(PereviewBean pereviewBean);
 
 	
-	
 } // end of interface

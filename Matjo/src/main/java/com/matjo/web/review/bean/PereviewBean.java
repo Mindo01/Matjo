@@ -3,10 +3,13 @@ package com.matjo.web.review.bean;
 public class PereviewBean {
 	private String pereviewNo;
 	private String pereviewMemId;
+	private String pereviewMemName;
+	private String pereviewMemImg;
 	private String pereviewReviewNo;
 	private String pereviewContent;
 	private String pereviewRating;
 	private String pereviewImgUrl;
+	private String pereviewDate;
 	
 	public String getPereviewNo() {
 		return pereviewNo;
@@ -19,6 +22,18 @@ public class PereviewBean {
 	}
 	public void setPereviewMemId(String pereviewMemId) {
 		this.pereviewMemId = pereviewMemId;
+	}
+	public String getPereviewMemName() {
+		return pereviewMemName;
+	}
+	public void setPereviewMemName(String pereviewMemName) {
+		this.pereviewMemName = pereviewMemName;
+	}
+	public String getPereviewMemImg() {
+		return pereviewMemImg;
+	}
+	public void setPereviewMemImg(String pereviewMemImg) {
+		this.pereviewMemImg = pereviewMemImg;
 	}
 	public String getPereviewReviewNo() {
 		return pereviewReviewNo;
@@ -44,5 +59,12 @@ public class PereviewBean {
 	public void setPereviewImgUrl(String pereviewImgUrl) {
 		this.pereviewImgUrl = pereviewImgUrl;
 	}
+	public String getPereviewDate() {
+		return pereviewDate;
+	}
+	public void setPereviewDate(String pereviewDate) {
+		this.pereviewDate = pereviewDate;
+	}
+	
 	
 } // end of class

@@ -12,6 +12,8 @@ public class ReviewBean {
 	private String reviewIsOpen;
 	private List<PereviewBean> pereviewList;
 	
+	private String reviewDate;
+	
 	private String reviewGroupName;
 	
 	private String avgRating;
@@ -74,6 +76,14 @@ public class ReviewBean {
 		}
 		avg = String.format("%.1f", (sum/pereviewList.size()));
 		this.avgRating = avg;
+		
+		/* 리뷰 최종 등록 날짜 설정 */
+		if (pereviewList.size() > 0) {
+			this.reviewDate = pereviewList.get(pereviewList.size()-1).getPereviewDate();
+		} else {
+			// 아직 개인리뷰가 하나도 없으면 null 설정
+			this.reviewDate = null;
+		}
 	}
 	public String getReviewGroupName() {
 		return reviewGroupName;
@@ -87,5 +97,13 @@ public class ReviewBean {
 	public void setAvgRating(String avgRating) {
 		this.avgRating = avgRating;
 	}
+	
+	public String getReviewDate() {
+		return reviewDate;
+	}
+	public void setReviewDate(String reviewDate) {
+		this.reviewDate = reviewDate;
+	}
+	
 	
 } // end of class

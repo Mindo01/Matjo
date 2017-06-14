@@ -21,6 +21,8 @@ import com.matjo.web.common.bean.PagingBean;
 import com.matjo.web.group.bean.GroupBean;
 import com.matjo.web.group.service.GroupService;
 import com.matjo.web.member.bean.MemberBean;
+import com.matjo.web.review.bean.ReviewBean;
+import com.matjo.web.review.service.ReviewService;
 
 @Controller
 public class GroupController {
@@ -30,7 +32,10 @@ public class GroupController {
 	private String FILE_UPLOAD_PATH;
 	
 	@Autowired
-	GroupService groupService;
+	private GroupService groupService;
+	
+	@Autowired
+	private ReviewService reviewService;
 	
 	/** F : 모임 정보 화면 */
 	@RequestMapping("/group/selectGroupDetailView")
@@ -46,13 +51,21 @@ public class GroupController {
 	@RequestMapping("/group/selectGroupDetailProc")
 	@ResponseBody
 	public Map<String, Object> selectGroupDetailProc(GroupBean gBean, HttpServletRequest req) {
+		Map<String, Object> resMap;
 		// 현재 로그인한 회원 정보 넘기기
 		MemberBean mBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
 		if (mBean != null) {
 			gBean.setMemberNo(mBean.getMemberNo());
 		}
 		// Service Call : 모임 고유번호 받아서 해당 모임에 대한 정보 조회
-		return groupService.selectGroupDetail(gBean);
+		resMap = groupService.selectGroupDetail(gBean);
+		// 넘겨줄 모임번호 설정
+		ReviewBean rBean = new ReviewBean();
+		rBean.setReviewGroupNo(gBean.getGroupNo());
+		// Service Call : 모임 기준 리뷰 목록 조회
+		List<ReviewBean> reviewList = reviewService.selectReviewPereviewListForGroup(rBean);
+		resMap.put("reviewList", reviewList);
+		return resMap;
 	}
 	
 	/** F : 모임 목록 화면 */

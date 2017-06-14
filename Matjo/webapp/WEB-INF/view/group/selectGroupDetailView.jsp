@@ -12,6 +12,11 @@
         <!-- Floating side bar -->
         <script type="text/javascript" src="/js/group/groupApp.js"></script>
         <script type="text/javascript" src="/js/group/groupController.js"></script>
+        
+        <!-- jQuery 별점 모듈(Rate Yo!) -->
+        <link rel="stylesheet" href="/resources/assets/css/jquery.rateyo.min.css">
+        <script src="/js/common/jquery.rateyo.min.js"></script>
+        
         <script type="text/javascript">
         $(function(){
         	
@@ -44,6 +49,12 @@
             $(window).scroll(function() {
                 $(this).scrollTop() < 1500 ? $("#sidebar").fadeIn() : $("#sidebar").fadeOut()
             });
+            
+            $("#rateYo").rateYo({
+				rating : 4.5,
+				halfStar: true,
+				readOnly: true
+			});
            
         });
         
@@ -84,6 +95,9 @@
         		color:white;
         		background-color: #FF3D00;
         	}
+			/* #main .review_detail {
+				display: none;
+			} */
         </style>
 	</head>
 	<body class="left-sidebar" onload="init()">
@@ -146,245 +160,91 @@
 							<div class="8u 12u(mobile) important(mobile)" id="content">
 								<article id="main">
 									<!-- 리뷰 내용-->
-									<section id="review">
-								        <table>
-                                            <!-- 1행 -->
-								            <tr>
+									<section id="review" ng-repeat="review in reviewList track by $index">
+										<table>
+											<!-- 1행 -->
+											<tr>
 								                <td id="review_resta_img"><img src="/resources/images/resta_thumbnail.png" /></td>
-								                <td colspan="2"><span id="review_resta_name">철파니야 가산디지털단지점</span><br/>
-								                <span span id="review_resta_address">서울시 금천구 벚꽃로 286</span></td>
-								                <td id="review_td_like"><img id="review_like_img" src="/resources/images/heart_1.png">
-								                <span id="review_like">37</span><br/>
-								                <span>등록일시:2017년 5월 22일</span></td>
-								            </tr>
-								            
-								            <!-- 2행 -->
-								            <tr>
-								                <td rowspan="4" id="review_avg_score">
-								                    <span>평균 평점</span><br/>
-								                    <span>★★★★☆</span><br/>
-								                    <span>4.0</span>
+								                <td colspan="2">
+								                	<span id="review_resta_name">
+								                		{{review.reviewRestaName}}<br/>
+								                	</span>
+								                	<br/>
+								                	<span span id="review_resta_address">{{review.reviewRestaCate}}</span>
 								                </td>
-								                <td colspan="3" id="review_content">(훌륭) 다음에 또와요</td>
-								                
-								            </tr>
-								            
-								            <!-- 3행 -->
-								            <tr>
-								                <td colspan="3" id="review_content">(보통) 먹을만 하네요</td>
-								            </tr>
-								            
-								            <!-- 4행 -->
-								            <tr>
-								                <td colspan="3" id="review_content">(별로) 다음에 다른데 가요</td>
-								            </tr>
-								            
-								            <!-- 5행 -->
-								            <tr>
-								                <td colspan="3" id="review_button">
-								                    <button class="smit" type="button" onclick="showhide(1);">상세보기</button>            
+								                <td style="text-align: right; padding-right: 15px;"id="review_td_like">
+									                <img id="review_like_img" src="/resources/images/heart_1.png">
+									                <span id="review_like">37</span>
+									                <br/>
+									                <span>등록일시: {{review.reviewDate}}</span>
 								                </td>
-								                
 								            </tr>
-								        </table>
-								        
-								        <div class="review_detail" id="review_detail1"  style="display: none;">
-								            <table>
-								                <tr>
-								                    <td id="review_detail_member_img"><img src="/resources/images/jihye.PNG"/></td>
-                                                    <td id="review_detail_member_name"><span>지혜</span></td>
-                                                    <td><span>맛있었어</span></td>
-								                </tr>
-								                
-								                <tr>
-                                                    <td ></td>
-								                    <td colspan="2"><img src="/resources/images/food_1.jpg"/></td>
-                                                </tr>
-                                                
-                                                <tr>
-								                    <td id="review_detail_member_img"><img src="/resources/images/minju.PNG"/></td>
-                                                    <td id="review_detail_member_name"><span>민주</span></td>
-                                                    <td><span>괜찮았어</span></td>
-								                </tr>
-								                
-								                <tr>
-                                                    <td ></td>
-								                    <td colspan="2"><img src="/resources/images/food_2.jpg"/></td>
-                                                </tr>
-                                                
-                                                <tr>
-								                    <td id="review_detail_member_img"><img src="/resources/images/daehee.PNG"/></td>
-                                                    <td id="review_detail_member_name"><span>대히</span></td>
-                                                    <td><span>다른데 가자</span></td>
-								                </tr>
-								                
-								                <tr>
-                                                    <td ></td>
-								                    <td colspan="2"><img src="/resources/images/food_3.jpg"/></td>
-                                                </tr>
-								            </table>
-								        </div>
-									</section>
+		
+											<!-- 2행 -->
+											<tr>
+												<td rowspan="4" id="review_avg_score">
+													<span>평균 평점</span><br />
+													<span><rate-yo rating="review.avgRating"></rate-yo></span>
+													<span>{{review.avgRating == 'NaN'? '0.0' : review.avgRating}}</span>
+												</td>
+												<td colspan="3" id="review_content">(훌륭) 다음에 또와요</td>
+		
+											</tr>
+		
+											<!-- 3행 -->
+											<tr>
+												<td colspan="3" id="review_content">(보통) 먹을만 하네요</td>
+											</tr>
+		
+											<!-- 4행 -->
+											<tr>
+												<td colspan="3" id="review_content">(별로) 다음에 다른데 가요</td>
+											</tr>
+				
+										</table>
+										
+										<!-- 리뷰 상세 -->
+										<div class="review_detail" ng-if="slideArr[$index] == 1" id="review_detail1">
+											<table ng-repeat="pereview in review.pereviewList">
+												<colgroup>
+													<col width="10%">
+													<col width="*">
+													<col width="30%">
+												</colgroup>
+												<tr>
+													<td id="review_detail_member_img">
+														<img style="width:30px !important; height:30px !important;" 
+															ng-src="{{ pereview.pereviewMemImg == 'null' || pereview.pereviewMemImg == null || pereview.pereviewMemImg == ''? '/resources/images/profile.png':'/upload/'+pereview.pereviewMemImg}}"/>
+													</td>
+													<td id="review_detail_member_name">
+														<span style="font-weight: bold;">{{pereview.pereviewMemName}}</span>
+													</td>
+													
+													<td>
+														<rate-yo rating="pereview.pereviewRating"></rate-yo>{{pereview.pereviewRating}}
+													</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td colspan="2">
+														<span>{{pereview.pereviewContent}}</span>
+													</td>
+												</tr>
+												<tr>
+													<td></td>
+													<td colspan="2">
+														<img style="width:50% !important; height:50% !important;" 
+															ng-if="pereview.pereviewImgUrl != 'null' && pereview.pereviewImgUrl != null && pereview.pereviewImgUrl != ''" 
+															ng-src="{{'/upload/'+pereview.pereviewImgUrl}}" />
+													</td>
+												</tr>
+											</table>
+										</div>
+										<button ng-if="review.pereviewList.length > 0" class="smit" type="button" ng-click="setAccordian($index)">
+											상세보기 {{slideArr.length}}
+										</button>
+									</section><!-- 리뷰 한개 아이템 마지막 -->
 									
-									<section id="review">
-								        <table>
-                                            <!-- 1행 -->
-								            <tr>
-								                <td id="review_resta_img"><img src="/resources/images/resta_thumbnail.png" /></td>
-								                <td colspan="2"><span id="review_resta_name">철파니야 가산디지털단지점</span><br/>
-								                <span span id="review_resta_address">서울시 금천구 벚꽃로 286</span></td>
-								                <td id="review_td_like"><img id="review_like_img" src="/resources/images/heart_1.png">
-								                <span id="review_like">37</span><br/>
-								                <span>등록일시:2017년 5월 22일</span></td>
-								            </tr>
-								            
-								            <!-- 2행 -->
-								            <tr>
-								                <td rowspan="4" id="review_avg_score">
-								                    <span>평균 평점</span><br/>
-								                    <span>★★★★☆</span><br/>
-								                    <span>4.0</span>
-								                </td>
-								                <td colspan="3" id="review_content">(훌륭) 다음에 또와요</td>
-								                
-								            </tr>
-								            
-								            <!-- 3행 -->
-								            <tr>
-								                <td colspan="3" id="review_content">(보통) 먹을만 하네요</td>
-								            </tr>
-								            
-								            <!-- 4행 -->
-								            <tr>
-								                <td colspan="3" id="review_content">(별로) 다음에 다른데 가요</td>
-								            </tr>
-								            
-								            <!-- 5행 -->
-								            <tr>
-								                <td colspan="3" id="review_button">
-								                    <button class="smit" type="button" onclick="showhide(2);">상세보기</button>            
-								                </td>
-								                
-								            </tr>
-								        </table>
-								        
-								        <div class="review_detail" id="review_detail2"  style="display: none;">
-								            <table>
-								                <tr>
-								                    <td id="review_detail_member_img"><img src="/resources/images/jihye.PNG"/></td>
-                                                    <td id="review_detail_member_name"><span>지혜</span></td>
-                                                    <td><span>맛있었어</span></td>
-								                </tr>
-								                
-								                <tr>
-                                                    <td ></td>
-								                    <td colspan="2"><img src="/resources/images/food_1.jpg"/></td>
-                                                </tr>
-                                                
-                                                <tr>
-								                    <td id="review_detail_member_img"><img src="/resources/images/minju.PNG"/></td>
-                                                    <td id="review_detail_member_name"><span>민주</span></td>
-                                                    <td><span>괜찮았어</span></td>
-								                </tr>
-								                
-								                <tr>
-                                                    <td ></td>
-								                    <td colspan="2"><img src="/resources/images/food_2.jpg"/></td>
-                                                </tr>
-                                                
-                                                <tr>
-								                    <td id="review_detail_member_img"><img src="/resources/images/daehee.PNG"/></td>
-                                                    <td id="review_detail_member_name"><span>대히</span></td>
-                                                    <td><span>다른데 가자</span></td>
-								                </tr>
-								                
-								                <tr>
-                                                    <td ></td>
-								                    <td colspan="2"><img src="/resources/images/food_3.jpg"/></td>
-                                                </tr>
-								            </table>
-								        </div>
-									</section>
-									
-									<section id="review">
-								        <table>
-                                            <!-- 1행 -->
-								            <tr>
-								                <td id="review_resta_img"><img src="/resources/images/resta_thumbnail.png" /></td>
-								                <td colspan="2"><span id="review_resta_name">철파니야 가산디지털단지점</span><br/>
-								                <span span id="review_resta_address">서울시 금천구 벚꽃로 286</span></td>
-								                <td id="review_td_like"><img id="review_like_img" src="/resources/images/heart_1.png">
-								                <span id="review_like">37</span><br/>
-								                <span>등록일시:2017년 5월 22일</span></td>
-								            </tr>
-								            
-								            <!-- 2행 -->
-								            <tr>
-								                <td rowspan="4" id="review_avg_score">
-								                    <span>평균 평점</span><br/>
-								                    <span>★★★★☆</span><br/>
-								                    <span>4.0</span>
-								                </td>
-								                <td colspan="3" id="review_content">(훌륭) 다음에 또와요</td>
-								                
-								            </tr>
-								            
-								            <!-- 3행 -->
-								            <tr>
-								                <td colspan="3" id="review_content">(보통) 먹을만 하네요</td>
-								            </tr>
-								            
-								            <!-- 4행 -->
-								            <tr>
-								                <td colspan="3" id="review_content">(별로) 다음에 다른데 가요</td>
-								            </tr>
-								            
-								            <!-- 5행 -->
-								            <tr>
-								                <td colspan="3" id="review_button">
-								                    <button class="smit" type="button" onclick="showhide(3);">상세보기</button>            
-								                </td>
-								                
-								            </tr>
-								        </table>
-								        
-								        <div class="review_detail" id="review_detail3"  style="display: none;">
-								            <table>
-								                <tr>
-								                    <td id="review_detail_member_img"><img src="/resources/images/jihye.PNG"/></td>
-                                                    <td id="review_detail_member_name"><span>지혜</span></td>
-                                                    <td><span>맛있었어</span></td>
-								                </tr>
-								                
-								                <tr>
-                                                    <td ></td>
-								                    <td colspan="2"><img src="/resources/images/food_1.jpg"/></td>
-                                                </tr>
-                                                
-                                                <tr>
-								                    <td id="review_detail_member_img"><img src="/resources/images/minju.PNG"/></td>
-                                                    <td id="review_detail_member_name"><span>민주</span></td>
-                                                    <td><span>괜찮았어</span></td>
-								                </tr>
-								                
-								                <tr>
-                                                    <td ></td>
-								                    <td colspan="2"><img src="/resources/images/food_2.jpg"/></td>
-                                                </tr>
-                                                
-                                                <tr>
-								                    <td id="review_detail_member_img"><img src="/resources/images/daehee.PNG"/></td>
-                                                    <td id="review_detail_member_name"><span>대히</span></td>
-                                                    <td><span>다른데 가자</span></td>
-								                </tr>
-								                
-								                <tr>
-                                                    <td ></td>
-								                    <td colspan="2"><img src="/resources/images/food_3.jpg"/></td>
-                                                </tr>
-								            </table>
-								        </div>
-									</section>
 								</article>
 							</div>
 						</div>

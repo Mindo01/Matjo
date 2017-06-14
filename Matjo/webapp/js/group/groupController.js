@@ -18,6 +18,8 @@ function GroupController($rootScope, $scope, GroupService){
     	groupSize : ""
     };
     
+    $scope.slidArr = [];
+    
     $scope.whatToSearch = "전체";
     
     // 모임 목록 조회 이벤트
@@ -76,9 +78,14 @@ function GroupController($rootScope, $scope, GroupService){
 			HoldOn.close();
 			
 			if(data.result == 'success') {
-				alert(data.resultMsg);
 				$scope.gBean = data.gBean;
 				$scope.mBeanList = data.mBeanList;
+				$scope.reviewList = data.reviewList;
+				// 배열 생성 함수
+				$scope.slideArr = new Array(data.reviewList.length);
+				for (var i = 0; i < $scope.slideArr.length; i++) {
+					$scope.slideArr[i] = 0;
+				}
 				if ($scope.gBean.groupImg != null && $scope.gBean.groupImg != "") {
 					$scope.gBean.groupImg = "/upload/"+$scope.gBean.groupImg;
 				} else {
@@ -177,6 +184,39 @@ function GroupController($rootScope, $scope, GroupService){
         window.close();
     };
     
-    // 
+    // 아코디언 메뉴
+	var num = 0;
+	$scope.doAccordian = function(ind) {
+		console.log(ind);
+		// 리뷰항목 아코디언 구현
+		var btn = $('#main button:nth-of-type(1)');
+	    if(!btn.prev().is(':visible')) {
+	    	btn.prev().slideDown();
+	            console.log('안보여서 다운함');
+		} else {
+	        if(btn.prev().is(':visible')) {
+	        	btn.prev().slideUp();
+	        	console.log('보여서 업함');
+	        }
+	    }
+	};
+	
+	// ANGULAR 이용한 아코디언 메뉴
+	$scope.setAccordian = function(ind) {
+		// 닫기
+		if ($scope.slideArr[ind] == 1) {
+			console.log("닫아주세욤");
+			$scope.slideArr[ind] = 0;
+			return ;
+		}
+		// 나머지 닫고 나만 열기
+		console.log(ind+"가 들어왔고, 길이는 "+$scope.slideArr.length);
+		for (var i = 0; i < $scope.slideArr.length; i++) {
+			$scope.slideArr[i] = 0;
+			console.log("초기화 - "+$scope.slideArr[i]);
+		}
+		$scope.slideArr[ind] = 1;
+		console.log("리뷰["+ind+"]만 "+$scope.slideArr[ind]+"로 설정");
+	}
    
 };// end controller
