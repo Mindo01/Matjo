@@ -43,6 +43,13 @@
                 $('div.modal').modal();
             });
         });
+   		function insertPromotion() {
+			var promotionForm = document.getElementById("insertPromotion");
+			promotionForm.method = "post";
+			promotionForm.action = "/promotion/promotionInsertProcAjax.do";
+			promotionForm.submit();
+		}
+		
     </script>
 </head>
 
@@ -215,34 +222,43 @@
                     <h1>업소 프로모션을 신청하세요 !</h1>
                     <p>업주님이신가요? 맛조에 프로모션을 등록을 통해 효과적인 업소홍보가 가능합니다 !</p>
                     <br/><br/>
+                    
+                   <form id="insertPromotion" enctype="multipart/form-data">
                     <div class="promo_form">
                         <div class="promo_form_left">
-                            <img src="/resources/images/icon_default_image.png" />
-                            <input type="file" />
+                            <img src="resources/images/icon_default_image.png" />
+                            <input type="file" name="imgFile" id="imgFile"/>
                         </div>
                         <div class="promo_form_right">
                             <div class="promo_form_right_row1">
                                 <p>업소명</p>
-                                <input type="text" class="form-control" placeholder="업소명을 입력해주세요" aria-describedby="basic-addon2">
+                                <input name = "promoResta" id="promoResta" type="text" class="form-control" placeholder="업소명을 입력해주세요" aria-describedby="basic-addon2" >
                             </div>
                             <br/>
                             <div class="promo_form_right_row2">
                                 <p>내용</p>
-                                <input type="text" class="form-control" placeholder="내용을 입력해주세요 (내용, 기간 등)" aria-describedby="basic-addon2">
+                                <input name = "promoContent" id="promoContent" type="text" class="form-control" placeholder="내용을 입력해주세요 " aria-describedby="basic-addon2">
                             </div>
                             <br/>
                             <div class="promo_form_right_row3">
+                            <div>
+                             	<p>기간</p>
+                             	시작날짜<input type="text" name="promoStart" id="promoStart" class="form-control" placeholder="ex)2017-05-20" aria-describedby="basic-addon2">
+                             	종료날짜<input type="text" name="promoEnd" id="promoStart" class="form-control" placeholder="ex)2017-06-20" aria-describedby="basic-addon2">
                                 <p>분류</p>
-                                <select>
+                              		  		<select id = "promoCate" name="promoCate">
                                                 <option selected>카테고리 선택</option>
-                                                <option>카테고리1</option>
-                                                <option>카테고리2</option>
-                                                <option>카테고리3</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
                                             </select>
-                                <button type="button" class="btn btn-default">신청하기</button>
+                                   </div>
+										<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                                            <button type="button" class="btn btn-default" onclick="insertPromotion();">신청하기</button>
                             </div>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
             <br/>
