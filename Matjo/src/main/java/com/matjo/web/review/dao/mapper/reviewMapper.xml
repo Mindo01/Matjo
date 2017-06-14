@@ -25,6 +25,15 @@
 	<select id="selectReviewList" resultType="reviewBean" parameterType="reviewBean">
 		SELECT
 		<include refid="reviewColumns" />
+		<!-- 리뷰 좋아요 개수 -->
+		, (
+			SELECT
+				COUNT(*)
+			FROM
+  				likes
+			WHERE
+				like_review = review.review_no
+		) AS reviewLike
 		FROM
 		review
 		WHERE
@@ -41,6 +50,28 @@
 	<select id="selectReviewListForGroup" resultType="reviewBean" parameterType="reviewBean">
 		SELECT
 		<include refid="reviewColumns" />
+		<!-- 리뷰 좋아요 개수 -->
+		, (
+			SELECT
+				COUNT(*)
+			FROM
+  				likes
+			WHERE
+				like_review = review.review_no
+		) AS reviewLike
+		<!-- 회원 기준 해당 리뷰 좋아요 여부 -->
+		<if test='reviewNowMember != null and reviewNowMember != ""'>
+		, (
+			SELECT
+				COUNT(*)
+			FROM
+				likes
+			WHERE
+				like_review = review.review_no
+				AND
+				like_member = #{reviewNowMember}
+		) AS reviewHasLike
+		</if>
 		FROM
 		review
 		WHERE

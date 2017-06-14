@@ -52,16 +52,22 @@ public class GroupController {
 	@ResponseBody
 	public Map<String, Object> selectGroupDetailProc(GroupBean gBean, HttpServletRequest req) {
 		Map<String, Object> resMap;
+		// 리뷰 검색에 이용할 리뷰빈 생성
+		ReviewBean rBean = new ReviewBean();
+		
 		// 현재 로그인한 회원 정보 넘기기
 		MemberBean mBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
 		if (mBean != null) {
 			gBean.setMemberNo(mBean.getMemberNo());
+			// 리뷰빈에 현재 보고 있는 로그인 아이디 설정 (좋아요 검색용)
+			rBean.setReviewNowMember(mBean.getMemberNo());
 		}
 		// Service Call : 모임 고유번호 받아서 해당 모임에 대한 정보 조회
 		resMap = groupService.selectGroupDetail(gBean);
-		// 넘겨줄 모임번호 설정
-		ReviewBean rBean = new ReviewBean();
+		
+		// 리뷰빈에 모임번호 설정해 넘기기
 		rBean.setReviewGroupNo(gBean.getGroupNo());
+		
 		// Service Call : 모임 기준 리뷰 목록 조회
 		List<ReviewBean> reviewList = reviewService.selectReviewPereviewListForGroup(rBean);
 		resMap.put("reviewList", reviewList);

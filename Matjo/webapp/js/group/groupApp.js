@@ -14,6 +14,9 @@ groupApp.factory("GroupService", function($http) {
    service.deleteSubsGroupProc = deleteSubsGroupProc;
    service.selectGroupMemberProc = selectGroupMemberProc;
    
+   // 좋아요 설정/해제
+   service.insertLike = insertLike;
+   service.deleteLike = deleteLike;
    return service;
    
    //모임 목록 조회
@@ -70,6 +73,26 @@ groupApp.factory("GroupService", function($http) {
    function deleteSubsGroupProc(objParam) {
 	   return $http({
 		   url: "/group/deleteSubsGroupProc.do",
+		   method: "post",
+		   data: json2PostParams(objParam),
+		   headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+	   }).then(handleSuccess, handleError);
+   }
+   
+   // 리뷰 좋아요 설정
+   function insertLike(objParam) {
+	   return $http({
+		   url: "/like/insertLike.do",
+		   method: "post",
+		   data: json2PostParams(objParam),
+		   headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+	   }).then(handleSuccess, handleError);
+   }
+   
+   // 리뷰 좋아요 해제
+   function deleteLike(objParam) {
+	   return $http({
+		   url: "/like/deleteLike.do",
 		   method: "post",
 		   data: json2PostParams(objParam),
 		   headers : {'Content-Type': 'application/x-www-form-urlencoded'}

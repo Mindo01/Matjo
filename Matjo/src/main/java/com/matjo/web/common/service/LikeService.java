@@ -1,11 +1,11 @@
-package com.matjo.web.common.dao;
+package com.matjo.web.common.service;
 
 import com.matjo.web.common.bean.LikeBean;
 import com.matjo.web.group.bean.GroupBean;
 import com.matjo.web.review.bean.ReviewBean;
 
-public interface LikeDao {
-	
+public interface LikeService {
+
 	/** SELECT : 좋아요 검색 (회원 기준) */
 	public int selectLikeForMember(ReviewBean rBean);
 	
@@ -22,5 +22,4 @@ public interface LikeDao {
 	public int insertLike(LikeBean lBean);
 	/** DELETE : 좋아요 해제 */
 	public int deleteLike(LikeBean lBean);
-	
 }

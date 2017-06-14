@@ -2,6 +2,8 @@ package com.matjo.web.review.bean;
 
 import java.util.List;
 
+import com.matjo.web.group.bean.CommonGroupBean;
+
 public class ReviewBean {
 	
 	private String reviewNo;
@@ -12,9 +14,13 @@ public class ReviewBean {
 	private String reviewIsOpen;
 	private List<PereviewBean> pereviewList;
 	
-	private String reviewDate;
+	private String reviewDate;		// 리뷰 등록일자 (개인리뷰 최종 등록일자)
 	
-	private String reviewGroupName;
+	private String reviewLike;		// 리뷰 좋아요 개수
+	private String reviewGroupName;	// 리뷰 작성 모임 이름
+	
+	private String reviewNowMember;	// 리뷰를 보고 있는 현재 멤버
+	private String reviewHasLike;	// 리뷰 좋아요 여부 (로그인 회원 기준)
 	
 	private String avgRating;
 	
@@ -103,6 +109,24 @@ public class ReviewBean {
 	}
 	public void setReviewDate(String reviewDate) {
 		this.reviewDate = reviewDate;
+	}
+	public String getReviewLike() {
+		return reviewLike;
+	}
+	public void setReviewLike(String reviewLike) {
+		this.reviewLike = reviewLike;
+	}
+	public String getReviewNowMember() {
+		return reviewNowMember;
+	}
+	public void setReviewNowMember(String reviewNowMember) {
+		this.reviewNowMember = reviewNowMember;
+	}
+	public String getReviewHasLike() {
+		return reviewHasLike;
+	}
+	public void setReviewHasLike(String reviewHasLike) {
+		this.reviewHasLike = reviewHasLike;
 	}
 	
 	

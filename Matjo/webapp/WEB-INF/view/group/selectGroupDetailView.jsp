@@ -173,8 +173,9 @@
 								                	<span span id="review_resta_address">{{review.reviewRestaCate}}</span>
 								                </td>
 								                <td style="text-align: right; padding-right: 15px;"id="review_td_like">
-									                <img id="review_like_img" src="/resources/images/heart_1.png">
-									                <span id="review_like">37</span>
+									                <img id="review_like_img" ng-if="review.reviewHasLike == 1" ng-click="likeClicked($index)" src="/resources/images/heart_2.png">
+									                <img id="review_like_img" ng-if="review.reviewHasLike != 1" ng-click="likeClicked($index)" src="/resources/images/heart_1.png">
+									                <span id="review_like">{{review.reviewLike}}</span>
 									                <br/>
 									                <span>등록일시: {{review.reviewDate}}</span>
 								                </td>
@@ -241,7 +242,7 @@
 											</table>
 										</div>
 										<button ng-if="review.pereviewList.length > 0" class="smit" type="button" ng-click="setAccordian($index)">
-											상세보기 {{slideArr.length}}
+											상세보기
 										</button>
 									</section><!-- 리뷰 한개 아이템 마지막 -->
 									

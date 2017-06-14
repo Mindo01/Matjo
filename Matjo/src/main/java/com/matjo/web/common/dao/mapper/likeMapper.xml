@@ -3,7 +3,40 @@
 
 <mapper namespace="com.matjo.web.common.dao.LikeDao">
     
+    <!-- SELECT : 좋아요 검색 (개인 기준) -->
+    <select id="selectLikeForMember" parameterType="reviewBean" resultType="int">
+        SELECT
+        	COUNT(*)
+        FROM
+        	likes
+        WHERE
+        	like_member = #{likeMember}
+        	AND
+        	like_review = #{likeReview}
+    </select>
     
+    <!-- INSERT : 좋아요 설정 -->
+    <insert id="insertLike" parameterType="likeBean">
+        INSERT INTO
+        	likes
+        (
+        	like_member,
+        	like_review
+        )
+        VALUES
+        (
+        	#{likeMember},
+        	#{likeReview}
+        )
+    </insert>
     
-    
+    <!-- DELETE : 좋아요 해제 -->
+    <delete id="deleteLike" parameterType="likeBean">
+        DELETE FROM
+        	likes
+        WHERE
+        	like_member = #{likeMember}
+        	AND
+        	like_review = #{likeReview}
+    </delete>
 </mapper>

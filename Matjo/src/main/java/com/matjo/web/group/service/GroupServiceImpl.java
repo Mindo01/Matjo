@@ -23,6 +23,7 @@ public class GroupServiceImpl implements GroupService {
 	GroupDao groupDao;
 	@Autowired
 	CommonGroupDao commonGroupDao;
+	
 
 	/** 모임 정보 1건 조회 : 모임에 대한 완전 상세 정보 */
 	@Override
