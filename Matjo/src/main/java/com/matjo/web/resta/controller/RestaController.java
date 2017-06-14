@@ -169,7 +169,7 @@ public class RestaController {
 	private RestaService restaService;
 	
 	// 맛집정보 조회
-	@RequestMapping("/resta/selectRestaProc")
+	@RequestMapping("/resta/selectRestaProcDB")
 	@ResponseBody
 	public Map<String, Object> selectResta(DaumLocalBean dBean) {
 		
