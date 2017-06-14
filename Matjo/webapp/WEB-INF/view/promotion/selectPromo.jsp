@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE HTML>
 
 <html lang="ko">
@@ -13,8 +15,8 @@
 		<link rel="stylesheet" href="/resources/assets/css/jihye.css" />
 		<link rel="stylesheet" href="/resources/assets/css/main.css" />
 		<link rel="stylesheet" href="/resources/assets/css/font-kor.css" />
-	
-		
+		<script type="text/javascript">
+		</script>
 	</head>
 	<body class="no-sidebar">
 		<div id="page-wrapper">
@@ -25,8 +27,6 @@
 					<!-- Inner -->
 						<div class="inner">
 						</div>
-
-
 				</div>
 			<!-- Main -->
                 <div class="wrapper style1">
@@ -41,18 +41,21 @@
                         </article>
                   	<div id="promo" >
                         <div class="promotion_row" >
-<%--                         <c:forEach var="bean" items="${inquiryList}" varStatus="status"> --%>
+                        <c:forEach var="bean" items="${promotionList}" varStatus="status">
                          <div id="promoclick1">
-                         <img src="/resources/images/pic01.jpg" width="25%"height="35%" id="restaimage"/>
-                           <h3 id="text1">업소명 </h3>
-                           <p id="text2">프로모션 상세정보입니다.눈누난나룰루라dpgygygygysdfdfsfsdfsd </p>
+                         <img src= "/upload/${bean.promoImg}" width="25%"height="35%" id="restaimage"/>
+                           <h6 id="text1">업소명:&nbsp;${bean.promoResta}</h6>
+                           <p id="text2"> 
+                           		내용:&nbsp;${bean.promoContent}<br/>
+                           		날짜:&nbsp;${bean.promoStart}<br/>
+                           		&ensp;&emsp;&nbsp;~${bean.promoEnd}<br/>
+                            </p>
                         </div>
+                        </c:forEach>
                         </div>
                         </div>
                     </div>
-						
             </div>
-
 		</div>
 	</body>
 </html>

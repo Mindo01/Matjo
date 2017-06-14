@@ -1,5 +1,9 @@
 package com.matjo.web.promotion.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -7,9 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.matjo.web.common.Constants;
 import com.matjo.web.common.Util;
+import com.matjo.web.common.bean.PagingBean;
+import com.matjo.web.inquiry.bean.InquiryBean;
 import com.matjo.web.promotion.bean.PromotionBean;
 import com.matjo.web.promotion.service.PromotionService;
 
@@ -83,16 +91,23 @@ public class PromotionController {
 				int res = promotionService.insertPromotion(bBean);
 				if (res > 0) {
 					model.addAttribute("PromotionBean", bBean);
-					return "/promotion/selectPromo";
+					return "redirect:/promotion/selectPromo.do";
 				}
-				return "/promotion/selectPromo";
+				return "redirect:/promotion/selectPromo.do";
 			}
 			
+	//게시글 리스트
+			@RequestMapping("/promotion/selectPromo")
+			public String selectPromo(Model model, PagingBean pagingBean) {
+			//전체 레코드 갯수 취득
+			int totRecord = promotionService.selectPromotion(pagingBean);
+			//페이징 계산
+			pagingBean.calcPage(totRecord);
+			
+			List<PromotionBean> list = promotionService.selectPromo(pagingBean);
+			model.addAttribute("promotionList", list);
+			model.addAttribute("pBean", pagingBean);
+			return "/promotion/selectPromo";
+		}
 	
-	//프로모션 리스트 보기
-	@RequestMapping("/promotion/selectPromo")
-	public String boardList() {
-		return "/promotion/selectPromo";
-	}
-
 }
