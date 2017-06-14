@@ -12,6 +12,9 @@
     <link href="/resources/assets/css/jquery.bxslider.css" rel="stylesheet" />
         <!-- Scripts -->
     <script src="/js/common/jquery.bxslider.min.js"></script>
+	
+	<script type="text/javascript" src="/js/rank/rankApp.js"></script>
+	<script type="text/javascript" src="/js/rank/rankController.js"></script>
 
     <script>
         var searchType = 0;
@@ -21,7 +24,7 @@
                 autoControls: true,
                 pager: false
             });
-
+			
             $("#searchToggle").click(function() {
                 if (searchType == 0) {
                     $('#header').css('background', 'url(/resources/images/group_background.jpg)');
@@ -173,18 +176,18 @@
             </div>
         </section>
 
-        <div class="high_rank_div">
+        <div class="high_rank_div" ng-modules="rankApp" ng-controller="RankController" ng-init="selectRankProc()">
             <h1>상위 랭크</h1>
             <ul class="rank_area">
                 <li class="rank_item_1">
                     <div class="rank_item_box">
-                        <div class="rank_item_left">
-                            <img src="/resources/images/item_image_01.jpg" style="border-radius: 100%; width: 150px; height: 150px;" />
-                            <p>일등맛조</p>
-                            <h3 class="rank_star">★ <strong>4.0</strong></h3>
+                        <div class="rank_item_left" ng-model="ReviewRankList">
+                            <img src="ReviewRankList[0].groupImg" style="border-radius: 100%; width: 150px; height: 150px;" />
+                            <p>{{ReviewRankList[0].groupName}}</p>
+                            <strong>리뷰 수 : {{ReviewRankList[0].countGroupRank}} </strong>
                         </div>
                         <div class="rank_item_right">
-                            모임 코멘트
+                        {{ReviewRankList[0].groupInfo}}
                         </div>
                     </div>
                 </li>

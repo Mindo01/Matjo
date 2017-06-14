@@ -46,6 +46,7 @@ public class RankServiceImpl implements RankService{
 				gBean1.setGroupNo(resReviewGroup.get(i).getGroupNo());
 				GroupBean gBean2 = groupDao.selectGroupDetail(gBean1);
 				resReviewGroup.get(i).setGroupName(gBean2.getGroupName());
+				resReviewGroup.get(i).setGroupInfo(gBean2.getGroupInfo());
 				resReviewGroup.get(i).setGroupImg(gBean2.getGroupImg());
 			}
 			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
@@ -62,6 +63,7 @@ public class RankServiceImpl implements RankService{
 				gBean1.setGroupNo(resLikeGroup.get(i).getGroupNo());
 				GroupBean gBean2 = groupDao.selectGroupDetail(gBean1);
 				resLikeGroup.get(i).setGroupName(gBean2.getGroupName());
+				resLikeGroup.get(i).setGroupInfo(gBean2.getGroupInfo());
 				resLikeGroup.get(i).setGroupImg(gBean2.getGroupImg());
 			}
 			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);

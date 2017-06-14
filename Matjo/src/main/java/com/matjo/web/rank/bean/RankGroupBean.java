@@ -5,6 +5,7 @@ public class RankGroupBean {
 	private String groupNo;
 	private String groupName;
 	private String countGroupRank;
+	private String groupInfo;
 	private String groupImg;
 	
 	public String getGroupNo() {
@@ -24,6 +25,12 @@ public class RankGroupBean {
 	}
 	public void setCountGroupRank(String countGroupRank) {
 		this.countGroupRank = countGroupRank;
+	}
+	public String getGroupInfo() {
+		return groupInfo;
+	}
+	public void setGroupInfo(String groupInfo) {
+		this.groupInfo = groupInfo;
 	}
 	public String getGroupImg() {
 		return groupImg;

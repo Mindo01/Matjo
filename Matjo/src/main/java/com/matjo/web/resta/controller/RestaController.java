@@ -10,9 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.matjo.web.common.Constants;
 import com.matjo.web.common.DaumUtils;
 import com.matjo.web.common.bean.PagingBean;
+import com.matjo.web.member.bean.MemberBean;
 import com.matjo.web.resta.bean.DaumLocalBean;
+import com.matjo.web.resta.service.RestaService;
 import com.matjo.web.review.bean.ReviewBean;
 import com.matjo.web.review.service.ReviewService;
 
@@ -130,13 +133,15 @@ public class RestaController {
 	 * @param reviewBean
 	 * @return 등록 완료 후 작성결과 리턴
 	 */
-	public Map<String, Object> insertReviewProc(ReviewBean reviewBean) {
+	public Map<String, Object> insertReviewProc(ReviewBean reviewBean, DaumLocalBean dBean) {
 		Map<String, Object> resMap = new HashMap<String, Object>();
 		resMap.put("result", "fail");
 		resMap.put("resultMsg", "모임리뷰 등록에 실패하였습니다.");
 		
 		reviewService.insertReview(reviewBean);
 		
+		// TODO 안드로이드에서 DaumLocalBean 처리 이후 등록가능
+//		insertRestaProc(dBean);
 		return resMap;
 	}
 	
@@ -154,6 +159,63 @@ public class RestaController {
 		
 		return resMap;
 	}
+	
+	
+	
+	/***** 맛집DB 이용 *****/
+	
+	// 서비스 선언
+	@Autowired
+	private RestaService restaService;
+	
+	// 맛집정보 조회
+	@RequestMapping("/resta/selectRestaProc")
+	@ResponseBody
+	public Map<String, Object> selectResta(DaumLocalBean dBean) {
+		
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		resMap.put(Constants.RESULT_MSG, "맛집정보 조회에 실패 하였습니다.");
+		
+		try {
+			DaumLocalBean bean = restaService.selectResta(dBean);
+			
+			if(bean != null) {
+				resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+				resMap.put(Constants.RESULT_MSG, "맛집정보 조회에 성공 하였습니다.");
+				resMap.put("restaBean", bean);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return resMap;
+	}
+	
+	// 맛집정보 등록
+	@RequestMapping("/resta/insertRestaProc")
+	@ResponseBody
+	public Map<String, Object> insertRestaProc(DaumLocalBean bean){
+		
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		resMap.put(Constants.RESULT_MSG, "맛집정보 등록에 실패 하였습니다.");
+		
+		try {
+			int res = restaService.insertResta(bean);
+			if(res > 0){
+				resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+				resMap.put(Constants.RESULT_MSG, "맛집정보 등록에 성공 하였습니다.");
+			}
+		}catch (Exception e) {
+			
+		}
+		return resMap;
+	}
+	
 } // end of class
 
 

@@ -46,7 +46,6 @@ public class MemberController {
 		
 		try {
 			int res = memberService.insertMember(bean);
-			System.out.println("res : " + res);
 			if(res > 0){
 				resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
 				resMap.put(Constants.RESULT_MSG, "회원가입에 성공 하였습니다.");
