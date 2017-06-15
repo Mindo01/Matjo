@@ -25,16 +25,16 @@
 // 			}
 		function deletePromo(promoNo){
 		if (confirm("정말 삭제하시겠습니까??") == true){//확인
-			if("${sessionScope.memberBean.memberId}" =""){
+// 			if("${sessionScope.memberBean.memberId}" =""){
 				deletePromo2(promoNo);
-	 		}else{
-	 			alert("관리자가 아닙니다");
-	 		}
-		}else{   //취소
-			alert("관리자가 아닙니다");
-		    return;
+// 	 		}else{
+// 	 			alert("관리자가 아닙니다");
+// 	 		}
+// 		}else{   //취소
+// 			alert("관리자가 아닙니다");
+// 		    return;
 		}
-		}
+		};
 
 		function deletePromo2(promoNo){
 			$.ajax({
@@ -91,7 +91,7 @@
                   	<div id="promo" >
                         <div class="promotion_row" >
                         <c:forEach var="bean" items="${promotionList}" varStatus="status">
-                         <div id="promoclick1"  onclick="deletePromo(${bean.promoNo});">
+                         <div id="promoclick1"  onclick="deletePromo(${bean.promoNo})">
                          <img src= "/upload/${bean.promoImg}" width="25%"height="35%" id="restaimage"/>
                            <h6 id="text1">업소명:&nbsp;${bean.promoResta}</h6>
                            <p id="text2"> 
