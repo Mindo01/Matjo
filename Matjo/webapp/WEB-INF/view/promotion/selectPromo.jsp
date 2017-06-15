@@ -18,22 +18,21 @@
 		<script type="text/javascript">
 // 		$(function() {
 // 			var myElem3 = document.getElementById('deletePromotionButton');
-// 			if("${sessionScope.memberBean.memberId}" = "" ){
+// 			if("${sessionScope.memberLoginBean.memberId}" == "admin@." ){
 // 				myElem3.style.visibility="visible";
 // 			}else{
 // 				myElem3.style.visibility="hidden";
 // 			}
+// 			});
 		function deletePromo(promoNo){
-		if (confirm("정말 삭제하시겠습니까??") == true){//확인
-// 			if("${sessionScope.memberBean.memberId}" =""){
-				deletePromo2(promoNo);
-// 	 		}else{
-// 	 			alert("관리자가 아닙니다");
-// 	 		}
-// 		}else{   //취소
-// 			alert("관리자가 아닙니다");
-// 		    return;
-		}
+			if("${sessionScope.memberLoginBean.memberId}" == "admin@."){
+					if (confirm("정말 삭제하시겠습니까??") == true){//확인
+							deletePromo2(promoNo);
+				 		}else{
+				 			return;
+				 		}
+					
+					}
 		};
 
 		function deletePromo2(promoNo){

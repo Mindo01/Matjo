@@ -75,6 +75,14 @@
 				}
 			});
 		};
+		$(function() {
+			var myElem3 = document.getElementById("insertNoticeButton");
+			if("${sessionScope.memberLoginBean.memberId}" == "admin@." ){
+				myElem3.style.visibility="visible";
+			}else{
+				myElem3.style.visibility="hidden";
+			}
+	});	
 	</script>
 </head>
 <body class="no-sidebar">
@@ -91,7 +99,7 @@
 							<section>
                                 <div class="notice">
                                    <div class="other_btn">
-                                       <div>
+                                       <div style="visibility:visible;" id="insertNoticeButton">
                                         <button type="button" class="sch_smit" onclick="noticeDelete(); return false;">삭제하기</button>
                                         <button type="button" class="sch_smit"  onclick="updateNoticePage();">수정하기</button>
                                         </div>

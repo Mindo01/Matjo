@@ -16,14 +16,14 @@
 		
 		location.href="/notice/selectNoticeList.do?searchType="+searchType+"&searchText="+searchText;
 	}
-// 	$(function() {
-// 		var myElem3 = document.getElementById("insertNoticeButton");
-// 		if("${sessionScope.memberBean.memberId}" == "" ){
-// 			myElem3.style.visibility="visible";
-// 		}else{
-// 			myElem3.style.visibility="hidden";
-// 		}
-// });	
+	$(function() {
+		var myElem3 = document.getElementById("insertNoticeButton");
+		if("${sessionScope.memberLoginBean.memberId}" == "admin@." ){
+			myElem3.style.visibility="visible";
+		}else{
+			myElem3.style.visibility="hidden";
+		}
+});	
 		</script>
 </head>
 <body class="no-sidebar">

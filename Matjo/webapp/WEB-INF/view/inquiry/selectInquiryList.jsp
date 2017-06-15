@@ -18,7 +18,7 @@
 	}
 	$(function() {
 		var myElem3 = document.getElementById('replynotice');
-		if("${sessionScope.memberBean.memberId}"="관리자"){
+		if("${sessionScope.memberLoginBean.memberId}" == "admin@."){
 			myElem3.style.visibility="visible";
 		}else{
 			myElem3.style.visibility="hidden";
