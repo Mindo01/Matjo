@@ -96,7 +96,7 @@
 						</ul></li>
 					<li><a href="/rank/selectRankForm.do">랭크</a></li>
 					<li><a href="/promotion/selectPromo.do">프로모션</a></li>
-					<li><a href="/notice/selectNoticeList.html">맛조센터</a>
+					<li><a href="/notice/selectNoticeList.do">맛조센터</a>
 						<ul>
 							<li><a href="/notice/selectNoticeList.do">공지사항</a></li>
 							<li><a href="/inquiry/selectInquiryList.do">문의사항</a></li>
