@@ -24,6 +24,19 @@
 // 				myElem3.style.visibility="hidden";
 // 			}
 		function deletePromo(promoNo){
+		if (confirm("정말 삭제하시겠습니까??") == true){//확인
+			if("${memberBean.memberId}" == "관리자" ){
+				deletePromo2(promoNo);
+	 		}else{
+	 			alert("관리자가 아닙니다");
+	 		}
+		}else{   //취소
+			alert("관리자가 아닙니다");
+		    return;
+		}
+		}
+
+		function deletePromo2(promoNo){
 			$.ajax({
 				type: "post",
 				url: "/promotion/deletePromoProc.do",
