@@ -18,7 +18,7 @@ function GroupController($rootScope, $scope, GroupService){
     	groupSize : ""
     };
     
-    $scope.slidArr = [];
+    $scope.slideArr = [];
     
     // 페이징빈 빈객체 생성
 	$scope.pBean = {

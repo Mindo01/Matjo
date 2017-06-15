@@ -10,6 +10,11 @@ restaApp.factory("RestaService", function($http) {
 	service.selectRestaListProc = selectRestaListProc;
 	service.selectRestaForm = selectRestaForm;
 	service.selectRestaProc = selectRestaProc;
+	
+	// 좋아요 설정/해제
+	service.insertLike = insertLike;
+	service.deleteLike = deleteLike;
+	
 	return service;
 
 	// 음식점 목록 조회
@@ -41,6 +46,28 @@ restaApp.factory("RestaService", function($http) {
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).then(handleSuccess, handleError);
 	};
+
+
+	// 좋아요 관련 기능 : 민주-groupApp.js 참조
+	// 리뷰 좋아요 설정
+	function insertLike(objParam) {
+		return $http({
+			url: "/like/insertLike.do",
+			method: "post",
+			data: json2PostParams(objParam),
+			headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(handleSuccess, handleError);
+	}
+
+	// 리뷰 좋아요 해제
+	function deleteLike(objParam) {
+		return $http({
+			url: "/like/deleteLike.do",
+			method: "post",
+			data: json2PostParams(objParam),
+			headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(handleSuccess, handleError);
+	}
 
 	function handleSuccess(res) {
 		return res.data;

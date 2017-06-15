@@ -15,14 +15,6 @@
 <link rel="stylesheet" href="/resources/assets/css/mj-responsive.css" />
 <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 <!-- <script src="../assets/js/jquery.min.js"></script> -->
-<script type="text/javascript" src="/js/common/jquery/jquery-3.2.1.js"></script>
-<script>
-	$(document).ready(function() {
-		$(".login").click(function() {
-			$('div.modal').modal();
-		});
-	});
-</script>
 <script type="text/javascript" src="/js/resta/restaApp.js"></script>
 <script type="text/javascript" src="/js/resta/restaController.js"></script>
 </head>

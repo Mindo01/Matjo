@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -105,7 +106,7 @@ public class RestaController {
 	 */
 	@RequestMapping("resta/selectRestaProc")
 	@ResponseBody
-	public Map<String, Object> selectRestaProc(DaumLocalBean dlBean) {
+	public Map<String, Object> selectRestaProc(DaumLocalBean dlBean, HttpServletRequest req) {
 		Map<String, Object> resMap = new HashMap<String, Object>();
 		resMap.put("result", "fail");
 		resMap.put("resultMsg", "리뷰 조회에 실패하였습니다.");
@@ -113,6 +114,13 @@ public class RestaController {
 		ReviewBean rBean = new ReviewBean();
 		rBean.setReviewRestaNo(dlBean.getRestaId());
 		
+		// 현재 로그인한 회원 정보 넘기기
+		MemberBean mBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
+		if (mBean != null) {
+			rBean.setMemberNo(mBean.getMemberNo());
+			// 리뷰빈에 현재 보고 있는 로그인 아이디 설정 (좋아요 검색용)
+			rBean.setReviewNowMember(mBean.getMemberNo());
+		}
 		try {
             List<ReviewBean> reviewList = reviewService.selectReviewPereviewList(rBean);
             String reviewRatingAvg = reviewService.selectReviewRatingAvg(rBean);

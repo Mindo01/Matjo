@@ -14,6 +14,8 @@ public class ReviewBean {
 	private String reviewIsOpen;
 	private List<PereviewBean> pereviewList;
 	
+	private String memberNo; // 리뷰목록 받아올때 현재 접속한 사용자 정보를 넘기는데 사용
+	
 	private String reviewDate;		// 리뷰 등록일자 (개인리뷰 최종 등록일자)
 	
 	private String reviewLike;		// 리뷰 좋아요 개수
@@ -128,6 +130,11 @@ public class ReviewBean {
 	public void setReviewHasLike(String reviewHasLike) {
 		this.reviewHasLike = reviewHasLike;
 	}
-	
+	public String getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(String memberNo) {
+		this.memberNo = memberNo;
+	}
 	
 } // end of class

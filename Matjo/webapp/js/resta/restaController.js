@@ -21,6 +21,8 @@ function RestaController($rootScope, $scope, RestaService) {
 	
 	$rootScope.reviewRatingAvg = "1.0";
 	
+	$scope.slideArr = [];
+	
 	// 초기화
 	$scope.initValues = function(searchText) {
 		$scope.pagingBean.searchText = searchText;
@@ -160,18 +162,82 @@ function RestaController($rootScope, $scope, RestaService) {
 		});
 	};
 	
+	// 아코디언 메뉴 : 여기서는 안썼음 TODO 지우기!
 	var num = 0;
-	$scope.doAccordian = function() {
-		
+	$scope.doAccordian = function(ind) {
+		console.log(ind);
 		// 리뷰항목 아코디언 구현
-	    $("#main button").click(function(){
-	        /*$("#main .review_detail").slideUp();*/
-	        if(!$(this).prev().is(":visible")) {
-	            $(this).prev().slideDown();
+		var btn = $('#main button:nth-of-type(1)');
+	    if(!btn.prev().is(':visible')) {
+	    	btn.prev().slideDown();
 	            console.log('안보여서 다운함');
+		} else {
+	        if(btn.prev().is(':visible')) {
+	        	btn.prev().slideUp();
+	        	console.log('보여서 업함');
 	        }
-	    });
+	    }
 	};
+	
+	// ANGULAR 이용한 아코디언 메뉴
+	$scope.setAccordian = function(ind) {
+		console.log('뭐냐' + ind);
+		console.log('뭐냐ㅇㅇ' + $scope.slideArr[ind]);
+		// 닫기
+		if ($scope.slideArr[ind] == 1) {
+			console.log("닫아주세욤");
+			$scope.slideArr[ind] = 0;
+			return ;
+		}
+		// 나머지 닫고 나만 열기
+		console.log(ind+"가 들어왔고, 길이는 "+$scope.slideArr.length);
+		for (var i = 0; i < $scope.slideArr.length; i++) {
+			$scope.slideArr[i] = 0;
+			console.log("초기화 - "+$scope.slideArr[i]);
+		}
+		$scope.slideArr[ind] = 1;
+		console.log("리뷰["+ind+"]만 "+$scope.slideArr[ind]+"로 설정");
+	}
+	
+	// 좋아요 설정/해제
+	$scope.likeClicked = function(ind) {
+		HoldOn.open();
+		$scope.lBean = {};
+		$scope.lBean.likeReview = $scope.reviewList[ind].reviewNo;
+		if ($scope.reviewList[ind].reviewHasLike == 1) {
+			// 좋아요 해제
+			console.log($scope.reviewList[ind].reviewRestaName+" 좋아요 해제!");
+			// 좋아요 해제 서비스 호출
+	    	RestaService.deleteLike( $scope.lBean ).then(function(data) {
+	    		console.log(JSON.stringify(data));
+				HoldOn.close();
+				if(data.result == 'success') {
+					$scope.reviewList[ind].reviewHasLike = 0;
+					// 좋아요 개수 갱신
+					$scope.reviewList[ind].reviewLike--;
+				} else {
+					// 정보 조회 실패
+					alert("로그인한 상태에서만 좋아요가 가능합니다!");
+				}
+	    	});
+		} else {
+			// 좋아요
+			console.log($scope.reviewList[ind].reviewRestaName+" 좋아요 설정!");
+			// 좋아요 설정 서비스 호출
+	    	RestaService.insertLike( $scope.lBean ).then(function(data) {
+	    		console.log(JSON.stringify(data));
+				HoldOn.close();
+				if(data.result == 'success') {
+					$scope.reviewList[ind].reviewHasLike = 1;
+					// 좋아요 개수 갱신
+					$scope.reviewList[ind].reviewLike++;
+				} else {
+					// 정보 조회 실패
+					alert("로그인한 상태에서만 좋아요가 가능합니다!");
+				}
+	    	});
+		}
+	}
 
 	// 배열 생성 함수
 	$scope.getArr = function(num) {

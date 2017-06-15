@@ -15,7 +15,6 @@
 
 <script type="text/javascript" src="/js/resta/restaApp.js"></script>
 <script type="text/javascript" src="/js/resta/restaController.js"></script>
-<script type="text/javascript" src="/js/common/jquery/jquery-3.2.1.js"></script>
 
 <!-- jQuery 별점 모듈(Rate Yo!) -->
 <link rel="stylesheet" href="/resources/assets/css/jquery.rateyo.min.css">
@@ -63,9 +62,6 @@
 	$(document).ready(function() {
 	    $(window).scroll(function() {
 	        $(this).scrollTop() < 1500 ? $("#sidebar").fadeIn() : $("#sidebar").fadeOut()
-	    });
-	    $(".login").click(function() {
-	        $('div.modal').modal();
 	    });
 	    
 	    viewMap();
@@ -126,14 +122,6 @@ function viewMap() {
 }
 </script>
 
-
-
-<style type="text/css">
-	#main .review_detail {
-		display: none;
-	}
-</style>
-
 </head>
 <body class="left-sidebar" onload="init()">
 	<div id="page-wrapper" ng-modules="restaApp" ng-controller="RestaController" ng-init="selectRestaProc('${dlBean.restaId}')">
@@ -154,12 +142,9 @@ function viewMap() {
 							
 							<!-- 업소 평점-->
 							<span id="sidebar_resta_score">
-							<span>
                                 <%-- <div id="rateYoLarge"></div>
                                 &nbsp;${reviewRatingAvg} --%>
                                 <rate-yo-avg rating="reviewRatingAvg"></rate-yo-avg>{{reviewRatingAvg}}
-                            </span>
-                            <input type="text" ng-model="reviewRatingAvg"/>
 							</span> 
 							<br/> 
 							<!-- 업소 대표 이미지 -->
@@ -173,17 +158,35 @@ function viewMap() {
 							<!-- 업소 주소 -->
 							<span id="sidebar_resta_address">${dlBean.restaAddr}</span> <br/>
 							<!-- 업소 지도 -->
-							<div id="map" style="width: 500px; height: 300px;"></div>
+							<div id="map" style="width: 300px; height: 200px;"></div>
 						</section>
 						<hr />
 					</div>
 					<div class="8u 12u(mobile) important(mobile)" id="content">
 						<article id="main">
 							<!-- 리뷰 내용-->
-							<section id="review" ng-repeat="review in reviewList">
+							<section id="review" ng-repeat="review in reviewList track by $index">
 								<table>
 									<!-- 1행 -->
 									<tr>
+						                <td id="review_group_img"><img src="/resources/images/group.png" /></td>
+						                <td colspan="2">
+						                	<span id="review_group_name">
+						                		{{review.reviewGroupName}}<br/>
+						                	</span>
+						                	<br/>
+						                	<span span id="review_group_write">{{reviewList.length}}명의 인원이 함께 작성하였습니다.</span>
+						                </td>
+						                <td style="text-align: right; padding-right: 15px;"id="review_td_like">
+							                <img id="review_like_img" ng-if="review.reviewHasLike == 1" ng-click="likeClicked($index)" src="/resources/images/heart_2.png">
+							                <img id="review_like_img" ng-if="review.reviewHasLike != 1" ng-click="likeClicked($index)" src="/resources/images/heart_1.png">
+							                <span id="review_like">{{review.reviewLike}}</span>
+							                <br/>
+							                <span>등록일시: {{review.reviewDate}}</span>
+						                </td>
+						            </tr>
+						            <!-- 민주 템플릿 적용 이전의 1행 -->
+									<!-- <tr>
 										<td id="review_group_img"><img src="/resources/images/group.PNG" /></td>
 										<td colspan="2">
 											<span id="review_group_name">
@@ -195,10 +198,19 @@ function viewMap() {
 										<td id="review_td_like"><img id="review_like_img"
 											src="images/heart_1.png"> <span id="review_like">37</span><br />
 											<span>등록일시:2017년 5월 22일</span></td>
-									</tr>
+									</tr> -->
 
 									<!-- 2행 -->
 									<tr>
+										<td rowspan="4" id="review_avg_score">
+											<span>평균 평점</span><br />
+											<span><rate-yo rating="review.avgRating"></rate-yo></span>
+											<span>{{review.avgRating == 'NaN'? '0.0' : review.avgRating}}</span>
+										</td>
+										<td colspan="3" id="review_content">(훌륭) 다음에 또와요</td>
+									</tr>
+									<!-- 민주 템플릿 적용 이전의 2행 -->
+									<!-- <tr>
 										<td rowspan="4" id="review_avg_score">
 											<span>평균 평점</span><br />
 											<span><rate-yo rating=review.avgRating></rate-yo></span>
@@ -206,7 +218,7 @@ function viewMap() {
 										</td>
 										<td colspan="3" id="review_content">(훌륭) 다음에 또와요</td>
 
-									</tr>
+									</tr> -->
 
 									<!-- 3행 -->
 									<tr>
@@ -221,7 +233,47 @@ function viewMap() {
 								</table>
 								
 								<!-- 리뷰 상세 -->
-								<div class="review_detail" id="review_detail1">
+								<div class="review_detail" ng-if="slideArr[$index] == 1" id="review_detail1">
+									<table ng-repeat="pereview in review.pereviewList">
+										<colgroup>
+											<col width="10%">
+											<col width="*">
+											<col width="30%">
+										</colgroup>
+										<tr>
+											<td id="review_detail_member_img">
+												<img style="width:30px !important; height:30px !important;" 
+													ng-src="{{ pereview.pereviewMemImg == 'null' || pereview.pereviewMemImg == null || pereview.pereviewMemImg == ''? '/resources/images/profile.png':'/upload/'+pereview.pereviewMemImg}}"/>
+											</td>
+											<td id="review_detail_member_name">
+												<span style="font-weight: bold;">{{pereview.pereviewMemName}}</span>
+											</td>
+											
+											<td>
+												<rate-yo rating="pereview.pereviewRating"></rate-yo>{{pereview.pereviewRating}}
+											</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td colspan="2">
+												<span>{{pereview.pereviewContent}}</span>
+											</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td colspan="2">
+												<img style="width:50% !important; height:50% !important;" 
+													ng-if="pereview.pereviewImgUrl != 'null' && pereview.pereviewImgUrl != null && pereview.pereviewImgUrl != ''" 
+													ng-src="{{'/upload/'+pereview.pereviewImgUrl}}" />
+											</td>
+										</tr>
+									</table>
+								</div>
+								<button ng-if="review.pereviewList.length > 0" class="smit" type="button" ng-click="setAccordian($index)">
+									상세보기
+								</button>
+								<!-- 민주 템플릿 적용 이전의 리뷰 상세 -->
+								<!-- <div class="review_detail" id="review_detail1">
 									<table ng-repeat="pereview in review.pereviewList">
 										<tr>
 											<td id="review_detail_member_img">
@@ -243,7 +295,7 @@ function viewMap() {
 										</tr>
 									</table>
 								</div>
-								<button type="button" ng-click="doAccordian()">상세보기</button>
+								<button type="button" ng-click="doAccordian()">상세보기</button> -->
 							</section><!-- 리뷰 한개 아이템 마지막 -->
 							
 						</article>
