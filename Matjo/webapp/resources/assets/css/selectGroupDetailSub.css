@@ -57,6 +57,10 @@
     vertical-align: middle;
     text-align: center;
 }
+#review_resta_img img{
+	width: 80px;
+	height: 80px;
+}
 #review_resta_name {
     font-size: 25px;
     font-weight: bold;    

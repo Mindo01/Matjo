@@ -46,7 +46,7 @@
 
             //스크롤이벤트가 발생하면
             $(window).scroll(function(){
-                yPosition = $win.scrollTop() - 400; //이부분을 조정해서 화면에 보이도록 맞추세요
+                yPosition = $win.scrollTop() - 150; //이부분을 조정해서 화면에 보이도록 맞추세요
                 if (yPosition < 0)
                 {
                     yPosition = 0;
@@ -125,6 +125,14 @@ function viewMap() {
 </head>
 <body class="left-sidebar" onload="init()">
 	<div id="page-wrapper" ng-modules="restaApp" ng-controller="RestaController" ng-init="selectRestaProc('${dlBean.restaId}')">
+		<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+						</div>
+				</div>
+		
 		<!-- Main -->
 		<div class="wrapper style1" lang="ko">
 			<div class="container">
@@ -158,7 +166,7 @@ function viewMap() {
 							<!-- 업소 주소 -->
 							<span id="sidebar_resta_address">${dlBean.restaAddr}</span> <br/>
 							<!-- 업소 지도 -->
-							<div id="map" style="width: 300px; height: 200px;"></div>
+							<div id="map" style="width: 230px; height: 200px;"></div>
 						</section>
 						<hr />
 					</div>
@@ -169,7 +177,7 @@ function viewMap() {
 								<table>
 									<!-- 1행 -->
 									<tr>
-						                <td id="review_group_img"><img src="/resources/images/group.png" /></td>
+						                <td id="review_group_img"><img src="/resources/images/group_1.png" /></td>
 						                <td colspan="2">
 						                	<span id="review_group_name">
 						                		{{review.reviewGroupName}}<br/>

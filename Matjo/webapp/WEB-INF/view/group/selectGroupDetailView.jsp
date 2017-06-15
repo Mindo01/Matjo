@@ -95,9 +95,6 @@
         		color:white;
         		background-color: #FF3D00;
         	}
-			/* #main .review_detail {
-				display: none;
-			} */
         </style>
 	</head>
 	<body class="left-sidebar" onload="init()">

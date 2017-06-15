@@ -128,7 +128,7 @@ restaApp.directive("rateYo", function() {
 
 				$(ele).rateYo({
 					rating: newVal,
-					starWidth: "20px",      
+					starWidth: "10px",      
 					ratedFill: "#ffce59",
 					readOnly: true       
 
