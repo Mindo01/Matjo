@@ -32,11 +32,11 @@
 							<li><a href="showMembers.html">멤버</a></li>
 						</ul></li>
 					<li><a href="/rank/selectRankForm.do">랭크</a></li>
-					<li><a href="selectPromo.html">프로모션</a></li>
-					<li><a href="selectNoticeList.html">맛조센터</a>
+					<li><a href="promotion/selectPromo.do">프로모션</a></li>
+					<li><a href="/notice/selectNoticeList.do">맛조센터</a>
 						<ul>
-							<li><a href="selectNoticeList.html">공지사항</a></li>
-							<li><a href="selectInquiryList.html">문의사항</a></li>
+							<li><a href="/notice/selectNoticeList.do">공지사항</a></li>
+							<li><a href="/inquiry/selectInquiryList.do">문의사항</a></li>
 						</ul></li>
 				</ul>
 			</nav>

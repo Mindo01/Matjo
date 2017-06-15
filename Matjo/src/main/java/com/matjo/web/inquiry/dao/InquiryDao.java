@@ -1,11 +1,11 @@
 package com.matjo.web.inquiry.dao;
 
 import java.util.List;
-
 import java.util.Map;
 
 import com.matjo.web.common.bean.PagingBean;
 import com.matjo.web.inquiry.bean.InquiryBean;
+import com.matjo.web.notice.bean.NoticeBean;
 
 public interface InquiryDao {
 

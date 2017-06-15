@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>맛조::고객의 소리</title>
+	<title>맛조::고객의 소리-게시글 작성</title>
 	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/resources/assets/css/mj-custom.css" />

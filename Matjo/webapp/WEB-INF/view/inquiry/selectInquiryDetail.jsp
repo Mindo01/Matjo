@@ -37,10 +37,8 @@
 							alert("글조회에 실패 하였습니다.");
 							return;
 						}	
-						var myElem1 = document.getElementById('inputInquiryReply');
-						var myElem2 = document.getElementById('inquiryButton');
 						var myElem3 = document.getElementById('replynoticeDiv');
-						if(inquiry.inquiryReply == ""){
+						if(inquiry.inquiryReply == "" & inquiry.memberId=="관리자"){
 							myElem3.style.visibility="visible";
 						}else{
 							myElem3.style.visibility="hidden";
@@ -202,7 +200,7 @@
                                                <span id="inquiryTitle"> </span> 
                                             </th>
                                         </tr>
-                                        <tr id>
+                                        <tr>
                                             <th>작성자</th>
                                             <td colspan="2">관리자</td>
                                         </tr>

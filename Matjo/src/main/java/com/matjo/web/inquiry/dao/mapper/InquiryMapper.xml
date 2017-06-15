@@ -58,7 +58,7 @@
 	    	    AND inquiry_content like CONCAT('%', #{searchText}, '%')
 	    	</if>
 	    	ORDER BY inquiry_no DESC
-	    LIMIT #{startRow}, #{endRow}
+	    	LIMIT #{startRow}, #{endRow}
 	</select>
 	
 <!--  전체 레코드 갯수 조회  -->
@@ -69,8 +69,8 @@
 	    	inquiry
 	    WHERE
 	    	1=1
-	    	<if test="searchType == 'titleContent'">
-	    	    AND inquiry_title like CONCAT('%', #{searchText}, '%')
+	    	<if test="searchType == 'id'">
+	    	    AND member_id like CONCAT('%', #{searchText}, '%')
 	    	</if>
 	</select>
 	
@@ -91,28 +91,21 @@
         SELECT LAST_INSERT_ID()
  	    </selectKey> 
 	</insert>
-	
-	
 		
  <!-- 게시글 수정  -->
 	<update id="inquiryUpdate" parameterType="inquiryBean">
 		UPDATE inquiry SET
 			inquiry_title =#{inquiryTitle}
-			<if test="inquiryContent != null and inquiryContent != ''">
+				<if test="inquiryContent != null and inquiryContent != ''">
 				,inquiry_content = #{inquiryContent}
 				</if>
-			<if test="inquiryDate != null and inquiryDate != ''">
 				,inquiry_update = CURRENT_TIMESTAMP 
-			</if>
-			<if test="inquiryReply != null and inquiryReply != ''">
-				, inquiry_isopen =  inquiry_isopen+"답변완료"
-			</if>
 		WHERE
 			inquiry_no = #{inquiryNo}
 	</update>
+
 	
-		
-	<!-- 게시글 삭제 -->
+<!-- 게시글 삭제 -->
 	<delete id="inquiryDelete" parameterType="inquiryBean">
 	    DELETE FROM 
 	    	inquiry

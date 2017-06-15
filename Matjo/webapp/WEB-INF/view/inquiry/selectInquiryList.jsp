@@ -38,7 +38,7 @@
 					<div class="notice">
 						<div>
 							<button type="button" class="sch_smit" onclick="javascript:location.href='/inquiry/insertInquiryForm.do';">글쓰기</button>
-								<button type="button" class="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryList.do';">목록</button>
+							<button type="button" class="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryList.do';">목록</button>
 						</div>
 						<br/>
 						<table>
