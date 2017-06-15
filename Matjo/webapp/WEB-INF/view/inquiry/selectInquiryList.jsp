@@ -16,6 +16,15 @@
 		
 		location.href="/inquiry/selectInquiryList.do?searchType="+searchType+"&searchText="+searchText;
 	}
+	$(function() {
+		var myElem3 = document.getElementById('replynotice');
+		if(inquiry.inquiryReply == "" & inquiry.memberId=="관리자"){
+			myElem3.style.visibility="visible";
+		}else{
+			myElem3.style.visibility="hidden";
+		}
+		
+	});//end ready
 	</script>
 </head>
 <body class="no-sidebar">
@@ -70,7 +79,7 @@
 									<td><span style="font-size: 11px;">${bean.inquiryUpdate}</span></td>
 									<td>
 									<c:if test="${bean.inquiryReply eq ''}">
-									<button type="button" value="need_answer" class ="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryDetail.do?inquiryNo=${bean.inquiryNo}';">답변하기</button>
+									<button type="button" id ="replynotice" style="visibility:hidden;" value="need_answer" class ="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryDetail.do?inquiryNo=${bean.inquiryNo}';">답변하기</button>
 									</c:if>
 									<c:if test="${bean.inquiryReply ne '' }">
 									<button type="button" value="finish_answer" class ="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryDetail.do?inquiryNo=${bean.inquiryNo}';">답변완료</button>
