@@ -114,12 +114,16 @@ public class RestaController {
 		rBean.setReviewRestaNo(dlBean.getRestaId());
 		
 		try {
-			List<ReviewBean> reviewList = reviewService.selectReviewPereviewList(rBean);
-			if (reviewList.size() > 0) {
-				resMap.put("reviewList", reviewList);
-				resMap.put("result", "ok");
-				resMap.put("resultMsg", "리뷰 조회에 성공하였습니다.");
-			}
+            List<ReviewBean> reviewList = reviewService.selectReviewPereviewList(rBean);
+            String reviewRatingAvg = reviewService.selectReviewRatingAvg(rBean);
+            if (reviewRatingAvg == null) reviewRatingAvg = "0.0";
+            else reviewRatingAvg = String.format("%.1f", Double.parseDouble(reviewRatingAvg));
+            if (reviewList.size() > 0) {
+                resMap.put("reviewList", reviewList);
+                resMap.put("reviewRatingAvg", reviewRatingAvg);
+                resMap.put("result", "ok");
+                resMap.put("resultMsg", "리뷰 조회에 성공하였습니다.");
+            }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

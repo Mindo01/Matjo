@@ -62,4 +62,12 @@ public interface ReviewService {
 	public int insertPereview(PereviewBean pereviewBean);
 
 	
+	
+	/**
+     * 음식점 기준의 평균 평점 구하기
+     * @param reviewBean
+     * @return
+     */
+    public String selectReviewRatingAvg(ReviewBean reviewBean);
+	
 } // end of interface

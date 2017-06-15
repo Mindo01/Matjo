@@ -12,7 +12,7 @@
 		<script type="text/javascript" src="/js/group/groupController.js"></script>
 	</head>
 	<body class="no-sidebar">
-	<div ng-modules="groupApp" ng-controller="GroupController" ng-init="selectGroupList('${ param.pageNo == null? 1 : param.pageNo }')">
+	<div ng-modules="groupApp" ng-controller="GroupController" ng-init="initValues('${param.searchText}')">
 		<div id="page-wrapper">
 
 			<!-- Header -->

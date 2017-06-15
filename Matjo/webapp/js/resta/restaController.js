@@ -15,9 +15,19 @@ function RestaController($rootScope, $scope, RestaService) {
 	$scope.pagingBean = {
 			pageNo: 1,
 			location: null,
-			radius: 0
+			radius: 0,
+			searchText: ""
 	};
-
+	
+	$rootScope.reviewRatingAvg = "1.0";
+	
+	// 초기화
+	$scope.initValues = function(searchText) {
+		$scope.pagingBean.searchText = searchText;
+		if($scope.pagingBean.searchText != ''){
+			$scope.selectRestaListProc();
+		}
+	};
 
 	// 음식점 목록을 조회한다.
 	$scope.selectRestaListProc = function() {
@@ -142,6 +152,11 @@ function RestaController($rootScope, $scope, RestaService) {
 		RestaService.selectRestaProc($scope.daumLocalBean).then(function(data) {
 			console.log(JSON.stringify(data));
 			$scope.reviewList = data.reviewList;
+
+			//$scope.reviewRatingAvg = data.reviewRatingAvg;
+			$rootScope.reviewRatingAvg = data.reviewRatingAvg;
+			console.log("data.reviewRatingAvg : " + data.reviewRatingAvg);
+			console.log("$scope.reviewRatingAvg : " + $scope.reviewRatingAvg);
 		});
 	};
 	

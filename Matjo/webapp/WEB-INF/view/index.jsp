@@ -51,11 +51,14 @@
 		}
 		
     </script>
+    <script type="text/javascript" src="/js/main/mainApp.js"></script>
+	<script type="text/javascript" src="/js/main/mainController.js"></script>
 </head>
 
 <body class="homepage">
-    <div id="page-wrapper">
-       
+    <div id="page-wrapper" >
+       	
+       	<div id="searchArea" ng-modules="mainApp" ng-controller="MainController">
         <!-- Header -->
         <div id="header">
             <!-- Inner -->
@@ -64,11 +67,11 @@
                     <h1 id="searchType">맛집 찾기</h1>
                     <br/>
                     <div class="search_form">
-                        <input id="searchText" type="text" style="" placeholder="검색어를 입력해주세요" />
-                        <button><a href="#banner" class="scrolly">찾기</a></button>
+                        <input id="searchText" type="text" style="" placeholder="검색어를 입력해주세요" ng-model="keyword" />
+                        <button><a href="#banner" class="scrolly" ng-click="search()">찾기</a></button>
                     </div>
                     <hr/>
-                    <p><a id="searchToggle">모임으로 검색하기 !</a></p>
+                    <p><a id="searchToggle" ng-click="changeType()">모임으로 검색하기 !</a></p>
                 </header>
                 <!--<div width="100">
                                 <div class="input-group">
@@ -89,100 +92,104 @@
         <!-- Banner -->
         <section id="banner">
             <header>
-                <h2><strong>가산동</strong> 으로 검색한 결과입니다.</h2>
+                <h2><strong ng-model="keyword">{{keyword}}</strong> 으로 검색한 결과입니다.</h2>
                 <p>
-                    아이템을 클릭하시면 상세내용을 확인할 수 있습니다.
+                    이미지를 클릭하시면 상세내용을 확인할 수 있습니다.
                 </p>
             </header>
         </section>
 
         <!-- Carousel -->
         <section class="carousel">
-            <div class="reel">
+            <div class="reel" ng-model="resultList">
 
-                <article>
-                    <a href="#" class="image featured"><img src="/resources/images/item_image_01.jpg" alt="" /></a>
+                <article ng-if="resultList[0].main != ''">
+                    <a href="#" class="image featured"><img ng-src="{{resultList[0].img}}" ng-click="goDetailController(resultList[0])"/></a>
                     <header>
-                        <h3><a href="#">발삼무</a></h3>
+                        <h3><a href="#" ng-click="goDetailController(resultList[0])">{{resultList[0].main}}</a></h3>
                     </header>
-                    <p>갈비/고깃집</p>
+                    <p>{{resultList[0].sub}}</p>
                 </article>
 
-                <article>
-                    <a href="#" class="image featured"><img src="/resources/images/item_image_02.jpg" alt="" /></a>
+                <article ng-if="resultList[1].main != ''">
+                    <a href="#" class="image featured"><img ng-src="{{resultList[1].img}}" ng-click="goDetailController(resultList[1])"/></a>
                     <header>
-                        <h3><a href="#">더제이케이 키친박스</a></h3>
+                        <h3><a href="#" ng-click="goDetailController(resultList[1])">{{resultList[1].main}}</a></h3>
                     </header>
-                    <p>이태리요리</p>
+                    <p>{{resultList[1].sub}}</p>
                 </article>
 
-                <article>
-                    <a href="#" class="image featured"><img src="/resources/images/item_image_03.jpg" alt="" /></a>
+                <article ng-if="resultList[2].main != ''">
+                    <a href="#" class="image featured"><img ng-src="{{resultList[2].img}}" ng-click="goDetailController(resultList[2])"/></a>
                     <header>
-                        <h3><a href="#">에머이</a></h3>
+                        <h3><a href="#" ng-click="goDetailController(resultList[2])">{{resultList[2].main}}</a></h3>
                     </header>
-                    <p>베트남요리</p>
+                    <p>{{resultList[2].sub}}</p>
                 </article>
 
-                <article>
-                    <a href="#" class="image featured"><img src="/resources/images/item_image_01.jpg" alt="" /></a>
+                <!-- <article ng-if="resultList[3].main != ''">
+                    <a href="#" class="image featured"><img ng-src="{{resultList[3].img}}" ng-click="goDetailController(resultList[3])"/></a>
                     <header>
-                        <h3><a href="#">발삼무</a></h3>
+                        <h3><a href="#" ng-click="goDetailController(resultList[3])">{{resultList[3].main}}</a></h3>
                     </header>
-                    <p>갈비/고깃집</p>
+                    <p>{{resultList[3].sub}}</p>
                 </article>
 
-                <article>
-                    <a href="#" class="image featured"><img src="/resources/images/item_image_02.jpg" alt="" /></a>
+                <article ng-if="resultList[4].main != ''">
+                    <a href="#" class="image featured"><img ng-src="{{resultList[4].img}}" ng-click="goDetailController(resultList[4])"/></a>
                     <header>
-                        <h3><a href="#">더제이케이 키친박스</a></h3>
+                        <h3><a href="#" ng-click="goDetailController(resultList[4])">{{resultList[4].main}}</a></h3>
                     </header>
-                    <p>이태리요리</p>
+                    <p>{{resultList[4].sub}}</p>
                 </article>
 
-                <article>
-                    <a href="#" class="image featured"><img src="/resources/images/item_image_03.jpg" alt="" /></a>
+                <article ng-if="resultList[5].main != ''">
+                    <a href="#" class="image featured"><img ng-src="{{resultList[5].img}}" ng-click="goDetailController(resultList[5])"/></a>
                     <header>
-                        <h3><a href="#">에머이</a></h3>
+                        <h3><a href="#" ng-click="goDetailController(resultList[5])">{{resultList[5].main}}</a></h3>
                     </header>
-                    <p>베트남요리</p>
+                    <p>{{resultList[5].sub}}</p>
                 </article>
 
-                <article>
-                    <a href="#" class="image featured"><img src="/resources/images/item_image_01.jpg" alt="" /></a>
+                <article ng-if="resultList[6].main != ''">
+                    <a href="#" class="image featured"><img ng-src="{{resultList[6].img}}" ng-click="goDetailController(resultList[6])"/></a>
                     <header>
-                        <h3><a href="#">발삼무</a></h3>
+                        <h3><a href="#" ng-click="goDetailController(resultList[6])">{{resultList[6].main}}</a></h3>
                     </header>
-                    <p>갈비/고깃집</p>
+                    <p>{{resultList[6].sub}}</p>
                 </article>
 
-                <article>
-                    <a href="#" class="image featured"><img src="/resources/images/item_image_02.jpg" alt="" /></a>
+                <article ng-if="resultList[7].main != ''">
+                    <a href="#" class="image featured"><img ng-src="{{resultList[7].img}}" ng-click="goDetailController(resultList[7])"/></a>
                     <header>
-                        <h3><a href="#">더제이케이 키친박스</a></h3>
+                        <h3><a href="#" ng-click="goDetailController(resultList[7])">{{resultList[7].main}}</a></h3>
                     </header>
-                    <p>이태리요리</p>
-                </article>
-
-                <article>
-                    <a href="#" class="image featured"><img src="/resources/images/item_image_03.jpg" alt="" /></a>
-                    <header>
-                        <h3><a href="#">에머이</a></h3>
-                    </header>
-                    <p>베트남요리</p>
-                </article>
+                    <p>{{resultList[7].sub}}</p>
+                </article> -->
                 
                 <article>
-                    <a href="#" class="image featured"><img src="/resources/images/icon_show_more.png" alt="" /></a>
+                    <a href="#" class="image featured"><img src="/resources/images/icon_show_more.png" alt="" ng-click="addView()"/></a>
                     <header>
                         <h3><a href="#">더 보기</a></h3>
                     </header>
                     <p>&nbsp;</p>
                 </article>
                 
+                <form id="sendForm" method="post">
+					<input type="hidden" id="restaId" name="restaId"> 
+					<input type="hidden" id="restaTitle" name="restaTitle">
+					<input type="hidden" id="restaCate" name="restaCate"> 
+					<input type="hidden" id="restaAddr" name="restaAddr"> 
+					<input type="hidden" id="restaImgUrl" name="restaImgUrl">
+					<input type="hidden" id="restaLat" name="restaLat">
+					<input type="hidden" id="restaLng" name="restaLng">
+					<input type="hidden" id="restaUrl" name="restaUrl">
+					<input type="hidden" id="restaPhone" name="restaPhone">
+				</form>
+                
             </div>
         </section>
-
+		</div>
         <div class="high_rank_div" ng-modules="rankApp" ng-controller="RankController" ng-init="selectRankProc()">
             <h1>상위 랭크</h1>
             <ul class="rank_area">
@@ -206,7 +213,7 @@
                             <h3 class="rank_star">★ <strong>4.0</strong></h3>
                         </div>
                         <div class="rank_item_right">
-                            맛집 코멘트
+                            	맛집 코멘트
                         </div>
                     </div>
                 </li>

@@ -54,13 +54,7 @@
                 }
                 $layer.animate({"top":yPosition }, {duration:speed, easing:easing, queue:false});
             });
-            
-		
-			$("#rateYo").rateYo({
-				rating : 4.5,
-				halfStar: true,
-				readOnly: true
-			});
+
 		});
 </script>
 
@@ -74,8 +68,65 @@
 	        $('div.modal').modal();
 	    });
 	    
+	    viewMap();
 	});
 </script>
+
+
+<!-- 다음지도 API : 함수는 제이쿼리 온레디함수에서 실행시켰다 -->
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=492681c0a9510ba0b05faa8fa5d8a6bb"></script>
+<script type="text/javascript">
+function viewMap() {
+    var lat = ${dlBean.restaLat};
+    var lng = ${dlBean.restaLng};
+    var title = '${dlBean.restaTitle}';
+    
+    console.log(lat, lng);
+    
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center : new daum.maps.LatLng(lat, lng), // 지도의 중심좌표
+        level : 3
+    // 지도의 확대 레벨
+    };
+
+    var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    
+    // 지도가 휠 드래그 포커스를 뺏는 것을 방지
+    map.setZoomable(false)
+    
+    // 지도에 확대 축소 컨트롤을 생성한다
+    var zoomControl = new daum.maps.ZoomControl();
+
+    // 지도의 우측에 확대 축소 컨트롤을 추가한다
+    map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+
+    // 마커를 표시할 위치입니다 
+    var position = new daum.maps.LatLng(lat, lng);
+
+    // 마커를 생성합니다
+    var marker = new daum.maps.Marker({
+        position : position
+    });
+
+    // 마커를 지도에 표시합니다.
+    marker.setMap(map);
+
+    // 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
+    var iwContent = '<div style="padding:5px;">' + title + '</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+
+    // 인포윈도우를 생성합니다
+    var infowindow = new daum.maps.InfoWindow({
+        content : iwContent
+    });
+
+    /* 항상 노출되도록 변경 */
+    infowindow.open(map, marker);
+    
+}
+</script>
+
+
 
 <style type="text/css">
 	#main .review_detail {
@@ -103,10 +154,12 @@
 							
 							<!-- 업소 평점-->
 							<span id="sidebar_resta_score">
-							<div>
-								<div id="rateYo"></div>
-								&nbsp;4.5
-							</div>
+							<span>
+                                <%-- <div id="rateYoLarge"></div>
+                                &nbsp;${reviewRatingAvg} --%>
+                                <rate-yo-avg rating="reviewRatingAvg"></rate-yo-avg>{{reviewRatingAvg}}
+                            </span>
+                            <input type="text" ng-model="reviewRatingAvg"/>
 							</span> 
 							<br/> 
 							<!-- 업소 대표 이미지 -->
@@ -120,7 +173,7 @@
 							<!-- 업소 주소 -->
 							<span id="sidebar_resta_address">${dlBean.restaAddr}</span> <br/>
 							<!-- 업소 지도 -->
-							<div id="map_div"></div>
+							<div id="map" style="width: 500px; height: 300px;"></div>
 						</section>
 						<hr />
 					</div>
@@ -148,7 +201,7 @@
 									<tr>
 										<td rowspan="4" id="review_avg_score">
 											<span>평균 평점</span><br />
-											<span><rate-yo rating="review.avgRating"></rate-yo></span>
+											<span><rate-yo rating=review.avgRating></rate-yo></span>
 											<span>{{review.avgRating}}</span>
 										</td>
 										<td colspan="3" id="review_content">(훌륭) 다음에 또와요</td>

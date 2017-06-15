@@ -27,9 +27,9 @@
 <script type="text/javascript" src="/js/resta/restaController.js"></script>
 </head>
 <body class="no-sidebar">
-	<div ng-modules="restaApp" ng-controller="RestaController" ng-init=""
+	<div ng-modules="restaApp" ng-controller="RestaController" ng-init="initValues('${param.searchText==null ? '' : param.searchText}')"
 		id="page-wrapper">
-
+		
 		<!-- Main -->
 		<div class="wrapper style1">
 
@@ -48,7 +48,7 @@
 								class="input_text" ng-model="pagingBean.searchText" />
 							</span>
 							<button type="submit" class="sch_smit"
-								ng-click="selectRestaListProc(${pagingBean})">검색</button>
+								ng-click="selectRestaListProc('${pagingBean}')">검색</button>
 						</div>
 					</section>
 					<section>

@@ -105,5 +105,17 @@
 		</selectKey>
 	</insert>
 	
+	
+	<!-- 음식점 id 를 이용한 별점 평균 조회 -->
+    <select id="selectReviewRatingAvg" parameterType="reviewBean" resultType="string">
+        SELECT avg(pereview_rating) AS reviewRatingAvg
+        FROM pereview
+        WHERE pereview.pereview_review IN
+        (
+            SELECT review.review_no
+            FROM review
+            WHERE review.review_resta_no = #{reviewRestaNo}
+        )
+    </select>
 </mapper>
 

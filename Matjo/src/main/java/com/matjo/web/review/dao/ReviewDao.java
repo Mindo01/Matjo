@@ -14,4 +14,7 @@ public interface ReviewDao {
 	
 	public int insertReview(ReviewBean reviewBean);
 	
+	// 한개 리뷰의 별점 평균 조회
+    public String selectReviewRatingAvg(ReviewBean reviewBean);
+	
 } // end of class

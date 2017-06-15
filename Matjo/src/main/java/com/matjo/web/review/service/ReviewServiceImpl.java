@@ -92,6 +92,16 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	
+	/**
+     * 음식점 기준의 평균 평점 구하기
+     * @param reviewBean
+     * @return
+     */
+    public String selectReviewRatingAvg(ReviewBean reviewBean) {
+        String num = reviewDao.selectReviewRatingAvg(reviewBean);
+        return num;
+    }
+	
 } // end of class
 
 
