@@ -17,14 +17,14 @@
 		location.href="/notice/selectNoticeList.do?searchType="+searchType+"&searchText="+searchText;
 	}
 	$(function() {
-		var myElem3 = document.getElementById('insertNoticeButton');
-		if(${noticeBean.memberId} = "관리자" ){
+		var myElem3 = document.getElementById("insertNoticeButton");
+		if("${noticeBean.memberId}" == "" ){
 			myElem3.style.visibility="visible";
 		}else{
 			myElem3.style.visibility="hidden";
 		}
 });	
-</script>
+		</script>
 </head>
 <body class="no-sidebar">
 
@@ -90,13 +90,13 @@
 										 -->
 								
 										 <c:if test="${pBean.groupNo > 1}">
-										 	<a href="/notice/noticeList.do?pageNo=${pBean.pageStartNo - 1}">&lt;이전</a>
+										 	<a href="/notice/selectNoticeList.do?pageNo=${pBean.pageStartNo - 1}">&lt;이전</a>
 										 </c:if>
 										 
 										 <c:forEach var="i" begin="${pBean.pageStartNo}" end="${pBean.pageEndNo}" >
 										 	<c:choose>
 										 		<c:when test="${pBean.pageNo != i}">
-										 			<a href="/notice/noticeList.do?pageNo=${i}&searchType=${param.searchType}&searchText=${param.searchText}">[${i}]</a>
+										 			<a href="/notice/selectNoticeList.do?pageNo=${i}&searchType=${param.searchType}&searchText=${param.searchText}">[${i}]</a>
 										 		</c:when>
 										 		<c:otherwise>
 										 			[${i}]
@@ -106,7 +106,7 @@
 										 </c:forEach>
 										 
 										 <c:if test="${pBean.groupNo < pBean.totalGroupCount}">
-										 	<a href="/notice/noticeList.do?pageNo=${pBean.pageEndNo + 1}">다음&gt;</a>
+										 	<a href="/notice/selectNoticeList.do?pageNo=${pBean.pageEndNo + 1}">다음&gt;</a>
 										 </c:if>
 										 
 									 </td>

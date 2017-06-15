@@ -28,6 +28,9 @@ public interface NoticeService {
 	
 	//공지사항 조회수
 	public int noticeCount(NoticeBean noticeBean);
+
+	//전체레코드 조회
+	public int selectNoticeListTotalCount(PagingBean pagingBean);
 		
 	
 	

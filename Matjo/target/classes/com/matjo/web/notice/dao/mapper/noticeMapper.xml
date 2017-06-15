@@ -70,6 +70,8 @@
 	    	</if>
 	</select>
 	
+	
+	
 <!-- 	게시글 저장 -->
 	<insert id="insertNotice" parameterType="noticeBean">
 	    INSERT INTO notice

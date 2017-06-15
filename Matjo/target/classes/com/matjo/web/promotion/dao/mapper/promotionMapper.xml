@@ -77,4 +77,14 @@
 	    FROM
 	    	promotion
 	</select>
+	
+	
+	<!-- 프로모션 삭제 -->
+	<delete id="deletePromo" parameterType="promotionBean">
+	    DELETE FROM 
+	    	promotion
+	    WHERE
+	    	promo_no = #{promoNo}
+	</delete>
+	
 </mapper>

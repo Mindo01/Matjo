@@ -46,4 +46,8 @@ public class PromotionServiceImpl implements PromotionService {
 	public int selectPromotion(PagingBean pagingBean) {
 		return promotionDao.selectPromotionCount(pagingBean);
 	}
+	@Override
+	public int deletePromo(PromotionBean promotionBean) {
+		return promotionDao.deletePromo(promotionBean);
+	}
 }

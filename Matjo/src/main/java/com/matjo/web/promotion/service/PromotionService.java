@@ -18,6 +18,9 @@ public interface PromotionService {
 		//프로모션 이미지 파일 리스트
 		public List<PromotionBean> selectPromotionInfo(PromotionBean bBean);
 		public int selectPromotion(PagingBean pagingBean);
+		
+	//프로모션 삭제
+	public int deletePromo(PromotionBean promotionBean);
 
 
 }

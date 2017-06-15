@@ -16,6 +16,38 @@
 		<link rel="stylesheet" href="/resources/assets/css/main.css" />
 		<link rel="stylesheet" href="/resources/assets/css/font-kor.css" />
 		<script type="text/javascript">
+// 		$(function() {
+// 			var myElem3 = document.getElementById('deletePromotionButton');
+// 			if(${memberBean.memberId} = "" ){
+// 				myElem3.style.visibility="visible";
+// 			}else{
+// 				myElem3.style.visibility="hidden";
+// 			}
+		function deletePromo(promoNo){
+			$.ajax({
+				type: "post",
+				url: "/promotion/deletePromoProc.do",
+				data: { 
+					promoNo: promoNo
+				},
+				dataType: "json",
+				success: function(data) {
+					console.log(data);
+					if(data.result == "ok") {
+						alert("삭제되었습니다");
+						location.replace("/promotion/selectPromo.do");
+					} else {
+						alert(data.resultMsg);
+					}
+					
+				},
+				error: function(xhr, status, error) {
+					console.log(xhr);
+					alert("error\nxhr : " + xhr + ", status : " 
+							+ status + ", error : " + error);      
+				}
+			});
+		};
 		</script>
 	</head>
 	<body class="no-sidebar">
@@ -39,10 +71,14 @@
 								</p>
 							</header>
                         </article>
+<!--                         style="visibility:hidden;" -->
+<!--                         	 <div id="deletePromotionButton"> -->
+<!--                                         <button type="button" class="sch_smit" onclick="deletePromo();">삭제</button> -->
+<!--                                </div> -->
                   	<div id="promo" >
                         <div class="promotion_row" >
                         <c:forEach var="bean" items="${promotionList}" varStatus="status">
-                         <div id="promoclick1">
+                         <div id="promoclick1"  onclick="deletePromo(${bean.promoNo});">
                          <img src= "/upload/${bean.promoImg}" width="25%"height="35%" id="restaimage"/>
                            <h6 id="text1">업소명:&nbsp;${bean.promoResta}</h6>
                            <p id="text2"> 

@@ -112,7 +112,7 @@
                                         </tr>
                                         <tr>
                                             <th>작성자</th>
-                                            <td><span id="noticeMember"></span></td>
+                                            <td>관리자</td>
                                             <td colspan="2">
                                                 <span id="noticeDate"></span>
                                             </td>

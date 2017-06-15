@@ -15,4 +15,6 @@ public interface PromotionDao {
 		public List<PromotionBean> selectPromo(PagingBean pBean);
 	//프로모션 갯수 조회
 		public int selectPromotionCount(PagingBean pBean);
+	//프로모션 삭제
+		public int deletePromo(PromotionBean promotionBean);
 }

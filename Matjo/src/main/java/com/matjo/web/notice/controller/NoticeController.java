@@ -8,7 +8,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -108,7 +107,6 @@ public class NoticeController {
 		model.addAttribute("pBean", pagingBean);
 		return "/notice/selectNoticeList";
 	}
-	
 	//게시글 수정
 	@RequestMapping("/notice/updateNoticeForm")
 	public String updateNoticeForm() {

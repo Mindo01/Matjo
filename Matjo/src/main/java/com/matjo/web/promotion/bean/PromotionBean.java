@@ -1,7 +1,5 @@
 package com.matjo.web.promotion.bean;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.matjo.web.common.bean.CommonBean;
 
 public class PromotionBean extends CommonBean {
@@ -14,7 +12,7 @@ public class PromotionBean extends CommonBean {
 	private String promoEnd;
 	private String promoImg;
 	private String promoCate;
-	
+	private String memberId="관리자";
 	
 	public PromotionBean() {
 	}
@@ -68,6 +66,14 @@ public class PromotionBean extends CommonBean {
 
 	public void setPromoCate(String promoCate) {
 		this.promoCate = promoCate;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	
 }

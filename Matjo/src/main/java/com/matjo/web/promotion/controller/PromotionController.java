@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -96,7 +98,7 @@ public class PromotionController {
 				return "redirect:/promotion/selectPromo.do";
 			}
 			
-	//게시글 리스트
+		//프로모션  리스트
 			@RequestMapping("/promotion/selectPromo")
 			public String selectPromo(Model model, PagingBean pagingBean) {
 			//전체 레코드 갯수 취득
@@ -109,5 +111,35 @@ public class PromotionController {
 			model.addAttribute("pBean", pagingBean);
 			return "/promotion/selectPromo";
 		}
+			
+
+			
+		//프로모션 삭제
+			@RequestMapping("/promotion/deletePromo")
+			public String deletePromo() {
+				return "/promotion/deletePromo";
+			}
+			@RequestMapping("/promotion/deletePromoProc")
+			@ResponseBody
+			public Map<String, Object> deletePromoProc(PromotionBean promotionBean, HttpServletRequest req){
+				Map<String, Object> resMap = new HashMap<String, Object>();
+				
+				req.getSession().setAttribute("promotionBean", promotionBean);
+				
+				resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+				resMap.put(Constants.RESULT_MSG, "게시글 삭제에 실패하였습니다.");
+				
+				try {
+						int res = promotionService.deletePromo(promotionBean);
+						if(res > 0) {
+							resMap.put(Constants.RESULT, Constants.RESULT_OK);
+							resMap.put(Constants.RESULT_MSG, "게시글 삭제에 성공하였습니다.");
+							resMap.put("promotionBean", promotionBean);
+						}
+				} catch (Exception e) {
+					e.printStackTrace();
+				} 
+				return resMap;
+			}
 	
 }

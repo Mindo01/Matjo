@@ -69,7 +69,11 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDao.noticeCount(noticeBean);
 	}
 	
-	
+	//게시글 전체 레코드 수
+			@Override
+			public int selectNoticeListTotalCount(PagingBean pagingBean) {
+				return noticeDao.selectNoticeListTotalCount(pagingBean);
+			}
 //	/**게시글 조회수 증가**/
 //	public int updateReadCount(String seq)throws DataAccessException{
 //		
