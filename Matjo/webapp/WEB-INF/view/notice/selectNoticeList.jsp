@@ -18,7 +18,7 @@
 	}
 // 	$(function() {
 // 		var myElem3 = document.getElementById("insertNoticeButton");
-// 		if("${noticeBean.memberId}" == "" ){
+// 		if("${sessionScope.memberBean.memberId}" == "" ){
 // 			myElem3.style.visibility="visible";
 // 		}else{
 // 			myElem3.style.visibility="hidden";

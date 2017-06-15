@@ -18,14 +18,14 @@
 		<script type="text/javascript">
 // 		$(function() {
 // 			var myElem3 = document.getElementById('deletePromotionButton');
-// 			if(${memberBean.memberId} = "" ){
+// 			if("${sessionScope.memberBean.memberId}" = "" ){
 // 				myElem3.style.visibility="visible";
 // 			}else{
 // 				myElem3.style.visibility="hidden";
 // 			}
 		function deletePromo(promoNo){
 		if (confirm("정말 삭제하시겠습니까??") == true){//확인
-			if("${memberBean.memberId}" == "관리자" ){
+			if("${sessionScope.memberBean.memberId}" =""){
 				deletePromo2(promoNo);
 	 		}else{
 	 			alert("관리자가 아닙니다");
