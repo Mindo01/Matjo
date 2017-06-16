@@ -27,6 +27,12 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectMember(bean);
 	}
 	
+	// 휴대폰 번호 조회
+	@Override
+	public MemberBean selectHp(MemberBean bean) throws Exception {
+		return memberDao.selectHp(bean);
+	}
+	
 	// 회원정보 리스트 조회
 	@Override
 	public List<MemberBean> selectMemberList(MemberBean bean) throws Exception {

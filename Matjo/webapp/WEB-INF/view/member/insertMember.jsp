@@ -33,28 +33,30 @@
 						<div id="content">
 							<div class="insert_rorw" id="id_area">
 								<span class="input_box"> 
-									<input type="text" id="id" placeholder="이메일" maxlength="20" ng-model="memberBean.mId">@
-									<input type="text" id="email" maxlength="25" ng-model="memberBean.mEmail"> 
+									<input type="text" id="id" placeholder="아이디" maxlength="20" ng-model="memberBean.mId" ng-change="idCheckProc()" ng-required="true">@
+									<input type="text" id="email" placeholder="이메일" maxlength="25" ng-model="memberBean.mEmail" ng-change="idCheckProc()" ng-required="true"> 
 									<input type="hidden" ng-model="memberBean.memberId" />
 										
-									<select id="emailselect" ng-model="selectEmail" ng-change="settingEmail()">
+									<select id="emailselect" ng-model="selectEmail" ng-change="settingEmail();idCheckProc();">
 										<option value="" selected="selected">직접입력</option>
 										<option value="gmail.com">gmail.com</option>
 										<option value="naver.com">naver.com</option>
 										<option value="daum.net">daum.net</option>
 									</select>
 								</span>
+								<br>
+								<label class="checkList" ng-model="idCheck" ng-if="memberBean.memberId!=''">{{idCheck}}</label>
 							</div>
 							
 							<div class="insert_rorw" id="pw_area">
 								<span class="input_box"> 
-									<input type="password" id="pw" placeholder="비밀번호" maxlength="20" ng-model="memberBean.mPw">
+									<input type="password" id="pw" placeholder="비밀번호" maxlength="20" ng-model="memberBean.mPw" ng-required="true">
 								</span>
 							</div>
 							
 							<div class="insert_rorw" id="pw_area">
 								<span class="input_box"> 
-									<input type="password" id="pw" placeholder="비밀번호재확인" maxlength="20" ng-model="memberBean.mPwCheck"> 
+									<input type="password" id="pw" placeholder="비밀번호재확인" maxlength="20" ng-model="memberBean.mPwCheck" ng-required="true"> 
 									<input type="hidden" ng-model="memberBean.memberPw" />
 								</span>
 							</div>
@@ -62,7 +64,7 @@
 						
 						<div class="insert_rorw" id="pw_area">
 							<span class="input_box"> 
-								<input id="pw" type="text" placeholder="닉네임" maxlength="16" ng-model="memberBean.memberName">
+								<input id="pw" type="text" placeholder="닉네임" maxlength="16" ng-model="memberBean.memberName" ng-required="true">
 							</span>
 						</div>
 						
@@ -76,9 +78,10 @@
 								</select>
 							</span> 
 							
-							<input id="phonnum" type="text" maxlength="8" placeholder=" ' - ' 없이 입력" ng-model="memberBean.hp2"> 
+							<input id="phonnum" type="number" maxlength="8" placeholder=" ' - ' 없이 입력" ng-model="memberBean.hp2" ng-change="hpCheckProc()" ng-required="true"> 
 							<input type="hidden" ng-model="memberBean.memberHp" />
-							
+							<br>
+							<label class="checkList" ng-model="hpCheck" ng-if="memberBean.memberHp!=''">{{hpCheck}}</label>
 						</div>
 						
 						<div class="addressbox_row">
@@ -111,7 +114,7 @@
 						<div class="answer">
 							<span class="answerbox"> 
 								<label for="anserinput" id="ans">답</label>&nbsp;
-								<input type="text" id="anserinput" maxlength="20" placeholder="질문의 답을 입력하세요." ng-model="memberBean.memberAnswer">
+								<input type="text" id="anserinput" maxlength="20" placeholder="질문의 답을 입력하세요." ng-model="memberBean.memberAnswer" ng-required="true">
 							</span>
 						</div>
 						
