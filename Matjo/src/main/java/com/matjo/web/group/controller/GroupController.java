@@ -137,7 +137,7 @@ public class GroupController {
 	}
 	
 	
-	/** F : 새 모임 등록 화면 */
+	/** F : (임시) 새 모임 등록 화면 */
 	@RequestMapping("/group/insertGroupForm")
 	public String insertGroupForm() {
 		return "/group/insertGroupForm";
@@ -147,6 +147,23 @@ public class GroupController {
 	@RequestMapping("/group/insertGroupProc")
 	public String insertGroupProc(GroupBean gBean, Model model,
 				@RequestParam("imgFile") MultipartFile[] imgFile) {
+		
+		// 유효성 1 : 모임명이 비어있는지 확인
+		if (gBean != null && (gBean.getGroupName() == null || gBean.getGroupName().length() <= 0)) {
+			// 모임명을 작성하세요!
+			model.addAttribute("gBean", gBean);
+			model.addAttribute(Constants.RESULT_MSG, "모임명을 입력하세요!");
+			return "/group/insertGroupForm";
+		}
+		
+		// 유효성 2 : 이미 존재하는 '모임명'인지 확인
+		int res1 = groupService.selectGroupByName(gBean);
+		if (res1 >= 1) {
+			// 존재함
+			model.addAttribute("gBean", gBean);
+			model.addAttribute(Constants.RESULT_MSG, "이미 존재하는 모임명입니다");
+			return "/group/insertGroupForm";
+		}
 		
 		// 이미지 프로필 파일 저장하기
 		if (imgFile != null) {
@@ -174,7 +191,7 @@ public class GroupController {
 		return "/group/insertGroupForm";
 	}
 	
-	/** F : 모임 가입 화면 */
+	/** F : (임시) 모임 가입 화면 */
 	@RequestMapping("/group/insertGroupMemberForm")
 	public String insertGroupMemberForm() {
 		return "/group/insertGroupMemberForm";
@@ -198,15 +215,19 @@ public class GroupController {
 		int res = groupService.insertGroupApply(gBean);
 		if (res > 0) {
 			// 성공
-			model.addAttribute("groupNo", gBean.getGroupNo());
+			model.addAttribute("gBean", gBean);
 			return "/group/selectGroupDetailView";
 		}
 		// 실패 : 다시 작성 폼으로 돌아가기
-		return "redirect:/group/insertGroupMemberForm.do";
+		model.addAttribute("gBean", gBean);
+		if (res == -1) {
+			model.addAttribute(Constants.RESULT_MSG, "모임에 이미 가입 신청 중이거나, 가입된 회원입니다");
+		}
+		return "/group/insertGroupMemberForm";
 		
 	}
 	
-	/** F-2 : 모임 가입 자식창 - 가입할 모임 검색 */
+	/** F-2 : (임시) 모임 가입 자식창 - 가입할 모임 검색 */
 	@RequestMapping("/group/selectGroupToApply")
 	public String selectGroupToApply() {
 		return "/group/selectGroupToApply";

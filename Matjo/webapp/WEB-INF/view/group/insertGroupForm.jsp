@@ -9,6 +9,15 @@
 <link href="/resources/assets/css/mj-responsive.css" rel="stylesheet" type="text/css"/>
 	
 	<script type="text/javascript">
+		$(function() {
+			var resultMsg = "${resultMsg}";
+			if (resultMsg != null && resultMsg != undefined && resultMsg != '') {
+				$("#groupName").val( "${gBean.groupName}" );
+				$("#groupName").select();
+				$("#groupInfo").val( "${gBean.groupInfo}" );
+				alert(resultMsg);
+			}
+		});
 		function insertGroup() {
 			var groupForm = document.getElementById("insertGroup");
 			groupForm.method = "post";
@@ -46,7 +55,7 @@
 					</tr>
 					<tr>
 						<td>모임 이름</td>
-						<td><input type="text" name="groupName" maxlength="10" style="height:25px; width:100%;" required/></td>
+						<td><input type="text" name="groupName" id="groupName" maxlength="10" style="height:25px; width:100%;" required autofocus/></td>
 					</tr>
 					<tr>
 						<td>모임장</td>
@@ -56,7 +65,7 @@
 					</tr>
 					<tr>
 						<td style="vertical-align: middle;">모임 설명</td>
-						<td><textarea name="groupInfo" style="width:100%;" cols="30" rows="7" maxlength="120" required></textarea></td>
+						<td><textarea id="groupInfo" name="groupInfo" style="width:100%;" cols="30" rows="7" maxlength="120" required></textarea></td>
 					</tr>
 					<tr>
 						<td>모임 이미지 첨부</td>

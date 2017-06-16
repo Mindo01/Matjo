@@ -92,7 +92,6 @@ function GroupController($rootScope, $scope, GroupService){
 			HoldOn.close();
 			
 			if(data.result == 'success') {
-				alert(data.resultMsg);
 				$scope.gBean = data.gBean;
 				$scope.mBeanList = data.mBeanList;
 				$scope.reviewList = data.reviewList;

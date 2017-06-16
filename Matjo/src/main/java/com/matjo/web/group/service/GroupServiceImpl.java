@@ -102,12 +102,29 @@ public class GroupServiceImpl implements GroupService {
 		}
 		return res;
 	}
+	
+	/** 모임명이 존재하는지 확인 */
+	@Override
+	public int selectGroupByName(GroupBean gBean) {
+		GroupBean bean = groupDao.selectGroupByName(gBean);
+		if (bean != null) {
+			return 1;
+		}
+		return 0;
+	}
 
 	/** 모임가입 신청 */
 	@Override
 	public int insertGroupApply(GroupBean gBean) {
-		// apply TABLE에 모임 가입 신청 등록
 		
+		// 유효성 : 이미 가입 신청되어있는 사람 혹은 이미 모임에 가입해있는 사람인지 확인
+		int res = commonGroupDao.selectIsGroupMember(gBean);
+		if ( res > 0 ) {
+			// 이미 가입 신청 중이거나 모임에 가입되어있는 회원일 때
+			return -1;
+		}
+		
+		// apply TABLE에 모임 가입 신청 등록
 		// gBean의 Name만 들어올때! (No값이 없을 때 검색해서 넘기기)
 		if (gBean.getGroupNo() == null || gBean.getGroupNo().equals("")) {
 			GroupBean nBean = groupDao.selectGroupByName(gBean);

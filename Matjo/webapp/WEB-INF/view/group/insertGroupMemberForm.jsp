@@ -18,6 +18,16 @@
 		}
 	</style>
 	<script type="text/javascript">
+		$(function() {
+			var resultMsg = "${resultMsg}";
+			if (resultMsg != null && resultMsg != undefined && resultMsg != '') {
+				$("#groupNo").val( "${gBean.groupNo}" );
+				$("#groupName").val( "${gBean.groupName}" );
+				$("#groupLeader").val( "${gBean.groupLeader}" );
+				$("#applyContent").val( "${gBean.applyContent}" );
+				alert(resultMsg);
+			}
+		});
 		function insertGroupMemberFunc() {
 			var groupForm = document.getElementById("insertGroupMember");
 			groupForm.method = "post";
@@ -61,14 +71,14 @@
 					<tr>
 						<td>모임 이름</td>
 						<td>
-							<input type="hidden" name="groupNo"/>
-							<input type="text" name="groupName" maxlength="20" placeholder="찾기로 검색하세요" readonly required>
+							<input type="hidden" id="groupNo" name="groupNo"/>
+							<input type="text" id="groupName" name="groupName" maxlength="20" placeholder="찾기로 검색하세요" readonly required>
 							<button class="sch_smit" type="button" onclick="javascript:searchGroup();">찾기</button>
 						</td>
 					</tr>
 					<tr>
 						<td>모임장</td>
-						<td><input style="width:99% !important;" type="text" name="groupLeader" maxlength="20" readonly required></span></td>
+						<td><input style="width:99% !important;" type="text" id="groupLeader" name="groupLeader" maxlength="20" readonly required></span></td>
 					</tr>
 					<tr>					
 						<td>가입신청자</td>
@@ -78,7 +88,7 @@
 					</tr>
 					<tr>
 						<td style="vertical-align: middle;">가입 신청 내용</td>
-						<td><textarea name="applyContent" style="width:100%;" cols="30" rows="7" maxlength="120" required></textarea></td>
+						<td><textarea id="applyContent" name="applyContent" style="width:100%;" cols="30" rows="7" maxlength="120" required></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2">

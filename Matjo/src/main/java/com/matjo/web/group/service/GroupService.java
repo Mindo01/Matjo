@@ -20,6 +20,8 @@ public interface GroupService {
 	public List<GroupBean> selectMemberGroup(MemberBean mBean);
 	/** 새모임등록 */
 	public int insertGroup(GroupBean gBean);
+	/** 모임명 존재 여부 확인 */
+	public int selectGroupByName(GroupBean gBean);
 	/** 모임 가입 신청 */
 	public int insertGroupApply(GroupBean gBean);
 	/** 모임가입 */
