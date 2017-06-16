@@ -9,11 +9,11 @@
 <title><decorator:title default="맛조" /></title>
 <script type="text/javascript" src="/js/common/angular/angular.js"></script>
 <script type="text/javascript" src="/js/common/angular/angular.ng-modules.js"></script>
-<script type="text/javascript" src="/js/common/jquery/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="/js/common/common.js"></script>
+
+<c:import url="/WEB-INF/view/layout/header.jsp"></c:import>
+
 <script type="text/javascript" src="/js/member/memberApp.js"></script>
 <script type="text/javascript" src="/js/member/memberController.js"></script>
-<c:import url="/WEB-INF/view/layout/header.jsp"></c:import>
 
 <decorator:head />
 </head>

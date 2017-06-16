@@ -34,6 +34,8 @@ public class RankController {
 		resMap.put(Constants.RESULT_MSG, "랭크 리스트 조회에 실패 하였습니다.");
 		try {
 			resMap = rankService.selectRankGroupList();
+			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+			resMap.put(Constants.RESULT_MSG, "랭크 리스트 조회에 성공 하였습니다.");
 		} catch (Exception e) {
 			
 		}

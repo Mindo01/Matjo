@@ -45,7 +45,9 @@ public class MemberController {
 		resMap.put(Constants.RESULT_MSG, "회원가입에 실패 하였습니다.");
 		
 		try {
+			System.out.println(bean.getMemberId());
 			int res = memberService.insertMember(bean);
+			System.out.println("res 값:" + res);
 			if(res > 0){
 				resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
 				resMap.put(Constants.RESULT_MSG, "회원가입에 성공 하였습니다.");

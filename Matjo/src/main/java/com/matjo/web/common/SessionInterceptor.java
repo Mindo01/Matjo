@@ -7,19 +7,16 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.matjo.web.member.bean.MemberBean;
 
-
 public class SessionInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception 
 	{
-		/*MemberBean mBean = (MemberBean) request.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
-		if( mBean != null ) return true;
-		
-		response.sendRedirect("/member/loginMemberForm.do");*/
+		// MemberBean mBean = (MemberBean) request.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
+		// if( mBean != null ) return true;
 		
 		return true;
+		
 	} // end of preHandle
-	
 } // end of class

@@ -12,7 +12,6 @@ import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -39,7 +38,7 @@ public class DaumUtils {
 	 * @return 검색결과를 POIBean 의 리스ㅌ 형태로 가공하여 리턴
 	 */
 	public static List<DaumLocalBean> searchDataForKeyword(PagingBean pagingBean) {
-		List<DaumLocalBean> list = new ArrayList<>();
+		List<DaumLocalBean> list = new ArrayList();
 
 		System.out.println("Daum Local API 요청을 시작한다... " + new Date() + "\n");
 		

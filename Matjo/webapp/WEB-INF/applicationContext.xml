@@ -30,6 +30,7 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="org.mariadb.jdbc.Driver" />
 		<property name="url" value="jdbc:mariadb://uj64-002.cafe24.com:3306/ldh66210" />
+		<!-- <property name="url" value="jdbc:mariadb://localhost:3306/ldh66210" /> -->
 		<property name="username" value="ldh66210" />
 		<property name="password" value="Fighting!" />
 	</bean>
@@ -84,14 +85,6 @@
 	        
 	        <!-- 예외 -->
 	        <mvc:exclude-mapping path="/index*"/>
-	        
-	        <mvc:exclude-mapping path="/member/*login*" />
-	        <mvc:exclude-mapping path="/member/insertMember*" />
-	        <mvc:exclude-mapping path="/member/findMember*" />
-	        <mvc:exclude-mapping path="/member/newPasswordMember*" />
-	        <mvc:exclude-mapping path="/member/selectMemberProc*" />
-	        <mvc:exclude-mapping path="/member/updateMemberProc*" />
-	        <mvc:exclude-mapping path="/searchAddress*" />
 	        <mvc:exclude-mapping path="/resta/**"/>
 	         
 	        <bean class="com.matjo.web.common.SessionInterceptor" />
