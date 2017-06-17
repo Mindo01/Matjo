@@ -29,6 +29,12 @@ public class NoticeController {
 	@Autowired
 	private NoticeDao noticeDao;
 	
+	//모바일용 공지사항 리스트화면
+	@RequestMapping("/notice/selectNoticeListMobile")
+	public String selectNoticeListMobile(){
+		return "/notice/selectNoticeListMobile";
+	}
+	
 	//게시글 상세보기
 	@RequestMapping("/notice/selectNoticeDetail")
 	public String selectNoticeDetail(){
