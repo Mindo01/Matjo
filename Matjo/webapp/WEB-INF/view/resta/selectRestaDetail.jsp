@@ -147,6 +147,11 @@ function viewMap() {
 							<!-- 업소 한줄 설명 -->
 							<span id="sidebar_resta_info">까르보나라 치킨과 시원한 맥주</span> <br /><!-- 업소설명 제공안됨. 사용불가 예상 -->
 							
+							<button class="subs" ng-show="dlBean.hasSubsResta == 'true' || dlBean.hasSubsResta == 'false'" id="subs"
+								value="{{ dlBean.hasSubsGroup }}" style="width: 100% !important;" type="button"
+								ng-click="subsRestaTry(dlBean.hasSubsResta)">
+								{{dlBean.hasSubsResta == 'true' ? '구독 해제' : '구독' }}
+							</button>
 							
 							<!-- 업소 평점-->
 							<span id="sidebar_resta_score">

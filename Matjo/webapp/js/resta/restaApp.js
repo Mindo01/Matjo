@@ -11,6 +11,11 @@ restaApp.factory("RestaService", function($http) {
 	service.selectRestaForm = selectRestaForm;
 	service.selectRestaProc = selectRestaProc;
 	
+	// 구독 관련
+	service.insertSubsRestaProc = insertSubsRestaProc;
+	service.deleteSubsRestaProc = deleteSubsRestaProc;
+	service.selectSubsResta = selectSubsResta;
+	
 	// 좋아요 설정/해제
 	service.insertLike = insertLike;
 	service.deleteLike = deleteLike;
@@ -47,6 +52,39 @@ restaApp.factory("RestaService", function($http) {
 		}).then(handleSuccess, handleError);
 	};
 
+	
+	
+	// 구독 관련 기능 : 민주-groupApp.js 참조
+	function insertSubsRestaProc(objParam) {
+		return $http({
+			url: "/resta/insertSubsRestaProc.do",
+			method: "post",
+			data: json2PostParams(objParam),
+			headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(handleSuccess, handleError);
+	}
+
+	// 모임 구독 해제
+	function deleteSubsRestaProc(objParam) {
+		return $http({
+			url: "/resta/deleteSubsRestaProc.do",
+			method: "post",
+			data: json2PostParams(objParam),
+			headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(handleSuccess, handleError);
+	}
+
+	// 내 구독 모임 조회
+	function selectSubsResta(objParam) {
+		return $http({
+			url: "/resta/selectSubsRestaProc.do",
+			method: "post",
+			data: json2PostParams(objParam),
+			headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(handleSuccess, handleError);
+	}
+	
+	
 
 	// 좋아요 관련 기능 : 민주-groupApp.js 참조
 	// 리뷰 좋아요 설정

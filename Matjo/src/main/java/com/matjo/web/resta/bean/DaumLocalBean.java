@@ -12,6 +12,9 @@ public class DaumLocalBean {
 	private String restaPhone;
 	private String restaUrl;
 	
+	private String hasSubsResta; // 구독여부
+	private String memberNo; // 회원 고유번호 (구독 신청을 위해 필요)
+	
 	public DaumLocalBean() {
 	}
 	
@@ -94,4 +97,20 @@ public class DaumLocalBean {
 		this.restaUrl = restaUrl;
 	}
 
+	public String getHasSubsResta() {
+		return hasSubsResta;
+	}
+
+	public void setHasSubsResta(String hasSubsResta) {
+		this.hasSubsResta = hasSubsResta;
+	}
+
+	public String getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(String memberNo) {
+		this.memberNo = memberNo;
+	}
+	
 } // end of class

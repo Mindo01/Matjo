@@ -115,13 +115,23 @@ public class RestaController {
 		ReviewBean rBean = new ReviewBean();
 		rBean.setReviewRestaNo(dlBean.getRestaId());
 		
+		
 		// 현재 로그인한 회원 정보 넘기기
 		MemberBean mBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
 		if (mBean != null) {
+			// 구독여부 확인을 위해 현재 사용자 정보 담음
+			dlBean.setMemberNo(mBean.getMemberNo());
+			
 			rBean.setMemberNo(mBean.getMemberNo());
 			// 리뷰빈에 현재 보고 있는 로그인 아이디 설정 (좋아요 검색용)
 			rBean.setReviewNowMember(mBean.getMemberNo());
 		}
+		
+		
+		// 구독여부 가져옴
+		int hasSubsResta = restaService.selectHasSubsResta(dlBean);
+		dlBean.setHasSubsResta(hasSubsResta>0?"true":"false");
+		
 		try {
             List<ReviewBean> reviewList = reviewService.selectReviewPereviewList(rBean);
             String reviewRatingAvg = reviewService.selectReviewRatingAvg(rBean);
@@ -131,6 +141,7 @@ public class RestaController {
                 resMap.put("reviewList", reviewList);
                 resMap.put("reviewRatingAvg", reviewRatingAvg);
                 resMap.put("result", "ok");
+                resMap.put("dlBean", dlBean);
                 resMap.put("resultMsg", "리뷰 조회에 성공하였습니다.");
             }
 		} catch (Exception e) {
@@ -225,6 +236,90 @@ public class RestaController {
 			}
 		}catch (Exception e) {
 			
+		}
+		return resMap;
+	}
+	
+	/** P : 음식점 구독 처리 AngularJS **/
+	@RequestMapping("/resta/insertSubsRestaProc")
+	@ResponseBody
+	public Map<String, Object> insertSubsRestaProc(DaumLocalBean dlBean, HttpServletRequest req) {
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		// 기본 설정 : 실패
+		resMap.put(Constants.RESULT_MSG, "모임 구독을 실패했습니다");
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		dlBean.setHasSubsResta("false");
+		
+		// 현재 로그인된 멤버 ID로 모임 구독하기
+		MemberBean mBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
+		dlBean.setMemberNo(mBean.getMemberNo());
+		
+		// Service Call : 멤버 ID+모임 번호 받아서 모임 구독 처리하기
+		int res = restaService.insertSubsResta(dlBean);
+		if (res > 0) {
+			// 성공 설정
+			dlBean.setHasSubsResta("true");
+			resMap.put(Constants.RESULT_MSG, "모임 구독을 성공했습니다");
+			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+		}
+		resMap.put("dlBean", dlBean);
+		// 원래 페이지로 돌아가서, 성공 시 UI를 모임 구독 중이라는 표시로 변경해주기
+		return resMap;
+	}
+	
+	/** P : 모임 구독 해제 처리 AngularJS */
+	@RequestMapping("/resta/deleteSubsRestaProc")
+	@ResponseBody
+	public Map<String, Object> deleteSubsRestaProc(DaumLocalBean dlBean, HttpServletRequest req) {
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		// 기본 설정 : 실패
+		resMap.put(Constants.RESULT_MSG, "모임 구독 해제를 실패했습니다");
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		dlBean.setHasSubsResta("true");
+		
+		// 현재 로그인된 멤버 ID로 모임 구독하기
+		MemberBean mBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
+		dlBean.setMemberNo(mBean.getMemberNo());
+		
+		// Service Call : 멤버 ID+모임 번호 받아서 모임 구독 해제 처리하기
+		int res = restaService.deleteSubsResta(dlBean);
+		if (res > 0) {
+			// 성공 설정
+			dlBean.setHasSubsResta("false");
+			resMap.put(Constants.RESULT_MSG, "모임 구독 해제를 성공했습니다");
+			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+		}
+		resMap.put("dlBean", dlBean);
+		// 원래 페이지로 돌아가서, 성공 시 UI를 모임 구독 해제되어있는 표시로 변경해주기
+		return resMap;
+	}
+	
+	/** F : (임시) 내 구독 모임 보기 */
+	@RequestMapping("/resta/selectSubsRestaForm")
+	public String selectSubsRestaForm() {
+		return "/resta/selectSubsRestaForm";
+	}
+	
+	/** P : 내 구독 모임 조회 */
+	@RequestMapping("/resta/selectSubsRestaProc")
+	@ResponseBody
+	public Map<String, Object> selectSubsRestaProc(HttpServletRequest req) {
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		// 기본 설정 : 실패
+		resMap.put(Constants.RESULT_MSG, "내 구독모임 조회를 실패했습니다");
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		// 멤버빈에 회원정보 넣어주기
+		MemberBean mBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
+		mBean.setMemberNo(mBean.getMemberNo());
+		if (mBean != null) {
+			// Service Call : 멤버ID 받아서 구독한 모임들 조회하기
+			List<DaumLocalBean> restaList = restaService.selectSubsResta(mBean);
+			if (restaList != null) {
+				// 성공 설정
+				resMap.put(Constants.RESULT_MSG, "모임 구독 해제를 성공했습니다");
+				resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+			}
+			resMap.put("restaList", restaList);
 		}
 		return resMap;
 	}

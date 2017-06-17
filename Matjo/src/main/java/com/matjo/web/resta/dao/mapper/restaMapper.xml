@@ -53,4 +53,56 @@
  		)
 	</insert>
 	
+	
+	<!-- 구독 관련 -->
+	<!-- INSERT : 맛집 구독 -->
+    <insert id="insertSubsResta" parameterType="daumLocalBean">
+		INSERT INTO subsresta
+		(
+			subsresta_member,
+			subsresta_resta
+		)
+		VALUES
+		(
+			#{memberNo},
+			#{restaId}
+		)        
+    </insert>
+    
+    <!-- SELECT : 맛집 구독 여부 조회 -->
+    <select id="selectHasSubsResta" parameterType="daumLocalBean" resultType="int">
+        SELECT
+        	COUNT(*)
+        FROM
+        	subsresta
+        WHERE
+        	subsresta_member = #{memberNo}
+        	AND
+        	subsresta_resta = #{restaId}
+    </select>
+    
+    <!-- DELETE : 맛집 구독 해제 -->
+    <delete id="deleteSubsResta" parameterType="daumLocalBean">
+        DELETE FROM subsresta
+        WHERE
+        	subsresta_member = #{memberNo}
+        	AND
+        	subsresta_resta = #{restaId}
+    </delete>
+    
+    <!-- SELECT : 내 구독 맛집 목록 조회 -->
+    <select id="selectSubsRestaList" parameterType="memberBean" resultType="daumLocalBean">
+        SELECT
+        	subsresta_resta AS restaId
+        	, (
+        		SELECT resta_title
+        		FROM resta
+        		WHERE
+        			resta.resta_id = subsresta.subsresta_resta
+        	) AS restaTitle
+        FROM
+        	subsresta
+        WHERE
+        	subsresta_member = #{memberNo}
+    </select>
 </mapper>

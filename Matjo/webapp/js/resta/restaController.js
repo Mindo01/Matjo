@@ -154,7 +154,7 @@ function RestaController($rootScope, $scope, RestaService) {
 		RestaService.selectRestaProc($scope.daumLocalBean).then(function(data) {
 			console.log(JSON.stringify(data));
 			$scope.reviewList = data.reviewList;
-
+			$scope.dlBean = data.dlBean;
 			//$scope.reviewRatingAvg = data.reviewRatingAvg;
 			$rootScope.reviewRatingAvg = data.reviewRatingAvg;
 			console.log("data.reviewRatingAvg : " + data.reviewRatingAvg);
@@ -238,6 +238,86 @@ function RestaController($rootScope, $scope, RestaService) {
 	    	});
 		}
 	}
+	
+	
+	
+	// 음식점 구독 관련
+	// 음식점 구독 시도
+    $scope.subsRestaTry = function(hasSubsResta) {
+    	if (hasSubsResta == 'true') {
+    		// 구독 해제 처리
+    		$scope.deleteSubsRestaProc();
+    	} else if (hasSubsResta == 'false') {
+    		// 구독 처리
+    		$scope.insertSubsRestaProc();
+    	}
+    }
+    
+    // 모임 구독
+    $scope.insertSubsRestaProc = function() {
+    	HoldOn.open();
+    	RestaService.insertSubsRestaProc( $scope.dlBean ).then(function(data) {
+    		console.log(JSON.stringify(data));
+    		
+			HoldOn.close();
+			
+			if(data.result == 'success') {
+				console.log("구독 정보 : "+data.dlBean.hasSubsResta);
+				$scope.dlBean.hasSubsResta = data.dlBean.hasSubsResta;
+			} else {
+				// 정보 조회 실패
+				alert(data.resultMsg);
+			}
+    	});
+    }
+    
+    // 무조건 구독 해제 : 내 구독모임 목록에서 사용
+    $scope.deleteSubsRestaStrict = function(restaId) {
+    	if ($scope.dlBean == undefined) {
+    		$scope.dlBean = {};
+    	}
+    	$scope.dlBean.restaId = restaId;
+    	$scope.deleteSubsRestaProc();
+    	
+    	$scope.selectSubsResta();
+    }
+    
+    // 모임 구독 해제
+    $scope.deleteSubsRestaProc = function() {
+    	HoldOn.open();
+    	RestaService.deleteSubsRestaProc( $scope.dlBean ).then(function(data) {
+    		console.log(JSON.stringify(data));
+    		
+			HoldOn.close();
+			
+			if(data.result == 'success') {
+				console.log("구독 정보 : "+data.dlBean.hasSubsResta);
+				$scope.dlBean.hasSubsResta = data.dlBean.hasSubsResta;
+			} else {
+				// 정보 조회 실패
+				alert(data.resultMsg);
+			}
+    	});
+    }
+    
+    // 내 구독 모임 조회
+    $scope.selectSubsResta = function() {
+    	HoldOn.open();
+    	RestaService.selectSubsResta().then(function(data) {
+    		console.log(JSON.stringify(data));
+    		
+			HoldOn.close();
+			
+			if(data.result == 'success') {
+				$scope.restaList = data.restaList;
+			} else {
+				// 정보 조회 실패
+				alert(data.resultMsg);
+			}
+    	});
+    }
+	
+	
 
 	// 배열 생성 함수
 	$scope.getArr = function(num) {
