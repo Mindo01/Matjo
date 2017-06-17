@@ -65,7 +65,7 @@
 <!-- 								             <img src= "/resources/images/l.png" style="text-align: center; margin-bottom: 50px;"> -->
 <!-- 						             	</div> -->
 						             	<div>
-						             		<img id = "imagesource" src= "/resources/images/memberlist.png" width="70%"height="70%" />	
+						             		<img src= "/resources/images/memberlist.png" width="70%"height="70%" />	
 						             </div>
                              </div>
                              </div>
