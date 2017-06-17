@@ -27,6 +27,20 @@ public class InquiryController {
 	@Autowired
 	private InquiryDao inquiryDao;
 	
+	//게시글 리스트 모바일용
+	@RequestMapping("/inquiry/selectInquiryListMobile")
+	public String selectInquiryListMobile(Model model, PagingBean pagingBean) {
+	//전체 레코드 갯수 취득
+	int totRecord = inquiryDao.selectInquiryListTotalCount(pagingBean);
+	//페이징 계산
+	pagingBean.calcPage(totRecord);
+	
+	List<InquiryBean> list = inquiryDao.selectInquiryList(pagingBean);
+	model.addAttribute("inquiryList", list);
+	model.addAttribute("pBean", pagingBean);
+	return "/inquiry/selectInquiryListMobile";
+	}
+	
 	@RequestMapping("/inquiry/selectInquiryDetail")
 	public String selectInquiryDetail(){
 		return "/inquiry/selectInquiryDetail";

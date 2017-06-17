@@ -21,6 +21,9 @@
  	<decorator name="header-footer-layout-simple" page="header-footer-layout-simple.jsp">
  	    <pattern>/group/selectGroupToApply*</pattern>
  	    <pattern>/group/selectGroupMemberList*</pattern>
+ 	    <pattern>/promotion/selectPromoMobile*</pattern>
+ 	    <pattern>/inquiry/selectInquiryListMobile*</pattern>
+ 	    <pattern>/notice/selectNoticeListMobile*</pattern>
  	</decorator>
 	
 </decorators>
