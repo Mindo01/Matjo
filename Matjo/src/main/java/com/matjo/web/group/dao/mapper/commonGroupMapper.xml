@@ -35,6 +35,22 @@
         )
     </insert>
     
+    <!-- SELECT : 이미 존재하는 모임원/모임가입신청자인지 확인 -->
+    <select id="selectIsGroupMember" parameterType="groupBean" resultType="int">
+        SELECT
+        	COUNT(*)
+        FROM
+        	mygroup
+        WHERE
+        	(SELECT COUNT(*) FROM apply WHERE apply_group = #{groupNo} and apply_member = #{memberNo} ) > 0
+        	OR
+        	(
+        	mygroup_group = #{groupNo}
+ 			AND
+ 			mygroup_member = #{memberNo}
+ 			)
+    </select>
+    
     <!-- INSERT : 모임 구독 -->
     <insert id="insertSubsGroup" parameterType="groupBean">
 		INSERT INTO subsgroup

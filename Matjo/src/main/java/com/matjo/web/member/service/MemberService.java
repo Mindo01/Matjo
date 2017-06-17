@@ -16,6 +16,9 @@ public interface MemberService {
 	/** 회원정보를 조회해서 가져온다. **/
 	public MemberBean selectMember(MemberBean bean) throws Exception;
 	
+	/** 회원정보를 조회해서 가져온다. **/
+	public MemberBean selectHp(MemberBean bean) throws Exception;
+	
 	/** 회원정보를 조회해서 리스트로 가져온다. **/
 	public List<MemberBean> selectMemberList(MemberBean bean) throws Exception;
 	

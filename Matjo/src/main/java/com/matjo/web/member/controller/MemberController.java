@@ -188,5 +188,30 @@ public class MemberController {
 		
 		return resMap;
 	}
+	
+	// 휴대폰 번호 조회
+	@RequestMapping("/member/selectHpProc")
+	@ResponseBody
+	public Map<String, Object> selectHp(MemberBean memberBean) {
+		
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		resMap.put(Constants.RESULT_MSG, "휴대폰 번호 조회에 실패 하였습니다.");
+		
+		try {
+			MemberBean mBean = memberService.selectHp(memberBean);
+			
+			if(mBean != null) {
+				resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+				resMap.put(Constants.RESULT_MSG, "휴대폰 번호 조회에 성공 하였습니다.");
+				resMap.put("mBean", mBean);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return resMap;
+	}
 
 } // end of class

@@ -30,6 +30,16 @@
   			</if>
 	</select>
 	
+	<!-- 휴대폰 번호 조회 -->
+	<select id="selectHp" resultType="memberBean" parameterType="memberBean">
+	    SELECT
+	    	<include refid="memberColumns"/>
+	    FROM
+	    	member
+	    WHERE
+  			member_hp = #{memberHp} 
+	</select>
+	
 	<!-- 회원정보 List 조회 -->
 	<select id="selectMemberList" resultType="memberBean" parameterType="memberBean">
 	    SELECT

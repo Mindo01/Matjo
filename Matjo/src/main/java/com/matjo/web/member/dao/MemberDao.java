@@ -16,6 +16,9 @@ public interface MemberDao {
 	/** 회원정보를 조회해서 가져온다. **/
 	public MemberBean selectMember(MemberBean bean);
 	
+	/** 휴대폰 번호를 조회해서 가져온다. **/
+	public MemberBean selectHp(MemberBean bean);
+	
 	/** 회원정보를 조회해서 리스트로 가져온다. **/
 	public List<MemberBean> selectMemberList(MemberBean bean);
 	

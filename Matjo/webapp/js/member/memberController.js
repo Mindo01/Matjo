@@ -10,15 +10,18 @@ function MemberController($rootScope, $scope, MemberService) {
     $scope.memberBean = {
     	memberId: "",
     	memberPw: "",
-        memberName : "",
-        hp1 : "010",
-        memberHp : "",
-		memberCity : "",
-		memberLocal : "",
-		memberQuestion : "0",
-		memberAnswer : "",
-		memberDate : "",
-		memberImg : ""
+        memberName: "",
+        hp1: "010",
+        hp2: "",
+        memberHp: "",
+		memberCity: "",
+		memberLocal: "",
+		memberQuestion: "0",
+		memberAnswer: "",
+		memberDate: "",
+		memberImg: "",
+		mId: "",
+		mEmail: ""
     };
     
     // 광역시/도 list
@@ -109,7 +112,10 @@ function MemberController($rootScope, $scope, MemberService) {
     	
     	// 아이디 결합
     	$scope.memberBean.memberId = $scope.memberBean.mId + "@" + $scope.memberBean.mEmail;
-    	
+    	if(!$scope.idCheckFlag) {
+    		alert("아이디를 확인해주세요");
+    		return;
+    	}
     	// 비밀번호 확인
     	if($scope.memberBean.mPw != $scope.memberBean.mPwCheck){
     		alert("비밀번호와 비밀번호 확인이 다릅니다.");
@@ -117,15 +123,74 @@ function MemberController($rootScope, $scope, MemberService) {
     	} else {
     		$scope.memberBean.memberPw = $scope.memberBean.mPw;
     	}
+    	
+    	if($scope.memberBean.mPw == null) {
+    		alert("비밀번호를 입력해주세요.");
+    		return;
+    	}
     	// 휴대폰 번호 결합
     	$scope.memberBean.memberHp = $scope.memberBean.hp1 + $scope.memberBean.hp2;
-    		
+    	if(!$scope.hpCheckFlag) {
+    		alert("휴대폰 번호를 확인해주세요");
+    		return;
+    	}
+    	
     	MemberService.insertMemberProc($scope.memberBean).then(function(data) {
     		if(data.result == "success") {
     			alert(data.resultMsg);
     			location.replace("/index.do");
     		} else {
     			alert(data.resultMsg);
+    		}
+    	});
+    };
+    
+    $scope.idCheck = "";
+    $scope.idCheckFlag = false;
+    // 아이디 체크
+    $scope.idCheckProc = function() {
+    	
+    	// 아이디 결합
+    	$scope.memberBean.memberId = $scope.memberBean.mId + "@" + $scope.memberBean.mEmail;
+    	
+    	MemberService.selectMember($scope.memberBean).then(function(data) {
+    		if(data.result == "success") {
+    			$scope.idCheck = "* 이미 존재하는 아이디 입니다.";
+    			$scope.idCheckFlag = false;
+    		} else {
+    			if($scope.memberBean.mEmail == '') {
+    				$scope.idCheck = "* 이메일을 입력해주세요.";
+    			} else if(($scope.memberBean.mId).toString().length < 6){
+    				$scope.idCheck = "* 아이디를 6자리 이상 입력해주세요.";
+    			} else {
+    				$scope.idCheck = "* 사용 가능한 아이디 입니다.";
+    				$scope.idCheckFlag = true;
+    			}
+    		}
+    	});
+    };
+    
+    $scope.hpCheck = "";
+    $scope.hpCheckFlag = false;
+    // 휴대폰 번호 체크
+    $scope.hpCheckProc = function() {
+    	
+    	// 휴대폰 번호 결합
+    	$scope.memberBean.memberHp = $scope.memberBean.hp1 + $scope.memberBean.hp2;
+    	
+    	MemberService.selectHp($scope.memberBean).then(function(data) {
+    		if(data.result == "success") {
+    			$scope.hpCheck = "* 이미 존재하는 휴대폰 번호 입니다.";
+    			$scope.hpCheckFlag = false;
+    		} else {
+    			if($scope.memberBean.hp2 == '') {
+    				$scope.hpCheck = "* 휴대폰 번호를 입력해주세요.";
+    			} else if(($scope.memberBean.hp2).toString().length < 7){
+    				$scope.hpCheck = "* 휴대폰 번호가 너무 짧습니다.";
+    			} else {
+    				$scope.hpCheck = "* 사용 가능한 휴대폰 번호 입니다.";
+    				$scope.hpCheckFlag = true;
+    			}
     		}
     	});
     };

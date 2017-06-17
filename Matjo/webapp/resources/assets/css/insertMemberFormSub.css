@@ -194,3 +194,17 @@ label{
              background-color: #EEEEEE;
              font-size: 18px;
 }
+.checkList {
+	margin: 0px;
+	padding: 0px;
+	font-size: 0.7em;
+	color: #111111;
+}
+input:focus {
+	box-shadow: 0 0 5px #ff3D00;
+	outline: none;
+}
+input.ng-invalid {
+ 	box-shadow: 0 0 5px red;
+  	outline: none;
+}

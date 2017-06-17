@@ -58,7 +58,7 @@
 <body class="homepage">
     <div id="page-wrapper" >
        	
-       	<div id="searchArea" ng-modules="mainApp" ng-controller="MainController">
+       	<div class="homepage" id="searchArea" ng-modules="mainApp" ng-controller="MainController">
         <!-- Header -->
         <div id="header">
             <!-- Inner -->

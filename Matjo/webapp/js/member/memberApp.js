@@ -12,6 +12,7 @@ memberApp.factory("MemberService", function($http) {
 	service.insertMemberProc = insertMemberProc;
 	service.updateMemberProc = updateMemberProc;
 	service.selectMember = selectMember;
+	service.selectHp = selectHp;
 	service.findMemberProc = findMemberProc;
 	service.searchAddressCityProc = searchAddressCityProc;
 	service.searchAddressLocalProc = searchAddressLocalProc;
@@ -59,6 +60,16 @@ memberApp.factory("MemberService", function($http) {
 	function selectMember(objParam) {
 		return $http({
 			url: "/member/selectMemberProc.do",
+			method: "post",
+			data : json2PostParams(objParam),
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(handleSuccess, handleError);
+	};
+	
+	// 휴대폰 번호 조회
+	function selectHp(objParam) {
+		return $http({
+			url: "/member/selectHpProc.do",
 			method: "post",
 			data : json2PostParams(objParam),
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
