@@ -31,7 +31,15 @@ public class NoticeController {
 	
 	//모바일용 공지사항 리스트화면
 	@RequestMapping("/notice/selectNoticeListMobile")
-	public String selectNoticeListMobile(){
+	public String selectNoticeListMobile(Model model, PagingBean pagingBean){
+		//전체 레코드 갯수 취득
+				int totRecord = noticeDao.selectNoticeListTotalCount(pagingBean);
+				//페이징 계산
+				pagingBean.calcPage(totRecord);
+				
+				List<NoticeBean> list = noticeDao.selectNoticeList(pagingBean);
+				model.addAttribute("noticeList", list);
+				model.addAttribute("pBean", pagingBean);
 		return "/notice/selectNoticeListMobile";
 	}
 	
