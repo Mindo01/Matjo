@@ -73,7 +73,7 @@
 							<tr>
 									<td>${bean.inquiryNo}</td>
 									<td><a href="/inquiry/selectInquiryDetail.do?inquiryNo=${bean.inquiryNo}">${bean.inquiryTitle}</a></td>
-									<td>${bean.inquiryMember}</td>
+									<td>${sessionScope.memberLoginBean.memberId}</td>
 									<td>${bean.inquiryCnt}</td>
 									<td><span style="font-size: 11px;">${bean.inquiryDate}</span></td>
 									<td><span style="font-size: 11px;">${bean.inquiryUpdate}</span></td>
