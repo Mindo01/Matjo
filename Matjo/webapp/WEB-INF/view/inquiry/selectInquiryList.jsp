@@ -24,6 +24,13 @@
 			myElem3.style.visibility="hidden";
 		}
 		
+		var buttonOfMember = document.getElementById('buttonOfMember');
+		if("${sessionScope.memberLoginBean.memberId}" != null){
+			buttonOfMember.style.visibility="visible";
+		}else{
+			buttonOfMember.style.visibility="hidden";
+		}
+		
 	});//end ready
 	</script>
 </head>
@@ -46,7 +53,7 @@
 				<section>
 					<div class="notice">
 						<div>
-							<button type="button" class="sch_smit" onclick="javascript:location.href='/inquiry/insertInquiryForm.do';">글쓰기</button>
+							<button type="button" class="sch_smit" id="buttonOfMember" onclick="javascript:location.href='/inquiry/insertInquiryForm.do';">글쓰기</button>
 							<button type="button" class="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryList.do';">목록</button>
 						</div>
 						<br/>

@@ -37,12 +37,22 @@
 							alert("글조회에 실패 하였습니다.");
 							return;
 						}	
+						//관리자 답변
 						var myElem3 = document.getElementById('replynoticeDiv');
 						if("${sessionScope.memberLoginBean.memberId}" == "admin@."){
 							myElem3.style.visibility="visible";
 						}else{
 							myElem3.style.visibility="hidden";
 						}
+						
+						//글 작성한 회원만이 수정 삭제 가능하도록 변경
+						var buttonOfMember = document.getElementById('buttonOfMember');
+						if("${sessionScope.memberLoginBean.memberId}" == $("#inquiryMember")){
+							buttonOfMember.style.visibility="visible";
+						}else{
+							buttonOfMember.style.visibility="hidden";
+						}
+						
 						$("#inquiryNo").text(inquiry.inquiryNo);
 						$("#inquiryMember").text(inquiry.inquiryMember);
 						$("#inquiryTitle").text( inquiry.inquiryTitle );
@@ -139,8 +149,8 @@
 				<section>
                     <div class="notice">
                      <div class="other_btn">
-                     <button type = "button" class="sch_smit" onclick="updateInquiryPage();">수정</button>
-						&nbsp;<button type="button"  class="sch_smit" onclick="inquiryDelete(); return false;">삭제</button>
+                     <button id="buttonOfMember" type = "button" class="sch_smit" style="visibility:hidden;" onclick="updateInquiryPage();">수정</button>
+						&nbsp;<button id="buttonOfMember" type="button"  class="sch_smit" style="visibility:hidden;" onclick="inquiryDelete(); return false;">삭제</button>
                              </div>
                                 <table class="detail">
                                        <colgroup>
