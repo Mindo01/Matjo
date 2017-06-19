@@ -59,8 +59,11 @@ public class GroupServiceImpl implements GroupService {
 		if (pBean.getSearchText() == null) {
 			pBean.setSearchText("");
 		}
-		// 페이징 처리와 검색 값 처리
-		pBean.calcPage(groupDao.selectGroupCount(pBean));
+		// 전체 검색 시 pageNo 가 -1
+		if (pBean.getPageNo() >= 0) {  
+			// 페이징 처리와 검색 값 처리
+			pBean.calcPage(groupDao.selectGroupCount(pBean));
+		}
 		return groupDao.selectGroupList(pBean);
 	}
 	
