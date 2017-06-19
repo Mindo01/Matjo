@@ -61,6 +61,8 @@
 	    	LIMIT #{startRow}, #{endRow}
 	</select>
 	
+	
+	
 <!--  전체 레코드 갯수 조회  -->
 	<select id="selectInquiryListTotalCount" resultType="int" parameterType="pagingBean">
 	    SELECT 

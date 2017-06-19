@@ -3,7 +3,7 @@ package com.matjo.web.inquiry.bean;
 public class InquiryBean {
 
 	private String inquiryNo;
-	private String inquiryMember="jihye";
+	private String inquiryMember;
 	private String inquiryTitle;
 	private String inquiryContent;
 	private String inquiryCnt;

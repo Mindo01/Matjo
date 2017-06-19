@@ -14,7 +14,7 @@
 		var searchType = $("#searchType").val();
 		var searchText = $("#searchText").val();
 		
-		location.href="/notice/selectNoticeList.do?searchType="+searchType+"&searchText="+searchText;
+		location.href="/inquiry/selectInquiryList.do?searchType="+searchType+"&searchText="+encodeURI(encodeURIComponent(searchText));
 	}
 	$(function() {
 		var myElem3 = document.getElementById("insertNoticeButton");
