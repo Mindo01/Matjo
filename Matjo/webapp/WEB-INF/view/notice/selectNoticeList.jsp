@@ -105,7 +105,7 @@
 										 	
 										 </c:forEach>
 										 
-										 <c:if test="${pBean.groupNo < pBean.totalGroupCount}">
+										 <c:if test="${pBean.pageGroupNo < pBean.totalGroupCount}">
 										 	<a href="/notice/selectNoticeList.do?pageNo=${pBean.pageEndNo + 1}">다음&gt;</a>
 										 </c:if>
 										 
