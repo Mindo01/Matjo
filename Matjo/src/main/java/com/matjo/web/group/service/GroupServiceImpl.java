@@ -171,5 +171,11 @@ public class GroupServiceImpl implements GroupService {
 		return commonGroupDao.selectSubsGroupList(mBean);
 	}
 
+	/** 소속회원조회 1명**/
+	@Override
+	public GroupBean checkMember(GroupBean gBean) {
+		return groupDao.checkMember(gBean);
+	}
+
 	
 }

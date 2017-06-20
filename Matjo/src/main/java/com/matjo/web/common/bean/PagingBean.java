@@ -49,6 +49,8 @@ public class PagingBean extends CommonBean{
 	/** 반지름값(반경) **/
 	private int radius; // default: 5000, min: 0, max: 20000
 	
+	private String groupNo;	// 모임 검색에 이용하기 위한 번호
+	
 	
 	/**
 	 * 화면에 표시할 페이징 변수정보를 계산한다.
@@ -215,6 +217,16 @@ public class PagingBean extends CommonBean{
 	public void setRadius(int radius) {
 		this.radius = radius;
 	}
+
+	public String getGroupNo() {
+		return groupNo;
+	}
+
+	public void setGroupNo(String groupNo) {
+		this.groupNo = groupNo;
+	}
+	
+	
 	
 } // end of class
 

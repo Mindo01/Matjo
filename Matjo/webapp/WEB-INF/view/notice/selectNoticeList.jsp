@@ -89,7 +89,7 @@
 										 &nbsp;&nbsp;&nbsp;마지막&gt;&gt;
 										 -->
 								
-										 <c:if test="${pBean.groupNo > 1}">
+										 <c:if test="${pBean.pageGroupNo > 1}">
 										 	<a href="/notice/selectNoticeList.do?pageNo=${pBean.pageStartNo - 1}">&lt;이전</a>
 										 </c:if>
 										 
@@ -105,7 +105,7 @@
 										 	
 										 </c:forEach>
 										 
-										 <c:if test="${pBean.groupNo < pBean.totalGroupCount}">
+										 <c:if test="${pBean.pageGroupNo < pBean.totalGroupCount}">
 										 	<a href="/notice/selectNoticeList.do?pageNo=${pBean.pageEndNo + 1}">다음&gt;</a>
 										 </c:if>
 										 

@@ -106,7 +106,7 @@
 									<!--  &lt;&lt;처음&nbsp;&nbsp;&nbsp;
 								 &lt;이전 [1] [2] [3] [4] 다음&gt; 
 								 &nbsp;&nbsp;&nbsp;마지막&gt;&gt; --> 
-								 <c:if test="${pBean.groupNo > 1}">
+								 <c:if test="${pBean.pageGroupNo > 1}">
 										<a href="/inquiry/selectInquiryList.do?pageNo=${pBean.pageStartNo - 1}">&lt;이전</a>
 									</c:if> 
 									<c:forEach var="i" begin="${pBean.pageStartNo}"
@@ -120,7 +120,7 @@
 									 		</c:otherwise>
 										</c:choose>
 									</c:forEach> 
-									<c:if test="${pBean.groupNo < pBean.totalGroupCount}">
+									<c:if test="${pBean.pageGroupNo < pBean.totalGroupCount}">
 										<a href="/inquiry/selectInquiryList.do?pageNo=${pBean.pageEndNo + 1}">다음&gt;</a>
 									</c:if>
 									</td>
