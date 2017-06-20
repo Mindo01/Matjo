@@ -249,6 +249,34 @@ public class GroupController {
 		
 	}
 	
+	// 모임 가입 처리 Map 반환
+	@RequestMapping("/android/insertGroupMemberProc")
+	@ResponseBody
+	public Map<String, Object> insertGroupMemberProcAnd(GroupBean gBean) {
+		
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		resMap.put(Constants.RESULT_MSG, "모임 가입 신청에 실패 하였습니다.");
+		
+		try {
+			GroupBean bean = groupService.selectApply(gBean);
+			
+			if(bean == null){
+				int res = groupService.insertGroupApply(gBean);
+				if (res > 0) {
+					resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+					resMap.put(Constants.RESULT_MSG, "모임 가입 신청에 성공 하였습니다.");
+				}
+			}else {
+				resMap.put(Constants.RESULT_MSG, "이미 가입 신청 중 입니다.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return resMap;
+	}
+	
 	/** F-2 : (임시) 모임 가입 자식창 - 가입할 모임 검색 */
 	@RequestMapping("/group/selectGroupToApply")
 	public String selectGroupToApply() {

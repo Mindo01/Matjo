@@ -12,6 +12,8 @@ public interface CommonGroupDao {
 	public int insertMyGroup(GroupBean gBean);
 	/** INSERT : 모임 가입 신청 임시 저장 */
 	public int insertApply(GroupBean gBean);
+	/** SELECT : 모임 가입 현황 조회(중복체크시 필요) **/
+	public GroupBean selectApply(GroupBean gBean);
 	/** DELETE : 모임 가입 신청 완료 후 삭제 */
 	public int deleteApply(GroupBean gBean);
 	/** SELECT : 이미 존재하는 모임원/모임가입신청자인지 확인 */

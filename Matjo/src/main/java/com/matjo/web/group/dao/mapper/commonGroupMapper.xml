@@ -35,6 +35,18 @@
         )
     </insert>
     
+    <!-- SELECT : 모임 가입 신청현황 조회 (중복체크시 필요) -->
+    <select id="selectApply" parameterType="groupBean" resultType="groupBean">
+        SELECT
+        	apply_member AS memberNo 
+        FROM
+        	apply
+        WHERE
+        	apply_member = #{memberNo}
+        	AND
+        	apply_group = #{groupNo}
+    </select>
+    
     <!-- SELECT : 이미 존재하는 모임원/모임가입신청자인지 확인 -->
     <select id="selectIsGroupMember" parameterType="groupBean" resultType="int">
         SELECT

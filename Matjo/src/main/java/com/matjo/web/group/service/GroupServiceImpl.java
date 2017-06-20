@@ -175,6 +175,11 @@ public class GroupServiceImpl implements GroupService {
 	public GroupBean checkMember(GroupBean gBean) {
 		return groupDao.checkMember(gBean);
 	}
-
+	
+	/** 모임 가입신청 현황 **/
+	@Override
+	public GroupBean selectApply(GroupBean gBean) {
+		return commonGroupDao.selectApply(gBean);
+	}
 	
 }
