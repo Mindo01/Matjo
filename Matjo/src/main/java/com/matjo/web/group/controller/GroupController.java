@@ -136,6 +136,28 @@ public class GroupController {
 		return resMap;
 	}
 	
+	/** P : 내 모임 조회 처리 */
+	@RequestMapping("/group/selectMemberGroupProc")
+	@ResponseBody
+	public Map<String, Object> selectMemberGroupProc(MemberBean mBean) {
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		// 기본 설정 : 실패
+		resMap.put(Constants.RESULT_MSG, "내 모임 목록 조회에 실패했습니다");
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		
+		// Service Call : 회원 고유번호 받아서 내 모임 목록 조회
+		List<GroupBean> groupList = groupService.selectMemberGroup(mBean);
+		if (groupList != null && groupList.size() > 0) {
+			// 내 모임 목록 resMap에 담아 보내기
+			resMap.put("groupList", groupList);
+			// 성공 설정
+			resMap.put(Constants.RESULT_MSG, "내 모임 목록 조회에 성공했습니다");
+			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+		}
+		resMap.put("mBean", mBean);
+		return resMap;
+	}
+	
 	
 	/** F : (임시) 새 모임 등록 화면 */
 	@RequestMapping("/group/insertGroupForm")
