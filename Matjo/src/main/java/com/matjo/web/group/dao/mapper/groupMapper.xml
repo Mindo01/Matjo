@@ -5,7 +5,7 @@
     
     <sql id="groupsColumns">
     	group_no AS groupNo,
-    	group_leader AS groupLeader,
+    	group_leader AS memberNo,
     	group_name AS groupName,
     	group_date AS groupDate,
     	group_info AS groupInfo,
