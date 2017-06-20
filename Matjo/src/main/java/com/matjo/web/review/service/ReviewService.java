@@ -6,6 +6,13 @@ import com.matjo.web.review.bean.PereviewBean;
 import com.matjo.web.review.bean.ReviewBean;
 
 public interface ReviewService {
+	
+	/**
+	 * 모임 리뷰 1건 조회
+	 * @param reviewBean
+	 * @return
+	 */
+	public ReviewBean selectReview(ReviewBean reviewBean);
 
 	/**
 	 * 1개 업소 대상 모임리뷰 목록 조회

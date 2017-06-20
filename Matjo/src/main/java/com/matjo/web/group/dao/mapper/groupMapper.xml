@@ -62,7 +62,9 @@
 	    	<if test="searchType == 'group_content'">
 	    	    AND group_info like CONCAT('%', #{searchText}, '%') 
 	    	</if>
+	    <if test="pageNo != -1">
 	    LIMIT #{startRow}, #{endRow}
+	    </if>
     </select>
     
 	<!-- SELECT : COUNT(*) 모임 전체 개수 조회 -->
@@ -150,6 +152,16 @@
         	groups
         WHERE
         	group_name = #{groupName}
+    </select>
+    
+    <!-- SELECT : 모임장 조회 (리뷰 등록 시 모임장인지 체크할 때)-->
+    <select id="checkLeader" parameterType="groupBean" resultType="groupBean">
+        SELECT
+        	<include refid="groupsColumns"/>
+        FROM
+        	groups
+        WHERE
+        	group_leader = #{groupLeader}
     </select>
     
 </mapper>

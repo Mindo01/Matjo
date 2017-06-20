@@ -3,7 +3,8 @@ package com.matjo.web.inquiry.bean;
 public class InquiryBean {
 
 	private String inquiryNo;
-	private String inquiryMember="jihye";
+	private String inquiryMember;
+	private String inquiryMemberName;	// 작성자 이름
 	private String inquiryTitle;
 	private String inquiryContent;
 	private String inquiryCnt;
@@ -12,20 +13,25 @@ public class InquiryBean {
 	private String inquiryIsOpen;
 	private String inquiryReply="";
 	private String inquiryRepDate;
-	private String memberNo;
-	private String memberId="관리자";
+
 	
 	public InquiryBean() {
 	}
-	public InquiryBean(String memberNo, String memberId) {
-		this.memberNo = memberNo;
-		this.memberId = memberId;
+	public InquiryBean(String inquiryNo, String inquiryMember) {
+		this.inquiryNo = inquiryNo;
+		this.inquiryMember = inquiryMember;
 	}
 	public String getInquiryNo() {
 		return inquiryNo;
 	}
 	public String getInquiryMember() {
 		return inquiryMember;
+	}
+	public String getInquiryMemberName() {
+		return inquiryMemberName;
+	}
+	public void setInquiryMemberName(String inquiryMemberName) {
+		this.inquiryMemberName = inquiryMemberName;
 	}
 	public String getInquiryTitle() {
 		return inquiryTitle;
@@ -81,18 +87,5 @@ public class InquiryBean {
 	public void setInquiryRepDate(String inquiryRepDate) {
 		this.inquiryRepDate = inquiryRepDate;
 	}
-	public String getMemberNo() {
-		return memberNo;
-	}
-	public String getMemberId() {
-		return memberId;
-	}
-	public void setMemberNo(String memberNo) {
-		this.memberNo = memberNo;
-	}
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
-	}
-	
 	
 }

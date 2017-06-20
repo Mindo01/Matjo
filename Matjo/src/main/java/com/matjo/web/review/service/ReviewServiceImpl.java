@@ -20,6 +20,12 @@ public class ReviewServiceImpl implements ReviewService {
 	private PereviewDao pereviewDao;
 	
 	
+	// 모임 리뷰 1건 조회
+	@Override
+	public ReviewBean selectReview(ReviewBean reviewBean) {
+		return reviewDao.selectReview(reviewBean);
+	}
+	
 	// 음식점 대상으로 모임리뷰 목록 가져오기
 	@Override
 	public List<ReviewBean> selectReviewList(ReviewBean reviewBean) {

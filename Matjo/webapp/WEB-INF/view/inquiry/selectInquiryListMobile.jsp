@@ -16,22 +16,6 @@
 		
 		location.href="/inquiry/selectInquiryList.do?searchType="+searchType+"&searchText="+searchText;
 	}
-	$(function() {
-		var myElem3 = document.getElementById('replynotice');
-		if("${sessionScope.memberLoginBean.memberId}" == "admin@."){
-			myElem3.style.visibility="visible";
-		}else{
-			myElem3.style.visibility="hidden";
-		}
-		
-		var buttonOfMember = document.getElementById('buttonOfMember');
-		if("${sessionScope.memberLoginBean.memberId}" != ''){
-			buttonOfMember.style.visibility="visible";
-		}else{
-			buttonOfMember.style.visibility="hidden";
-		}
-		
-	});//end ready
 	</script>
 </head>
 <body class="no-sidebar">
@@ -53,8 +37,8 @@
 				<section>
 					<div class="notice">
 						<div>
-						<button type="button" class="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryList.do';">목록</button>
-							<button type="button" class="sch_smit" id="buttonOfMember" style="visibility:hidden;" onclick="javascript:location.href='/inquiry/insertInquiryForm.do';">글쓰기</button>
+							<button type="button" class="sch_smit" onclick="javascript:location.href='/inquiry/insertInquiryForm.do';">글쓰기</button>
+							<button type="button" class="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryList.do';">목록</button>
 						</div>
 						<br/>
 						<table>
@@ -80,13 +64,13 @@
 							<tr>
 									<td>${bean.inquiryNo}</td>
 									<td><a href="/inquiry/selectInquiryDetail.do?inquiryNo=${bean.inquiryNo}">${bean.inquiryTitle}</a></td>
-									<td>${bean.inquiryMemberName}</td>
+									<td>${bean.inquiryMember}</td>
 									<td>${bean.inquiryCnt}</td>
 									<td><span style="font-size: 11px;">${bean.inquiryDate}</span></td>
 									<td><span style="font-size: 11px;">${bean.inquiryUpdate}</span></td>
 									<td>
 									<c:if test="${bean.inquiryReply eq ''}">
-									<button type="button" id ="replynotice" style="visibility:hidden;" value="need_answer" class ="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryDetail.do?inquiryNo=${bean.inquiryNo}';">답변하기</button>
+									<button type="button" value="need_answer" class ="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryDetail.do?inquiryNo=${bean.inquiryNo}';">답변하기</button>
 									</c:if>
 									<c:if test="${bean.inquiryReply ne '' }">
 									<button type="button" value="finish_answer" class ="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryDetail.do?inquiryNo=${bean.inquiryNo}';">답변완료</button>

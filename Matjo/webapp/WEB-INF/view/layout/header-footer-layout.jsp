@@ -9,6 +9,8 @@
 <title><decorator:title default="맛조" /></title>
 <script type="text/javascript" src="/js/common/angular/angular.js"></script>
 <script type="text/javascript" src="/js/common/angular/angular.ng-modules.js"></script>
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+ 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 <c:import url="/WEB-INF/view/layout/header.jsp"></c:import>
 
@@ -29,7 +31,6 @@
 						</div>
 						
 						<div class="modal-body">
-						
 							<div class="input_row" id="id_area">
 								<span class="input_box"> 
 									<input type="text" placeholder="이메일" maxlength="20" value="" ng-model="memberBean.mId">@ 
@@ -59,22 +60,22 @@
 									</span>
 								</div>
 							</div>
-							
+								
+								
 							<div class="modal-footer">
 								<span id="loginbutton"> 
 									<input type="button" value="로그인" class="btn_global" lang="ko" ng-click="loginMember()">
 								</span> 
 								
-								<!-- TODO : sns 로그인 -->
+<!-- 								TODO : sns 로그인 -->
 								<span id="cacaologinbutton"> 
 									<input type="button" value="카카오톡 로그인" class="btn_sns" lang="ko"/>
 								</span>
-								
-								<br>
-								
+									<br>
+<!-- 								네이버 아이디로 로그인 -->
+								<div id="naver_id_login" class="naver_id_login" name="naver_id_login">네이버로 로그인</div>
 								<label id="findPassword" ng-click="findMemberForm()">비밀번호를 잃어버리셨나요?</label>
 							</div>
-							
 						</div>
 					</div>
 				</div>
@@ -155,4 +156,13 @@
 			</div>
 		</div>
 </body>
+<script type="text/javascript">
+  	var naver_id_login = new naver_id_login("rJcQNBJ0RQ1vngwezHdZ", "http://localhost:8080/index.do");
+  	var state = naver_id_login.getUniqState();
+  	naver_id_login.setButton("white", 4,40);
+  	naver_id_login.setDomain("http://localhost:8080");
+  	naver_id_login.setState(state);
+  	naver_id_login.setPopup();
+  	naver_id_login.init_naver_id_login();
+  </script>
 </html>

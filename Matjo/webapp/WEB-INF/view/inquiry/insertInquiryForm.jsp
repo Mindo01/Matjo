@@ -17,6 +17,7 @@
 			
 			formData.append("inquiryTitle", $("#inquiryTitle").val() );
 			formData.append("inquiryContent", $("#inquiryContent").val() );
+			formData.append("inquiryMember", $("#inquiryMember").val() );
 			$.ajax({
 	                url: '/inquiry/inquiryInsertProcAjax.do',
 	                processData: false,
@@ -84,7 +85,10 @@
                                         </tr>
                                         <tr>
                                             <th>작성자</th>
-                                            <td colspan="2"><span id="inquiryMember">${inquiry.inquiryMember}</span></td>
+                                            <td colspan="2">
+                                            <input type="hidden" id="inquiryMember" value="${sessionScope.memberLoginBean.memberNo}"/>
+                                            <span>
+                                            ${sessionScope.memberLoginBean.memberName}</span></td>
                                         </tr>
                                         <tr>
                                            <td class="table_content" colspan="3" >

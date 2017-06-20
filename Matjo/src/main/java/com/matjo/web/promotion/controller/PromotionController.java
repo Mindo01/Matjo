@@ -36,6 +36,21 @@ public class PromotionController {
 	@Autowired
 	private PromotionService promotionService;
 
+	//프로모션  리스트 모바일용
+	@RequestMapping("/promotion/selectPromoMobile")
+	public String selectPromoMobile(Model model, PagingBean pagingBean) {
+	//전체 레코드 갯수 취득
+	int totRecord = promotionService.selectPromotion(pagingBean);
+	//페이징 계산
+	pagingBean.calcPage(totRecord);
+	
+	List<PromotionBean> list = promotionService.selectPromo(pagingBean);
+	model.addAttribute("promotionList", list);
+	model.addAttribute("pBean", pagingBean);
+	return "/promotion/selectPromoMobile";
+	}
+	
+	
 	//프로모션 등록
 	@RequestMapping(value="/promotion/promotionInsertProcAjax",method=RequestMethod.POST)
 	public String noticeWriteAjax(PromotionBean bBean,Model model,

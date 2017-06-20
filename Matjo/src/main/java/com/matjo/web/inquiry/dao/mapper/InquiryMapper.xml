@@ -21,6 +21,7 @@
         <select id="selectInquiryInfo" parameterType="pagingBean" resultType="inquiryBean">
         SELECT
         <include refid="inquiryColumns"/>
+        ,( SELECT member_name FROM member WHERE member_no = inquiry.inquiry_member ) AS inquiryMemberName
         FROM
             inquiry
         WHERE
@@ -47,6 +48,7 @@
 	<select id="selectInquiryList" resultType="inquiryBean" parameterType="pagingBean">
 	    SELECT
 	    	<include refid="inquiryColumns"/>
+	    	, ( SELECT member_name FROM member WHERE member_no = inquiry.inquiry_member ) AS inquiryMemberName
 	    FROM
 	    	inquiry
 	    WHERE
@@ -60,6 +62,8 @@
 	    	ORDER BY inquiry_no DESC
 	    	LIMIT #{startRow}, #{endRow}
 	</select>
+	
+	
 	
 <!--  전체 레코드 갯수 조회  -->
 	<select id="selectInquiryListTotalCount" resultType="int" parameterType="pagingBean">
@@ -79,11 +83,13 @@
 	<insert id="inquiryInsert" parameterType="inquiryBean">
 	    INSERT INTO inquiry
 	    (
+	    	inquiry_member,
 	    	inquiry_title,
 	    	inquiry_content
 	    )
 	    VALUES
 	    (
+	    	#{inquiryMember},
 	    	#{inquiryTitle},
 	    	#{inquiryContent}
 	    )

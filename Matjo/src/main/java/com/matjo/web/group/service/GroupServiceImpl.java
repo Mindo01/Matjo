@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,8 +57,11 @@ public class GroupServiceImpl implements GroupService {
 		if (pBean.getSearchText() == null) {
 			pBean.setSearchText("");
 		}
-		// 페이징 처리와 검색 값 처리
-		pBean.calcPage(groupDao.selectGroupCount(pBean));
+		// 전체 검색 시 pageNo 가 -1
+		if (pBean.getPageNo() >= 0) {  
+			// 페이징 처리와 검색 값 처리
+			pBean.calcPage(groupDao.selectGroupCount(pBean));
+		}
 		return groupDao.selectGroupList(pBean);
 	}
 	
@@ -80,6 +81,12 @@ public class GroupServiceImpl implements GroupService {
 	@Override
 	public List<MemberBean> selectGroupMember(GroupBean gBean) {
 		return groupDao.selectGroupMember(gBean);
+	}
+	
+	/** 모임장 조회 */
+	@Override
+	public List<GroupBean> checkLeader(GroupBean gBean) {
+		return groupDao.checkLeader(gBean);
 	}
 
 	/** 회원이 소속된 모임들 조회 */

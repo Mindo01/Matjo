@@ -18,6 +18,8 @@ public interface GroupService {
 	public List<MemberBean> selectGroupMember(GroupBean gBean);
 	/** 회원이 소속된 모임들 조회 */
 	public List<GroupBean> selectMemberGroup(MemberBean mBean);
+	/** 모임장 조회 */
+	public List<GroupBean> checkLeader(GroupBean gBean);
 	/** 새모임등록 */
 	public int insertGroup(GroupBean gBean);
 	/** 모임명 존재 여부 확인 */

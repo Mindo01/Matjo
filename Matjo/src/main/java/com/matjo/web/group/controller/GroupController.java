@@ -344,4 +344,27 @@ public class GroupController {
 		return resMap;
 	}
 	
+	/** 모임장 조회 (리뷰 등록 시 모임장인지 체크할 때) **/
+	@RequestMapping("/android/checkLeaderProc")
+	@ResponseBody
+	public Map<String, Object> checkLeaderProc(GroupBean gBean) {
+		
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		resMap.put(Constants.RESULT_MSG, "모임장 조회에 실패 하였습니다.");
+		
+		try {
+			List<GroupBean> groupList = groupService.checkLeader(gBean);
+			if (groupList != null) {
+				resMap.put("list", groupList);
+				resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+				resMap.put(Constants.RESULT_MSG, "모임장 조회에 성공 하였습니다.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return resMap;
+	}
+	
 }

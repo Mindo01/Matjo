@@ -27,6 +27,20 @@ public class InquiryController {
 	@Autowired
 	private InquiryDao inquiryDao;
 	
+	//게시글 리스트 모바일용
+	@RequestMapping("/inquiry/selectInquiryListMobile")
+	public String selectInquiryListMobile(Model model, PagingBean pagingBean) {
+	//전체 레코드 갯수 취득
+	int totRecord = inquiryDao.selectInquiryListTotalCount(pagingBean);
+	//페이징 계산
+	pagingBean.calcPage(totRecord);
+	
+	List<InquiryBean> list = inquiryDao.selectInquiryList(pagingBean);
+	model.addAttribute("inquiryList", list);
+	model.addAttribute("pBean", pagingBean);
+	return "/inquiry/selectInquiryListMobile";
+	}
+	
 	@RequestMapping("/inquiry/selectInquiryDetail")
 	public String selectInquiryDetail(){
 		return "/inquiry/selectInquiryDetail";
@@ -74,12 +88,10 @@ public class InquiryController {
 
 			try {
 				
-				MemberBean memberBean = 
-					(MemberBean)req.getSession()
-					.getAttribute(Constants.MEMBER_LOGIN_BEAN);
-				if(memberBean != null) {
-					inquiryBean.setMemberId( memberBean.getMemberId() );
-				}
+//				MemberBean memberBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
+//				if(memberBean != null) {
+//					inquiryBean.setInquiryMember(Constants.MEMBER_LOGIN_BEAN);
+//				}
 				int res = inquiryService.inquiryInsert(inquiryBean);
 				if(res > 0) {
 					resMap.put(Constants.RESULT, Constants.RESULT_OK);
@@ -104,6 +116,8 @@ public class InquiryController {
 		pagingBean.calcPage(totRecord);
 		
 		List<InquiryBean> list = inquiryDao.selectInquiryList(pagingBean);
+		System.out.println("getInquiryNo()" + list.get(0).getInquiryNo());
+		System.out.println("getInquiryMember()" + list.get(0).getInquiryMember());
 		model.addAttribute("inquiryList", list);
 		model.addAttribute("pBean", pagingBean);
 		return "/inquiry/selectInquiryList";
