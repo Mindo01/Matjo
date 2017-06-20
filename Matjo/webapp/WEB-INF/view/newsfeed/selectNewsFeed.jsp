@@ -74,7 +74,9 @@
 											<td ng-if="nBean.type == 1">
 												모임장 {{nBean.groupLeader}}
 											</td>
-											<td ng-if="nBean.type == 2"></td>
+											<td ng-if="nBean.type == 2">
+												{{nBean.restaCate}}
+											</td>
 											<!-- 일시 -->
 											<td>{{ nBean.regDate }}</td>
 										</tr>

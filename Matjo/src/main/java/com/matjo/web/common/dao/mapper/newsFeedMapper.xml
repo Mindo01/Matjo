@@ -4,7 +4,7 @@
 
 <mapper namespace="com.matjo.web.common.dao.NewsFeedDao">
 
-    <select id="selectNewsFeedList" resultType="newsFeedBean">
+    <select id="selectNewsFeedList" parameterType="pagingBean" resultType="newsFeedBean">
     	SELECT
 		  review_group AS groupNo,
 		  (SELECT group_name FROM groups WHERE group_no = review.review_group) AS groupName,
@@ -29,6 +29,18 @@
 		  ,'새 모임이' AS typeMsg
 		FROM groups
 		ORDER BY regDate DESC
+		<if test="pageNo != -1">
+		LIMIT #{startRow}, #{endRow}
+		</if>
+    </select>
+    
+    <!-- 뉴스피드 목록 개수 조회 -->
+    <select id="selectNewsFeedCount" resultType="int">
+    	SELECT
+      	( COUNT(*) +
+      		( SELECT COUNT(*) FROM groups )
+      	) AS totalCount
+    	FROM review
     </select>
     
 </mapper>

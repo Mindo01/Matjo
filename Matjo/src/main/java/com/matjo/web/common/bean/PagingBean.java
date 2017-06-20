@@ -35,7 +35,7 @@ public class PagingBean extends CommonBean{
 	/** 전체 페이지의 그룹 갯수 **/
 	private int totalGroupCount;
 	/** 현재 페이지의 그룹번호(그룹번호는 1부터 시작) **/
-	private int groupNo;
+	private int pageGroupNo;	// groupNo와 헷갈릴 수 있어서 앞에 page를 붙힘
 	
 	/** 시작 페이지 번호 **/
 	private int pageStartNo;
@@ -72,10 +72,10 @@ public class PagingBean extends CommonBean{
 		// 전체 그룹의 갯수
 		totalGroupCount = calcTotalPageCount(totalPageCount, COUNT_PER_PAGE_GROUP);
 		// 현재 페이지의 소속 그룹번호 계산
-		groupNo = calcTotalPageCount(pageNo, COUNT_PER_PAGE_GROUP);
+		pageGroupNo = calcTotalPageCount(pageNo, COUNT_PER_PAGE_GROUP);
 		
 		// 시작 페이지 번호
-		pageStartNo = ((groupNo - 1) * COUNT_PER_PAGE_GROUP) + 1;
+		pageStartNo = ((pageGroupNo - 1) * COUNT_PER_PAGE_GROUP) + 1;
 		// 끝 페이지 번호
 		pageEndNo = pageStartNo + COUNT_PER_PAGE_GROUP - 1;
 		
@@ -152,12 +152,12 @@ public class PagingBean extends CommonBean{
 		this.totalGroupCount = totalGroupCount;
 	}
 
-	public int getGroupNo() {
-		return groupNo;
+	public int getPageGroupNo() {
+		return pageGroupNo;
 	}
 
-	public void setGroupNo(int groupNo) {
-		this.groupNo = groupNo;
+	public void setPageGroupNo(int pageGroupNo) {
+		this.pageGroupNo = pageGroupNo;
 	}
 
 	public int getPageStartNo() {
