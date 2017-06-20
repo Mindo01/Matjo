@@ -6,6 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.matjo.web.common.bean.PushMsgBean;
@@ -14,6 +15,23 @@ public class FCMSender {
 
 	public static final String FCM_SEND_URL = "https://fcm.googleapis.com/fcm/send";
 	public static final String SERVER_API_KEY = "AAAAjRMubl0:APA91bGZc_iCIOMZdMBHzWlIrnuqWO_y3g5zPZ6EWNuNe3jafW88-b8LNJdwA8bZMEkTGtAGNwXWByXv_sKa_vvqvwqLxro38skGFX78-nRqIS2os2IKIR0iVeXs_7Q4PTxuY9OEZTzo";
+	
+	/**
+	 * 여러
+	 * @param msgBeanList
+	 * @return
+	 */
+	public static int sendPushMsgBeanList(List<PushMsgBean> msgBeanList) {
+		int successCount = 0;
+		if ( msgBeanList != null && msgBeanList.size()>0 ) {
+			for (int i = 0; i < msgBeanList.size(); i++) {
+				if (sendPushMsgBean(msgBeanList.get(i))) {
+					successCount++;
+				}
+			} // end of for
+		} // end of if
+		return successCount;
+	} // end of sendPushMsgBeanList()
 	
 	public static boolean sendPushMsgBean(PushMsgBean msgBean) {
 

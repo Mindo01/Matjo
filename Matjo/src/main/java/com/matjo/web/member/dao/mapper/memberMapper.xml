@@ -14,7 +14,8 @@
 		member_question AS memberQuestion,
 		member_answer AS memberAnswer,
 		member_date AS memberDate,
-		member_img AS memberImg
+		member_img AS memberImg,
+		member_token AS memberToken
     </sql>
     
 	<!-- 회원정보 1건 조회 -->
