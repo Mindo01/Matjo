@@ -355,7 +355,7 @@ public class GroupController {
 		
 		try {
 			List<GroupBean> groupList = groupService.checkLeader(gBean);
-			if (groupList != null) {
+			if (groupList.size() > 0) {
 				resMap.put("list", groupList);
 				resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
 				resMap.put(Constants.RESULT_MSG, "모임장 조회에 성공 하였습니다.");
