@@ -5,7 +5,7 @@
     
     <sql id="groupsColumns">
     	group_no AS groupNo,
-    	group_leader AS memberNo,
+    	group_leader AS groupLeader,
     	group_name AS groupName,
     	group_date AS groupDate,
     	group_info AS groupInfo,
@@ -152,6 +152,16 @@
         	groups
         WHERE
         	group_name = #{groupName}
+    </select>
+    
+    <!-- SELECT : 모임장 조회 (리뷰 등록 시 모임장인지 체크할 때)-->
+    <select id="checkLeader" parameterType="groupBean" resultType="groupBean">
+        SELECT
+        	<include refid="groupsColumns"/>
+        FROM
+        	groups
+        WHERE
+        	group_leader = #{groupLeader}
     </select>
     
 </mapper>

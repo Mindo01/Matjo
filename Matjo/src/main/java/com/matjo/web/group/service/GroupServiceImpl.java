@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -83,6 +81,12 @@ public class GroupServiceImpl implements GroupService {
 	@Override
 	public List<MemberBean> selectGroupMember(GroupBean gBean) {
 		return groupDao.selectGroupMember(gBean);
+	}
+	
+	/** 모임장 조회 */
+	@Override
+	public List<GroupBean> checkLeader(GroupBean gBean) {
+		return groupDao.checkLeader(gBean);
 	}
 
 	/** 회원이 소속된 모임들 조회 */
