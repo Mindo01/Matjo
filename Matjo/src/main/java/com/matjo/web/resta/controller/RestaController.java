@@ -25,8 +25,8 @@ import com.matjo.web.review.service.ReviewService;
 public class RestaController {
 	@Autowired
 	ReviewService reviewService;
-	
-	
+
+
 	/**
 	 * 음식점 목록 조회 화면
 	 * @return
@@ -35,8 +35,8 @@ public class RestaController {
 	public String selectRestaListForm() {
 		return "resta/selectRestaListForm";
 	} // end of selectRestaForm
-	
-	
+
+
 	/**
 	 * 음식점 목록 조회 화면
 	 * @return
@@ -45,8 +45,8 @@ public class RestaController {
 	public String selectRestaList() {
 		return "resta/selectRestaList";
 	} // end of selectRestaForm
-	
-	
+
+
 	/**
 	 * 음식점 목록 조회 동작
 	 * @param pagingBean 검색 키워드, 현재 위치, 반경거리, 페이지, 갯수 등의 검색조건의 내용을 갖는다.
@@ -58,7 +58,7 @@ public class RestaController {
 		Map<String, Object> resMap = new HashMap<String, Object>();
 		resMap.put("result", "fail");
 		resMap.put("resultMsg", "목록 조회에 실패 하였습니다.");
-		
+
 		try {
 			List<DaumLocalBean> list = DaumUtils.searchDataForKeyword(pagingBean);
 			if (list.size() > 0) {
@@ -70,11 +70,11 @@ public class RestaController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} // end of try~catch
-		
+
 		return resMap;
 	} // end of selectRestaProc
-	
-	
+
+
 	/**
 	 * 음식점 상세정보 화면
 	 * @param dlBean API 로 부터 받은 음식점 목록에서, 클릭한 음식점의 데이터 객체
@@ -86,7 +86,7 @@ public class RestaController {
 		model.addAttribute("dlBean", dlBean);
 		return "resta/selectRestaForm";
 	}
-	
+
 	/**
 	 * 음식점 상세정보 화면 (템플릿, AngularJS 적용)
 	 * @param dlBean dlBean API 로 부터 받은 음식점 목록에서, 클릭한 음식점의 데이터 객체
@@ -98,8 +98,8 @@ public class RestaController {
 		model.addAttribute("dlBean", dlBean);
 		return "resta/selectRestaDetail";
 	} // end of selectRestaDetail
-	
-	
+
+
 	/**
 	 * 음식점 상세정보 Proc (모임-개인 리뷰 조회)
 	 * @param dlBean ID 를 비교해 해당하는 리뷰와 그에속한 개인리뷰 목록을 가져온다.
@@ -111,47 +111,47 @@ public class RestaController {
 		Map<String, Object> resMap = new HashMap<String, Object>();
 		resMap.put("result", "fail");
 		resMap.put("resultMsg", "리뷰 조회에 실패하였습니다.");
-		
+
 		ReviewBean rBean = new ReviewBean();
 		rBean.setReviewRestaNo(dlBean.getRestaId());
-		
-		
+
+
 		// 현재 로그인한 회원 정보 넘기기
 		MemberBean mBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
 		if (mBean != null) {
 			// 구독여부 확인을 위해 현재 사용자 정보 담음
 			dlBean.setMemberNo(mBean.getMemberNo());
-			
+
 			rBean.setMemberNo(mBean.getMemberNo());
 			// 리뷰빈에 현재 보고 있는 로그인 아이디 설정 (좋아요 검색용)
 			rBean.setReviewNowMember(mBean.getMemberNo());
 		}
-		
-		
+
+
 		// 구독여부 가져옴
 		int hasSubsResta = restaService.selectHasSubsResta(dlBean);
 		dlBean.setHasSubsResta(hasSubsResta>0?"true":"false");
-		
+
 		try {
-            List<ReviewBean> reviewList = reviewService.selectReviewPereviewList(rBean);
-            String reviewRatingAvg = reviewService.selectReviewRatingAvg(rBean);
-            if (reviewRatingAvg == null) reviewRatingAvg = "0.0";
-            else reviewRatingAvg = String.format("%.1f", Double.parseDouble(reviewRatingAvg));
-            if (reviewList.size() > 0) {
-                resMap.put("reviewList", reviewList);
-                resMap.put("reviewRatingAvg", reviewRatingAvg);
-                resMap.put("result", "ok");
-                resMap.put("dlBean", dlBean);
-                resMap.put("resultMsg", "리뷰 조회에 성공하였습니다.");
-            }
+			List<ReviewBean> reviewList = reviewService.selectReviewPereviewList(rBean);
+			String reviewRatingAvg = reviewService.selectReviewRatingAvg(rBean);
+			if (reviewRatingAvg == null) reviewRatingAvg = "0.0";
+			else reviewRatingAvg = String.format("%.1f", Double.parseDouble(reviewRatingAvg));
+			if (reviewList.size() > 0) {
+				resMap.put("reviewList", reviewList);
+				resMap.put("reviewRatingAvg", reviewRatingAvg);
+				resMap.put("result", "ok");
+				resMap.put("dlBean", dlBean);
+				resMap.put("resultMsg", "리뷰 조회에 성공하였습니다.");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return resMap;
 	} // end of selectRestaProc
-	
-	
+
+
 	/**
 	 * 모임리뷰 등록
 	 * @param reviewBean
@@ -161,15 +161,15 @@ public class RestaController {
 		Map<String, Object> resMap = new HashMap<String, Object>();
 		resMap.put("result", "fail");
 		resMap.put("resultMsg", "모임리뷰 등록에 실패하였습니다.");
-		
+
 		reviewService.insertReview(reviewBean);
-		
+
 		// TODO 안드로이드에서 DaumLocalBean 처리 이후 등록가능
-//		insertRestaProc(dBean);
+		//		insertRestaProc(dBean);
 		return resMap;
 	}
-	
-	
+
+
 	/**
 	 * 개인리뷰 등록
 	 * @param reviewBean
@@ -179,67 +179,71 @@ public class RestaController {
 		Map<String, Object> resMap = new HashMap<String, Object>();
 		resMap.put("result", "fail");
 		resMap.put("resultMsg", "모임리뷰 등록에 실패하였습니다.");
-		
-		
+
+
 		return resMap;
 	}
-	
-	
-	
+
+
+
 	/***** 맛집DB 이용 *****/
-	
+
 	// 서비스 선언
 	@Autowired
 	private RestaService restaService;
-	
+
 	// 맛집정보 조회
 	@RequestMapping("/resta/selectRestaProcDB")
 	@ResponseBody
-	public Map<String, Object> selectResta(DaumLocalBean dBean) {
-		
+	public Map<String, Object> selectRestaProcDB(DaumLocalBean dBean) {
+
 		Map<String, Object> resMap = new HashMap<String, Object>();
-		
+
 		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
 		resMap.put(Constants.RESULT_MSG, "맛집정보 조회에 실패 하였습니다.");
-		
+
 		try {
 			DaumLocalBean bean = restaService.selectResta(dBean);
-			
+
 			if(bean != null) {
 				resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
 				resMap.put(Constants.RESULT_MSG, "맛집정보 조회에 성공 하였습니다.");
 				resMap.put("restaBean", bean);
 			}
-			
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return resMap;
 	}
-	
+
 	// 맛집정보 등록
 	@RequestMapping("/resta/insertRestaProc")
 	@ResponseBody
 	public Map<String, Object> insertRestaProc(DaumLocalBean bean){
-		
+
 		Map<String, Object> resMap = new HashMap<String, Object>();
-		
+
 		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
 		resMap.put(Constants.RESULT_MSG, "맛집정보 등록에 실패 하였습니다.");
-		
+
 		try {
-			int res = restaService.insertResta(bean);
-			if(res > 0){
-				resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
-				resMap.put(Constants.RESULT_MSG, "맛집정보 등록에 성공 하였습니다.");
+
+			DaumLocalBean dBean = restaService.selectResta(bean);
+			if(dBean == null){
+				int res = restaService.insertResta(bean);
+				if(res > 0){
+					resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+					resMap.put(Constants.RESULT_MSG, "맛집정보 등록에 성공 하였습니다.");
+				}
 			}
 		}catch (Exception e) {
-			
+
 		}
 		return resMap;
 	}
-	
+
 	/** P : 음식점 구독 처리 AngularJS **/
 	@RequestMapping("/resta/insertSubsRestaProc")
 	@ResponseBody
@@ -249,11 +253,11 @@ public class RestaController {
 		resMap.put(Constants.RESULT_MSG, "모임 구독을 실패했습니다");
 		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
 		dlBean.setHasSubsResta("false");
-		
+
 		// 현재 로그인된 멤버 ID로 모임 구독하기
 		MemberBean mBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
 		dlBean.setMemberNo(mBean.getMemberNo());
-		
+
 		// Service Call : 멤버 ID+모임 번호 받아서 모임 구독 처리하기
 		int res = restaService.insertSubsResta(dlBean);
 		if (res > 0) {
@@ -266,7 +270,7 @@ public class RestaController {
 		// 원래 페이지로 돌아가서, 성공 시 UI를 모임 구독 중이라는 표시로 변경해주기
 		return resMap;
 	}
-	
+
 	/** P : 모임 구독 해제 처리 AngularJS */
 	@RequestMapping("/resta/deleteSubsRestaProc")
 	@ResponseBody
@@ -276,11 +280,11 @@ public class RestaController {
 		resMap.put(Constants.RESULT_MSG, "모임 구독 해제를 실패했습니다");
 		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
 		dlBean.setHasSubsResta("true");
-		
+
 		// 현재 로그인된 멤버 ID로 모임 구독하기
 		MemberBean mBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
 		dlBean.setMemberNo(mBean.getMemberNo());
-		
+
 		// Service Call : 멤버 ID+모임 번호 받아서 모임 구독 해제 처리하기
 		int res = restaService.deleteSubsResta(dlBean);
 		if (res > 0) {
@@ -293,13 +297,13 @@ public class RestaController {
 		// 원래 페이지로 돌아가서, 성공 시 UI를 모임 구독 해제되어있는 표시로 변경해주기
 		return resMap;
 	}
-	
+
 	/** F : (임시) 내 구독 모임 보기 */
 	@RequestMapping("/resta/selectSubsRestaForm")
 	public String selectSubsRestaForm() {
 		return "/resta/selectSubsRestaForm";
 	}
-	
+
 	/** P : 내 구독 모임 조회 */
 	@RequestMapping("/resta/selectSubsRestaProc")
 	@ResponseBody
@@ -323,7 +327,7 @@ public class RestaController {
 		}
 		return resMap;
 	}
-	
+
 } // end of class
 
 
