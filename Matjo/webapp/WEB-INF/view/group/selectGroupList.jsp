@@ -83,8 +83,8 @@
                         <!-- 페이지 -->
                         <div class="paging">
                             <div class="paging_number">
-                                <span ng-if="pBean.groupNo > 1">
-									<a ng-if="pBean.groupNo > 1" ng-click="selectGroupList(pBean.startNo-1)">&lt; 이전 </a>
+                                <span ng-if="pBean.pageGroupNo > 1">
+									<a ng-if="pBean.pageGroupNo > 1" ng-click="selectGroupList(pBean.startNo-1)">&lt; 이전 </a>
 								</span>
 								<span ng-repeat="n in [].constructor(pBean.totalPageCount) track by $index">
 									<a style="cursor:pointer;" ng-click="selectGroupList($index+1)" >
@@ -93,7 +93,7 @@
 									&nbsp;
 								</span>
 								<span>
-									<a ng-if="pBean.groupNo < pBean.totalGroupCount" ng-click="selectGroupList(pBean.endNo+1)">다음 &gt;</a>
+									<a ng-if="pBean.pageGroupNo < pBean.totalGroupCount" ng-click="selectGroupList(pBean.endNo+1)">다음 &gt;</a>
 								</span>
                             </div>
                         </div>
