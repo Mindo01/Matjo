@@ -88,12 +88,10 @@ public class InquiryController {
 
 			try {
 				
-				MemberBean memberBean = 
-					(MemberBean)req.getSession()
-					.getAttribute(Constants.MEMBER_LOGIN_BEAN);
-				if(memberBean != null) {
-					inquiryBean.setMemberId( memberBean.getMemberId() );
-				}
+//				MemberBean memberBean = (MemberBean)req.getSession().getAttribute(Constants.MEMBER_LOGIN_BEAN);
+//				if(memberBean != null) {
+//					inquiryBean.setInquiryMember(Constants.MEMBER_LOGIN_BEAN);
+//				}
 				int res = inquiryService.inquiryInsert(inquiryBean);
 				if(res > 0) {
 					resMap.put(Constants.RESULT, Constants.RESULT_OK);
@@ -118,6 +116,8 @@ public class InquiryController {
 		pagingBean.calcPage(totRecord);
 		
 		List<InquiryBean> list = inquiryDao.selectInquiryList(pagingBean);
+		System.out.println("getInquiryNo()" + list.get(0).getInquiryNo());
+		System.out.println("getInquiryMember()" + list.get(0).getInquiryMember());
 		model.addAttribute("inquiryList", list);
 		model.addAttribute("pBean", pagingBean);
 		return "/inquiry/selectInquiryList";

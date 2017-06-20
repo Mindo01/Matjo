@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.matjo.web.common.AddressCityAPI;
 import com.matjo.web.common.AddressLocalAPI;
+import com.matjo.web.common.Constants;
 import com.matjo.web.common.bean.AddressBean;
 import com.matjo.web.member.bean.MemberBean;
 
@@ -54,4 +55,15 @@ public class IndexController {
 		return resMap;
 	}
 	
+//	//네이버로 로그인(세션에 로그인한 값 저장)
+//	@RequestMapping("/member/memberNaverLogin.do")
+//	@ResponseBody
+//	public Map<String, Object> memberNaverLogin(MemberBean memberBean) {
+//		Map<String, Object> resMap = new HashMap<String, Object>();
+//		memberBean = 
+//				(MemberBean)req.getSession()
+//				.getAttribute(Constants.MEMBER_LOGIN_BEAN);
+//		return resMap;
+//		
+//	}
 }

@@ -21,7 +21,7 @@ public class InquiryServiceImpl implements InquiryService {
 		//게시글 상세보기
 		@Override
 		public InquiryBean selectInquiryInfo(InquiryBean inquiryBean){
-			InquiryBean bb = new InquiryBean( inquiryBean.getInquiryNo(), null );
+			InquiryBean bb = new InquiryBean( inquiryBean.getInquiryNo(), inquiryBean.getInquiryMember() );
 			InquiryBean inquiry = inquiryDao.selectInquiry(bb);
 			
 			Map<String, Object> resMap = new HashMap<String, Object>();

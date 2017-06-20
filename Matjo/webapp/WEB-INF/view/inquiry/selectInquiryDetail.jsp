@@ -47,14 +47,14 @@
 						
 						//글 작성한 회원만이 수정 삭제 가능하도록 변경
 						var buttonOfMember = document.getElementById('buttonOfMember');
-						if("${sessionScope.memberLoginBean.memberId}" == $("#inquiryMember")){
+						if("${sessionScope.memberLoginBean.memberNo}" == inquiry.inquiryMember){
 							buttonOfMember.style.visibility="visible";
 						}else{
 							buttonOfMember.style.visibility="hidden";
 						}
 						
 						$("#inquiryNo").text(inquiry.inquiryNo);
-						$("#inquiryMember").text(inquiry.inquiryMember);
+						$("#inquiryMemberName").text(inquiry.inquiryMemberName);
 						$("#inquiryTitle").text( inquiry.inquiryTitle );
 						$("#inquiryContent").text( inquiry.inquiryContent );
 						$("#inquiryCnt").text( inquiry.inquiryCnt );
@@ -167,7 +167,7 @@
                                         </tr>
                                         <tr>
                                             <th>작성자</th>
-                                            <td><span id="inquiryMember"></span></td>
+                                            <td><span id="inquiryMemberName"></span></td>
                                             <td colspan="2">
                                               <span id="inquiryDate"></span> 
                                             </td>
