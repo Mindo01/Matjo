@@ -20,9 +20,11 @@ function NewsController($rootScope, $scope, NewsService){
     
     // 뉴스피드 목록 조회
     $scope.selectNewsFeedProc = function() {
-    	
+    	$scope.pBean = {
+    		pageNo: -1
+    	};
     	// 조회하기
-    	NewsService.selectNewsFeedProc().then(function(data) {
+    	NewsService.selectNewsFeedProc($scope.pBean).then(function(data) {
     		console.log( JSON.stringify(data));
     		$scope.newsFeedList = data.newsFeedList;
     	});

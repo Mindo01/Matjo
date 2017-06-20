@@ -25,7 +25,7 @@
 		}
 		
 		var buttonOfMember = document.getElementById('buttonOfMember');
-		if("${sessionScope.memberLoginBean.memberId}" != null){
+		if("${sessionScope.memberLoginBean.memberId}" != ''){
 			buttonOfMember.style.visibility="visible";
 		}else{
 			buttonOfMember.style.visibility="hidden";
@@ -53,8 +53,8 @@
 				<section>
 					<div class="notice">
 						<div>
-							<button type="button" class="sch_smit" id="buttonOfMember" onclick="javascript:location.href='/inquiry/insertInquiryForm.do';">글쓰기</button>
-							<button type="button" class="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryList.do';">목록</button>
+						<button type="button" class="sch_smit" onclick="javascript:location.href='/inquiry/selectInquiryList.do';">목록</button>
+							<button type="button" class="sch_smit" id="buttonOfMember" style="visibility:hidden;" onclick="javascript:location.href='/inquiry/insertInquiryForm.do';">글쓰기</button>
 						</div>
 						<br/>
 						<table>
@@ -80,7 +80,7 @@
 							<tr>
 									<td>${bean.inquiryNo}</td>
 									<td><a href="/inquiry/selectInquiryDetail.do?inquiryNo=${bean.inquiryNo}">${bean.inquiryTitle}</a></td>
-									<td>${sessionScope.memberLoginBean.memberId}</td>
+									<td>${bean.inquiryMemberName}</td>
 									<td>${bean.inquiryCnt}</td>
 									<td><span style="font-size: 11px;">${bean.inquiryDate}</span></td>
 									<td><span style="font-size: 11px;">${bean.inquiryUpdate}</span></td>

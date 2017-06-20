@@ -6,12 +6,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.matjo.web.common.Constants;
 import com.matjo.web.common.bean.NewsFeedBean;
+import com.matjo.web.common.bean.PagingBean;
 import com.matjo.web.common.service.NewsFeedService;
 
 @Controller
@@ -29,12 +29,12 @@ public class NewsFeedController {
 	/** P : 뉴스피드 목록 조회 */
 	@RequestMapping("/newsfeed/selectNewsFeedProc")
 	@ResponseBody
-	public Map<String, Object> selectNewsFeedProc() {
+	public Map<String, Object> selectNewsFeedProc(PagingBean pBean) {
 		Map<String, Object> resMap = new HashMap<String, Object>();
 		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
 		resMap.put(Constants.RESULT_MSG, "뉴스피드 목록 조회에 실패했습니다.");
 		
-		List<NewsFeedBean> newsFeedList = newsFeedService.selectNewsFeedList();
+		List<NewsFeedBean> newsFeedList = newsFeedService.selectNewsFeedList(pBean);
 		if (newsFeedList != null) {
 			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
 			resMap.put(Constants.RESULT_MSG, "뉴스피드 목록 조회에 성공했습니다.");

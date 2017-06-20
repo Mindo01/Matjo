@@ -47,14 +47,14 @@
 						
 						//글 작성한 회원만이 수정 삭제 가능하도록 변경
 						var buttonOfMember = document.getElementById('buttonOfMember');
-						if("${sessionScope.memberLoginBean.memberId}" == $("#inquiryMember")){
+						if("${sessionScope.memberLoginBean.memberNo}" == inquiry.inquiryMember){
 							buttonOfMember.style.visibility="visible";
 						}else{
 							buttonOfMember.style.visibility="hidden";
 						}
 						
 						$("#inquiryNo").text(inquiry.inquiryNo);
-						$("#inquiryMember").text(inquiry.inquiryMember);
+						$("#inquiryMemberName").text(inquiry.inquiryMemberName);
 						$("#inquiryTitle").text( inquiry.inquiryTitle );
 						$("#inquiryContent").text( inquiry.inquiryContent );
 						$("#inquiryCnt").text( inquiry.inquiryCnt );
@@ -148,9 +148,9 @@
 			<article id="main" class="special">
 				<section>
                     <div class="notice">
-                     <div class="other_btn">
-                     <button id="buttonOfMember" type = "button" class="sch_smit" style="visibility:hidden;" onclick="updateInquiryPage();">수정</button>
-						&nbsp;<button id="buttonOfMember" type="button"  class="sch_smit" style="visibility:hidden;" onclick="inquiryDelete(); return false;">삭제</button>
+                     <div class="other_btn" id="buttonOfMember">
+                     <button type = "button" class="sch_smit"  onclick="updateInquiryPage();">수정</button>
+						&nbsp;<button type="button"  class="sch_smit"  onclick="inquiryDelete(); return false;">삭제</button>
                              </div>
                                 <table class="detail">
                                        <colgroup>
@@ -167,7 +167,7 @@
                                         </tr>
                                         <tr>
                                             <th>작성자</th>
-                                            <td><span id="inquiryMember"></span></td>
+                                            <td><span id="inquiryMemberName"></span></td>
                                             <td colspan="2">
                                               <span id="inquiryDate"></span> 
                                             </td>
