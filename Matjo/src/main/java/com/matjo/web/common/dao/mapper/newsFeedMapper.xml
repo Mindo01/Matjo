@@ -12,6 +12,7 @@
 		  review_no AS reviewNo,
 		  review_resta_name AS restaName,
 		  review_resta_cate AS restaCate,
+		  (SELECT resta_img FROM resta WHERE resta_id = review.review_resta_no) AS imgPath,
 		  review_date AS regDate,
 		  2 AS type,
 		  '리뷰가' AS typeMsg
@@ -24,6 +25,7 @@
 		  , null
 		  , null
 		  , null
+		  ,group_img AS imgPath
 		  ,group_date AS regDate
 		  ,1 AS type
 		  ,'새 모임이' AS typeMsg

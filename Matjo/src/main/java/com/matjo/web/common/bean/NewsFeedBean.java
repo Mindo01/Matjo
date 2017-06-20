@@ -7,6 +7,7 @@ public class NewsFeedBean {
 	private String reviewNo;	// 리뷰 번호	//리뷰
 	private String restaName;	// 업소 이름	//리뷰
 	private String restaCate;	// 업소 카테고리	//리뷰
+	private String imgPath;		// 이미지경로	//모임//리뷰
 	private String regDate;		// 날짜시간	//모임//리뷰
 	
 	private String type;		// 종류번호 - 모임:1/리뷰:2
@@ -48,6 +49,12 @@ public class NewsFeedBean {
 	}
 	public void setRestaCate(String restaCate) {
 		this.restaCate = restaCate;
+	}
+	public String getImgPath() {
+		return imgPath;
+	}
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
 	}
 	public String getRegDate() {
 		return regDate;
