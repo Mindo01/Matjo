@@ -99,11 +99,11 @@
 							<section>
                                 <div class="notice">
                                    <div class="other_btn">
+                                    <button type="button" class="sch_smit" onclick="location.href='/notice/selectNoticeList.do'">목록</button>
                                        <div style="visibility:visible;" id="insertNoticeButton">
+                                       <button type="button" class="sch_smit"  onclick="updateNoticePage();">수정하기</button>
                                         <button type="button" class="sch_smit" onclick="noticeDelete(); return false;">삭제하기</button>
-                                        <button type="button" class="sch_smit"  onclick="updateNoticePage();">수정하기</button>
                                         </div>
-                                        <button type="button" class="sch_smit" onclick="location.href='/notice/selectNoticeList.do'">목록</button>
                                     </div>
                                     <table class="detail">
                                        <colgroup>
