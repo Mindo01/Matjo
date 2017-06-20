@@ -107,6 +107,9 @@
 			<if test="memberImg != null and memberImg != ''">
 			,member_img = #{memberImg}
 			</if>
+			<if test="memberToken != null and memberToken != ''">
+			,member_token = #{memberToken}
+			</if>
 		WHERE
 			member_id = #{memberId}
 	</update>

@@ -51,7 +51,7 @@ public class DaumUtils {
 					+ "&image=only"
 					+ "&sort=1"
 					+ "&count" + 15 // 한 페이지가 갖는 아이템 갯수
-					+ "&page=" + (pagingBean.getPageNo())
+					+ "&page=" + (pagingBean.getPageNo() < 1 ? 1: pagingBean.getPageNo())
 					+ ( (pagingBean.getLocation() != null && pagingBean.getLocation() != "," && pagingBean.getLocation() != "null") ? "&location=" + pagingBean.getLocation() : "") // 위치값
 					+ ( (pagingBean.getRadius() > 0) ? "&radius=" + (pagingBean.getRadius()*1000) : "" ) // 반경값
 					+ "&query=" + URLEncoder.encode(pagingBean.getSearchText(), "UTF-8");

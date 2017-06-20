@@ -20,6 +20,7 @@ public class MemberBean {
 	private String memberAnswer;
 	private String memberDate;
 	private String memberImg;
+	private String memberToken;
 	
 	public String getMemberNo() {
 		return memberNo;
@@ -87,5 +88,11 @@ public class MemberBean {
 	public void setMemberImg(String memberImg) {
 		this.memberImg = memberImg;
 	}
-
+	public String getMemberToken() {
+		return memberToken;
+	}
+	public void setMemberToken(String memberToken) {
+		this.memberToken = memberToken;
+	}
+	
 }
