@@ -148,9 +148,9 @@
 			<article id="main" class="special">
 				<section>
                     <div class="notice">
-                     <div class="other_btn">
-                     <button id="buttonOfMember" type = "button" class="sch_smit" style="visibility:hidden;" onclick="updateInquiryPage();">수정</button>
-						&nbsp;<button id="buttonOfMember" type="button"  class="sch_smit" style="visibility:hidden;" onclick="inquiryDelete(); return false;">삭제</button>
+                     <div class="other_btn" id="buttonOfMember">
+                     <button type = "button" class="sch_smit"  onclick="updateInquiryPage();">수정</button>
+						&nbsp;<button type="button"  class="sch_smit"  onclick="inquiryDelete(); return false;">삭제</button>
                              </div>
                                 <table class="detail">
                                        <colgroup>
