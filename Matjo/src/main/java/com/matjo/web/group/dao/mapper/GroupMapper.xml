@@ -62,7 +62,9 @@
 	    	<if test="searchType == 'group_content'">
 	    	    AND group_info like CONCAT('%', #{searchText}, '%') 
 	    	</if>
+	    <if test="pageNo != -1">
 	    LIMIT #{startRow}, #{endRow}
+	    </if>
     </select>
     
 	<!-- SELECT : COUNT(*) 모임 전체 개수 조회 -->

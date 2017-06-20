@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.matjo.web.common.dao.NewsFeedDao">
+
+    <select id="selectNewsFeedList" resultType="newsFeedBean">
+    	SELECT
+		  review_group AS groupNo,
+		  (SELECT group_name FROM groups WHERE group_no = review.review_group) AS groupName,
+		  null AS groupLeader,
+		  review_no AS reviewNo,
+		  review_resta_name AS restaName,
+		  review_resta_cate AS restaCate,
+		  review_date AS regDate,
+		  2 AS type,
+		  '리뷰가' AS typeMsg
+		FROM review
+		UNION
+		SELECT  
+		  group_no AS groupNo
+		  , group_name AS groupName
+		  , (SELECT member_name FROM member WHERE member_no = groups.group_leader) AS groupLeader
+		  , null
+		  , null
+		  , null
+		  ,group_date AS regDate
+		  ,1 AS type
+		  ,'새 모임이' AS typeMsg
+		FROM groups
+		ORDER BY regDate DESC
+    </select>
+    
+</mapper>

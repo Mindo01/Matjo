@@ -5,7 +5,7 @@
 
 <mapper namespace="com.matjo.web.review.dao.ReviewDao">
 
-	<!-- 회원 목록 조회 -->
+	<!-- 리뷰 목록 조회 -->
 	<sql id="reviewColumns">
 		review_no AS reviewNo,
 		review_group AS reviewGroupNo,
@@ -19,6 +19,38 @@
 			WHERE review.review_group = groups.group_no
 		) AS reviewGroupName
 	</sql>
+	
+	<!-- 리뷰 1건 조회 -->
+	<select id="selectReview" parameterType="reviewBean" resultType="reviewBean">
+	    SELECT
+	    <include refid="reviewColumns" />
+		<!-- 리뷰 좋아요 개수 -->
+		, (
+			SELECT
+				COUNT(*)
+			FROM
+  				likes
+			WHERE
+				like_review = review.review_no
+		) AS reviewLike
+		<!-- 회원 기준 해당 리뷰 좋아요 여부 -->
+		<if test='reviewNowMember != null and reviewNowMember != ""'>
+		, (
+			SELECT
+				COUNT(*)
+			FROM
+				likes
+			WHERE
+				like_review = review.review_no
+				AND
+				like_member = #{reviewNowMember}
+		) AS reviewHasLike
+		</if>
+		FROM
+			review
+		WHERE
+			review_no = #{reviewNo}
+	</select>
 
 	<!-- 리뷰 목록 조회(음식점 기준) -->
 	<!-- id 명시적으로 바꿔야함 -->

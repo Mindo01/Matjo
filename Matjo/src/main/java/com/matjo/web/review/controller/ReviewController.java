@@ -98,6 +98,29 @@ public class ReviewController {
 		return resMap;
 	}
 	
+	/** P : 모임리뷰 1건 조회 */
+	@RequestMapping("/review/selectReviewProc")
+	@ResponseBody
+	public Map<String, Object> selectReviewProc(ReviewBean reviewBean) {
+		
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		resMap.put("result", "fail");
+		resMap.put("resultMsg", "모임리뷰 조회에 실패 하였습니다.");
+		
+		try {
+			ReviewBean rBean = reviewService.selectReview(reviewBean);
+			if (rBean != null) {
+				resMap.put("result", "ok");
+				resMap.put("resultMsg", "모임리뷰 조회에 성공 하였습니다.");
+				resMap.put("reviewBean", rBean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return resMap;
+	}
+	
 	
 } // end of class
 

@@ -8,11 +8,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="/resources/assets/css/mj-custom.css" />
 		<link rel="stylesheet" href="/resources/assets/css/mj-responsive.css" />
-		<script type="text/javascript" src="/js/group/groupApp.js"></script>
-		<script type="text/javascript" src="/js/group/groupController.js"></script>
+		<script type="text/javascript" src="/js/news/newsApp.js"></script>
+		<script type="text/javascript" src="/js/news/newsController.js"></script>
 	</head>
 	<body class="no-sidebar">
-	<div ng-modules="groupApp" ng-controller="GroupController" ng-init="initValues('${param.searchText}')">
+	<div ng-modules="newsApp" ng-controller="NewsController" ng-init="selectNewsFeedProc()">
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -37,47 +37,53 @@
                                      <table>
                                          <colgroup>
                                              <col width="10%">
-                                             <col width="20%">
                                              <col width="*">
+                                             <col width="20%">
+                                             <col width="20%">
                                              <col width="10%">
-                                             <col width="10%">
-                                             <col width="8%">
                                          </colgroup>
                                          <tr>
                                              <th>번호</th>
-                                             <th>모임명</th>
-                                             <th>모임소개</th>
-                                             <th>모임장</th>
-                                             <th>인원수</th>
+                                             <th>뉴스피드 메시지</th>
+                                             <th>정보1</th>
+                                             <th>정보2</th>
+                                             <th>일시</th>
                                          </tr>
-                                         <tr ng-repeat="grp in gList">
-											<td>{{ grp.groupNo }}</td>
-											<td>{{ grp.groupName }}</td>
-											<td><a style="cursor:pointer;" ng-click="selectGroupDetailView(grp.groupNo)">{{ grp.groupInfo }}</a></td>
-											<td>{{ grp.groupLeader }}</td>
-											<td>{{ grp.groupSize }}</td>
+                                         <tr ng-repeat="nBean in newsFeedList">
+                                         	<!-- 고유번호 : 모임번호 -->
+											<td>{{ nBean.groupNo }}</td>
+											<!-- 메시지 -->
+											<td ng-if="nBean.type == 1">
+												<a style="cursor:pointer;" ng-click="">
+												{{ nBean.typeMsg }} 등록되었습니다.
+												</a>
+											</td>
+											<td ng-if="nBean.type == 2">
+												<a style="cursor:pointer;" ng-click="">
+												[{{nBean.groupName}}]의 {{ nBean.typeMsg }} 등록되었습니다.
+												</a>
+											</td>
+											<!-- 정보1 -->
+											<td ng-if="nBean.type == 1">
+												모임 [{{ nBean.groupName}}]
+											</td>
+											<td ng-if="nBean.type == 2">
+												업소 [{{ nBean.restaName}}]
+											</td>
+											<!-- 정보2 -->
+											<td ng-if="nBean.type == 1">
+												모임장 {{nBean.groupLeader}}
+											</td>
+											<td ng-if="nBean.type == 2"></td>
+											<!-- 일시 -->
+											<td>{{ nBean.regDate }}</td>
 										</tr>
                                      </table>
 							     </div>
 							</section>
 						</article>
                         <!-- 페이지 -->
-                        <div class="paging">
-                            <div class="paging_number">
-                                <span ng-if="pBean.groupNo > 1">
-									<a ng-if="pBean.groupNo > 1" ng-click="selectGroupList(pBean.startNo-1)">&lt; 이전 </a>
-								</span>
-								<span ng-repeat="n in [].constructor(pBean.totalPageCount) track by $index">
-									<a style="cursor:pointer;" ng-click="selectGroupList($index+1)" >
-									[{{ $index + 1 }}]
-									</a>
-									&nbsp;
-								</span>
-								<span>
-									<a ng-if="pBean.groupNo < pBean.totalGroupCount" ng-click="selectGroupList(pBean.endNo+1)">다음 &gt;</a>
-								</span>
-                            </div>
-                        </div>
+                        
                         
 						<hr />
 					</div>

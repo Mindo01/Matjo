@@ -6,6 +6,9 @@ import com.matjo.web.review.bean.ReviewBean;
 
 public interface ReviewDao {
 	
+	// 모임 리뷰 1건 조회
+	public ReviewBean selectReview(ReviewBean reviewBean);
+	
 	public List<ReviewBean> selectReviewList(ReviewBean reviewBean);
 	
 	// 그룹 기준의 리뷰목록 조회
