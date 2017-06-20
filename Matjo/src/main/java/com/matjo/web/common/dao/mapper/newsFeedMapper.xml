@@ -6,7 +6,7 @@
 
     <select id="selectNewsFeedList" parameterType="pagingBean" resultType="newsFeedBean">
     	SELECT
-		  review_group AS groupNo,
+		  review_resta_no AS groupNo,
 		  (SELECT group_name FROM groups WHERE group_no = review.review_group) AS groupName,
 		  null AS groupLeader,
 		  review_no AS reviewNo,

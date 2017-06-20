@@ -8,12 +8,23 @@ newsApp.factory("NewsService", function($http) {
    var service = {};
    
    service.selectNewsFeedProc = selectNewsFeedProc;
+   service.selectNewsFeedDetail = selectNewsFeedDetail;
    return service;
    
-   //모임 목록 조회
+   //뉴스피드 목록 조회
    function selectNewsFeedProc(objParam) {
 	   return $http({
 		   url: "/newsfeed/selectNewsFeedProc.do",
+		   method: "post",
+		   data : json2PostParams(objParam),
+		   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	   }).then(handleSuccess, handleError);
+   }
+   
+   // 뉴스피드 상세 보기
+   function selectNewsFeedDetail(objParam) {
+	   return $http({
+		   url: "/newsfeed/selectNewsFeedDetail.do",
 		   method: "post",
 		   data : json2PostParams(objParam),
 		   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
