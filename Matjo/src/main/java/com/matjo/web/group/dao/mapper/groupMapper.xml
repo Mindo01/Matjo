@@ -164,4 +164,17 @@
         	group_leader = #{groupLeader}
     </select>
     
+    <!-- SELECT : 그룹의 소속 회원인지 조회 (그룹번호와 회원번호 이용)-->
+    <select id="checkMember" parameterType="groupBean" resultType="groupBean">
+        SELECT
+        	mygroup_member AS memberNo,
+        	mygroup_group AS groupNo
+        FROM
+        	mygroup
+        WHERE
+        	mygroup_member = #{memberNo} 
+        	AND
+        	mygroup_group = #{groupNo}
+    </select>
+    
 </mapper>

@@ -367,4 +367,26 @@ public class GroupController {
 		return resMap;
 	}
 	
+	/** 소속회원 1명조회 (개인리뷰 등록 시 모임소속인지 체크할 때) **/
+	@RequestMapping("/android/checkMemberProc")
+	@ResponseBody
+	public Map<String, Object> checkMemberProc(GroupBean gBean) {
+		
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		resMap.put(Constants.RESULT_MSG, "소속모임원 조회에 실패 하였습니다.");
+		
+		try {
+			GroupBean bean = groupService.checkMember(gBean);
+			if (bean != null) {
+				resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+				resMap.put(Constants.RESULT_MSG, "소속모임원 조회에 성공 하였습니다.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return resMap;
+	}
+	
 }
