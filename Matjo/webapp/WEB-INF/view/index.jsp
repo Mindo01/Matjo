@@ -44,10 +44,16 @@
             });
         });
    		function insertPromotion() {
-			var promotionForm = document.getElementById("insertPromotion");
-			promotionForm.method = "post";
-			promotionForm.action = "/promotion/promotionInsertProcAjax.do";
-			promotionForm.submit();
+   			if("${sessionScope.memberLoginBean.memberId}"!=''){
+				var promotionForm = document.getElementById("insertPromotion");
+				promotionForm.method = "post";
+				promotionForm.action = "/promotion/promotionInsertProcAjax.do";
+				promotionForm.submit();
+   			}else{
+   				alert("로그인하신 후, 프로모션을 등록 해 주세요");
+   				return;
+   			}
+   			
 		}
 		
     </script>
