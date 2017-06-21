@@ -79,7 +79,7 @@
                                         <tr>
                                             <th>제목</th>
                                             <td colspan="2">
-                                                <input type="text" id="noticeTitle" maxlength="16" required autofocus/>
+                                                <input type="text" id="noticeTitle" maxlength="49" required autofocus/>
                                             </td>
                                         </tr>
                                          <tr>

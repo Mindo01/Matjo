@@ -43,7 +43,7 @@ public class NewsFeedController {
 		return resMap;
 	}
 	
-	/** P : 클릭 시 자동 매핑 - 모임 혹은 리뷰 검색으로 연결해주기
+	/** P : (임시) 클릭 시 자동 매핑 - 모임 혹은 리뷰 검색으로 연결해주기
 	 * @param nBean nBean의 모든 내용과 type!은 꼭 보내주기
 	 * @return
 	 */
@@ -64,4 +64,5 @@ public class NewsFeedController {
 		// 그냥 목록으로 돌아가기
 		return "/newsfeed/selectNewsFeed";
 	}
+	
 }

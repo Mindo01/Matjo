@@ -27,9 +27,9 @@
 				<ul>
 					<li><a href="/index.do">맛조?</a>
 						<ul>
-							<li><a href="showService.html">서비스 소개</a></li>
-							<li><a href="showHistory.html">히스토리</a></li>
-							<li><a href="showMembers.html">멤버</a></li>
+							<li><a href="/matjoview/matjoIntroduction.do">서비스 소개</a></li>
+							<li><a href="/matjoview/matjoHistory.do">히스토리</a></li>
+							<li><a href="/matjoview/matjoMemberList.do">멤버</a></li>
 						</ul></li>
 					<li><a href="/rank/selectRankForm.do">랭크</a></li>
 					<li><a href="promotion/selectPromo.do">프로모션</a></li>

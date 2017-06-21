@@ -17,6 +17,8 @@ public interface GroupDao {
 	public GroupBean selectGroupDetail(GroupBean gBean);
 	/** SELECT : 모임 소속 회원 목록 조회 */
 	public List<MemberBean> selectGroupMember(GroupBean gBean);
+	/** SELECT : 회원이 소속된 모임 목록 조회(내 모임 조회) */
+	public List<GroupBean> selectMemberGroup(MemberBean mBean);
 	/** SELECT : 모임장 조회 */
 	public List<GroupBean> checkLeader(GroupBean gBean);
 	/** SELECT : 소속회원조회(1명)**/

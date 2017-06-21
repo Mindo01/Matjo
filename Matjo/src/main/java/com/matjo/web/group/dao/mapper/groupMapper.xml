@@ -158,6 +158,21 @@
 		ORDER BY mygroup_date
     </select>
     
+    <!-- SELECT : 내 모임 조회 (회원이 소속된 모임 목록 조회) -->
+    <select id="selectMemberGroup" parameterType="memberBean" resultType="groupBean">
+        SELECT
+        	<include refid="groupsColumns"/>
+	    	, (SELECT member_name FROM member WHERE member.member_no = groups.group_leader) AS groupLeader
+	    	, (SELECT COUNT(*) FROM mygroup WHERE mygroup_group = groups.group_no) AS groupSize
+	    FROM
+	    	groups
+	    WHERE
+	    	group_no IN 
+	    	(
+	    		SELECT mygroup_group FROM mygroup WHERE mygroup_member = #{memberNo}
+			)
+    </select>
+    
     <!-- SELECT : 모임명으로 조회 -->
     <select id="selectGroupByName" parameterType="groupBean" resultType="groupBean">
         SELECT

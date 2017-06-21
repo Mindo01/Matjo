@@ -28,6 +28,8 @@ public interface GroupService {
 	public int selectGroupByName(GroupBean gBean);
 	/** 모임 가입 신청 */
 	public int insertGroupApply(GroupBean gBean);
+	/** 모임 가입 현황 조회(중복체크시 필요) **/
+	public GroupBean selectApply(GroupBean gBean);
 	/** 모임가입 */
 	public int insertGroupMember(GroupBean gBean);
 	/** 모임 구독 */

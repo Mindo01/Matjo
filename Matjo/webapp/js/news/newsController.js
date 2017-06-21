@@ -30,4 +30,9 @@ function NewsController($rootScope, $scope, NewsService){
     	});
     };
     
+    // 뉴스피드 상세 조회
+    $scope.selectNewsFeedDetail = function() {
+    	
+    }
+    
 };// end controller

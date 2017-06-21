@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,7 +60,7 @@ public class IndexController {
 //	//네이버로 로그인(세션에 로그인한 값 저장)
 //	@RequestMapping("/member/memberNaverLogin.do")
 //	@ResponseBody
-//	public Map<String, Object> memberNaverLogin(MemberBean memberBean) {
+//	public Map<String, Object> memberNaverLogin(MemberBean memberBean, HttpServletRequest req) {
 //		Map<String, Object> resMap = new HashMap<String, Object>();
 //		memberBean = 
 //				(MemberBean)req.getSession()

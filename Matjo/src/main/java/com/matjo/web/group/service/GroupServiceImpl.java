@@ -89,11 +89,10 @@ public class GroupServiceImpl implements GroupService {
 		return groupDao.checkLeader(gBean);
 	}
 
-	/** 회원이 소속된 모임들 조회 */
+	/** 내 모임 조회 : 회원이 소속된 모임들 조회 */
 	@Override
 	public List<GroupBean> selectMemberGroup(MemberBean mBean) {
-		// TODO Auto-generated method stub
-		return null;
+		return groupDao.selectMemberGroup(mBean);
 	}
 
 	/** 새모임등록 */
@@ -176,6 +175,11 @@ public class GroupServiceImpl implements GroupService {
 	public GroupBean checkMember(GroupBean gBean) {
 		return groupDao.checkMember(gBean);
 	}
-
+	
+	/** 모임 가입신청 현황 **/
+	@Override
+	public GroupBean selectApply(GroupBean gBean) {
+		return commonGroupDao.selectApply(gBean);
+	}
 	
 }

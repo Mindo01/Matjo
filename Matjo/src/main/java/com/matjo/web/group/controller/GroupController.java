@@ -136,6 +136,28 @@ public class GroupController {
 		return resMap;
 	}
 	
+	/** P : 내 모임 조회 처리 */
+	@RequestMapping("/group/selectMemberGroupProc")
+	@ResponseBody
+	public Map<String, Object> selectMemberGroupProc(MemberBean mBean) {
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		// 기본 설정 : 실패
+		resMap.put(Constants.RESULT_MSG, "내 모임 목록 조회에 실패했습니다");
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		
+		// Service Call : 회원 고유번호 받아서 내 모임 목록 조회
+		List<GroupBean> groupList = groupService.selectMemberGroup(mBean);
+		if (groupList != null && groupList.size() > 0) {
+			// 내 모임 목록 resMap에 담아 보내기
+			resMap.put("groupList", groupList);
+			// 성공 설정
+			resMap.put(Constants.RESULT_MSG, "내 모임 목록 조회에 성공했습니다");
+			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+		}
+		resMap.put("mBean", mBean);
+		return resMap;
+	}
+	
 	
 	/** F : (임시) 새 모임 등록 화면 */
 	@RequestMapping("/group/insertGroupForm")
@@ -225,6 +247,34 @@ public class GroupController {
 		}
 		return "/group/insertGroupMemberForm";
 		
+	}
+	
+	// 모임 가입 처리 Map 반환
+	@RequestMapping("/android/insertGroupMemberProc")
+	@ResponseBody
+	public Map<String, Object> insertGroupMemberProcAnd(GroupBean gBean) {
+		
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		resMap.put(Constants.RESULT_MSG, "모임 가입 신청에 실패 하였습니다.");
+		
+		try {
+			GroupBean bean = groupService.selectApply(gBean);
+			
+			if(bean == null){
+				int res = groupService.insertGroupApply(gBean);
+				if (res > 0) {
+					resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+					resMap.put(Constants.RESULT_MSG, "모임 가입 신청에 성공 하였습니다.");
+				}
+			}else {
+				resMap.put(Constants.RESULT_MSG, "이미 가입 신청 중 입니다.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return resMap;
 	}
 	
 	/** F-2 : (임시) 모임 가입 자식창 - 가입할 모임 검색 */
