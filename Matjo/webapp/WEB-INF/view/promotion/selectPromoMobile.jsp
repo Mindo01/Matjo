@@ -24,6 +24,15 @@
 // 				myElem3.style.visibility="hidden";
 // 			}
 		function deletePromo(promoNo){
+			if("${sessionScope.memberLoginBean.memberId}" == "admin@."){
+					if (confirm("정말 삭제하시겠습니까??") == true){//확인
+							deletePromo2(promoNo);
+				 		}else{
+				 			return;
+				 		}
+					}
+		};
+		function deletePromo2(promoNo){
 			$.ajax({
 				type: "post",
 				url: "/promotion/deletePromoProc.do",

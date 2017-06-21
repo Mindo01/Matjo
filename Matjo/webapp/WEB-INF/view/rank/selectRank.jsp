@@ -8,12 +8,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="/resources/assets/css/main.css" />
-<link rel="stylesheet" href="/resources/assets/css/font-kor.css" />
 <link rel="stylesheet" href="/resources/assets/css/mj-custom.css" />
 <link rel="stylesheet" href="/resources/assets/css/mj-responsive.css" />
-<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 
 <script type="text/javascript" src="/js/rank/rankApp.js"></script>
 <script type="text/javascript" src="/js/rank/rankController.js"></script>
@@ -149,18 +145,5 @@
 
 		</div>
 
-	<!-- Scripts -->
-	<script src="/js/common/jquery.min.js"></script>
-	<script src="/js/common/jquery.dropotron.min.js"></script>
-	<script src="/js/common/jquery.scrolly.min.js"></script>
-	<script src="/js/common/jquery.onvisible.min.js"></script>
-	<script src="/js/common/skel.min.js"></script>
-	<script src="/js/common/util.js"></script>
-	<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-	<script src="/js/common/main.js"></script>
-				
-	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	
 	</body>
 </html>
