@@ -52,14 +52,14 @@
 							</div>
 							
 							<!-- TODO : 자동로그인 체크박스 -->
-							<div class="check_info">
-								<div class="login_check">
-									<span class="login_check_box"> 
-										<input type="checkbox" value="off"/> 
-										<label for="login_chk" id="label_login_chk" class="sp">자동 로그인</label>
-									</span>
-								</div>
-							</div>
+<!-- 							<div class="check_info"> -->
+<!-- 								<div class="login_check"> -->
+<!-- 									<span class="login_check_box">  -->
+<!-- 										<input type="checkbox" value="off"/>  -->
+<!-- 										<label for="login_chk" id="label_login_chk" class="sp">자동 로그인</label> -->
+<!-- 									</span> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 								
 								
 							<div class="modal-footer">
@@ -68,12 +68,12 @@
 								</span> 
 								
 <!-- 								TODO : sns 로그인 -->
-								<span id="cacaologinbutton"> 
-									<input type="button" value="카카오톡 로그인" class="btn_sns" lang="ko"/>
-								</span>
-									<br>
+<!-- 								<span id="cacaologinbutton">  -->
+<!-- 									<input type="button" value="카카오톡 로그인" class="btn_sns" lang="ko"/> -->
+<!-- 								</span> -->
+<!-- 									<br> -->
 <!-- 								네이버 아이디로 로그인 -->
-								<div id="naver_id_login" class="naver_id_login" name="naver_id_login">네이버로 로그인</div>
+								<span id="naver_id_login" class="naver_id_login" name="naver_id_login">네이버로 로그인</span>
 								<label id="findPassword" ng-click="findMemberForm()">비밀번호를 잃어버리셨나요?</label>
 							</div>
 						</div>
@@ -159,7 +159,7 @@
 <script type="text/javascript">
   	var naver_id_login = new naver_id_login("rJcQNBJ0RQ1vngwezHdZ", "http://localhost:8080/index.do");
   	var state = naver_id_login.getUniqState();
-  	naver_id_login.setButton("white", 4,40);
+  	naver_id_login.setButton("green", 4,40);
   	naver_id_login.setDomain("http://localhost:8080");
   	naver_id_login.setState(state);
   	naver_id_login.setPopup();
