@@ -45,9 +45,9 @@
 							</header>
 							<section>
                                  <div class="notice">
-                                    <div style="visibility:visible;" id="insertNoticeButton">
+                                    <div>
                                    			 <button type="button" class="sch_smit" onclick="javascript:location.href='/notice/selectNoticeList.do';">목록</button>
-                                    	    <button type="button"class="sch_smit" onclick="javascript:location.href='/notice/insertNoticeForm.do';">글쓰기</button>
+                                    	    <button style="visibility:visible;" id="insertNoticeButton" type="button"class="sch_smit" onclick="javascript:location.href='/notice/insertNoticeForm.do';">글쓰기</button>
                                     </div>
 									<table>
                                          <colgroup>
