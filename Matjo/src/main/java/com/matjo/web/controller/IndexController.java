@@ -57,9 +57,4 @@ public class IndexController {
 		return resMap;
 	}
 	
-	//네이버로 로그인
-	@RequestMapping("/navercallback")
-	public String navercallback() {
-		return "/navercallback";	
-	}
 }

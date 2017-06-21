@@ -213,5 +213,9 @@ public class MemberController {
 		
 		return resMap;
 	}
-
+	//네이버로 로그인
+		@RequestMapping("member/navercallback")
+		public String navercallback() {
+			return "member/navercallback";	
+		}
 } // end of class
