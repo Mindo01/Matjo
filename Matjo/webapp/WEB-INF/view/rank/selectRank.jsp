@@ -65,20 +65,20 @@
                                     <div class="background" mg-model="DetailList">
                                        <div class="running_area" >
                                            <div class="running_man">
-                                        <img ng-src="{{DetailList[11].groupImg}}"/>
-                                            <p>{{DetailList[11].groupName}}</p>
+                                        <img ng-src="{{DetailList[0].groupImg}}"/>
+                                            <p>{{DetailList[0].groupName}}</p>
                                            </div>
                                        </div>
                                        <div class="running_area">
                                            <div class="running_man">
-                                        <img ng-src="{{DetailList[12].groupImg}}"/>
-                                            <p>{{DetailList[12].groupName}}</p>
+                                        <img ng-src="{{DetailList[1].groupImg}}"/>
+                                            <p>{{DetailList[1].groupName}}</p>
                                            </div>
                                        </div>
                                        <div class="running_area">
                                             <div class="running_man">
-                                        <img ng-src="{{DetailList[13].groupImg}}"/>
-                                            <p>{{DetailList[13].groupName}}</p>
+                                        <img ng-src="{{DetailList[2].groupImg}}"/>
+                                            <p>{{DetailList[2].groupName}}</p>
                                            </div>
                                        </div>
                                     </div>
@@ -128,8 +128,8 @@
                                        </div>
                                        <div class="running_area">
                                             <div class="running_man">
-                                        <img ng-src="{{DetailList[3].restaImg}}"/>
-                                                <p>{{DetailList[3].restaTitle}}</p>
+                                        <img ng-src="{{DetailList[2].restaImg}}"/>
+                                                <p>{{DetailList[2].restaTitle}}</p>
                                            </div>
                                        </div>
                                     </div>
@@ -146,4 +146,6 @@
 		</div>
 
 	</body>
+	<script type="text/javascript">
+	</script>
 </html>
