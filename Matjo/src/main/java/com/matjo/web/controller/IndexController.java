@@ -58,8 +58,8 @@ public class IndexController {
 	}
 	
 	//네이버로 로그인
-	@RequestMapping("/naver_callback")
-	public String naver_callback() {
-		return "/naver_callback";	
+	@RequestMapping("/navercallback")
+	public String navercallback() {
+		return "/navercallback";	
 	}
 }
