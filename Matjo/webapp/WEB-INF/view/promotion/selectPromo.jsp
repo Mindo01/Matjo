@@ -11,10 +11,7 @@
 		<link rel="stylesheet" href="/resources/assets/css/mj-custom.css" />
 		<link rel="stylesheet" href="/resources/assets/css/mj-responsive.css" />
 		
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/resources/assets/css/jihye.css" />
-		<link rel="stylesheet" href="/resources/assets/css/main.css" />
-		<link rel="stylesheet" href="/resources/assets/css/font-kor.css" />
 		<script type="text/javascript">
 // 		$(function() {
 // 			var myElem3 = document.getElementById('deletePromotionButton');
