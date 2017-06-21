@@ -44,11 +44,9 @@
 		},
 		success: function(data) {
 			if(data.result == "success") {
-				alert("아이디가 이미 있네?")
                 //네이버 아이디 이미 저장되어 있으므로 로그인 페이지로 이동
 				naverLoginSignCallback();
 			} else {
-				alert("새롭게 저장하자")
 				//네이버아이디 저장 -네이버 아이디 새롭게 저장
 				naverInsertSignCallback();
 			}
