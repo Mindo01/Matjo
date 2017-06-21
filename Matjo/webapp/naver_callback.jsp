@@ -11,7 +11,7 @@
 <script type="text/javascript">
 
 
-  var naver_id_login = new naver_id_login("rJcQNBJ0RQ1vngwezHdZ", "http://localhost:8080/naver_callback.jsp");
+  var naver_id_login = new naver_id_login("rJcQNBJ0RQ1vngwezHdZ", "http://localhost:8080/naver_callback.do");
   // 접근 토큰 값 출력
 //   alert(naver_id_login.oauthParams.access_token);
   // 네이버 사용자 프로필 조회

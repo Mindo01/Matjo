@@ -57,15 +57,9 @@ public class IndexController {
 		return resMap;
 	}
 	
-//	//네이버로 로그인(세션에 로그인한 값 저장)
-//	@RequestMapping("/member/memberNaverLogin.do")
-//	@ResponseBody
-//	public Map<String, Object> memberNaverLogin(MemberBean memberBean, HttpServletRequest req) {
-//		Map<String, Object> resMap = new HashMap<String, Object>();
-//		memberBean = 
-//				(MemberBean)req.getSession()
-//				.getAttribute(Constants.MEMBER_LOGIN_BEAN);
-//		return resMap;
-//		
-//	}
+	//네이버로 로그인
+	@RequestMapping("/naver_callback")
+	public String naver_callback() {
+		return "/naver_callback";	
+	}
 }

@@ -157,7 +157,7 @@
 		</div>
 </body>
 <script type="text/javascript">
-  	var naver_id_login = new naver_id_login("rJcQNBJ0RQ1vngwezHdZ", "http://ldh66210.cafe24.com/naver_callback.jsp");
+  	var naver_id_login = new naver_id_login("rJcQNBJ0RQ1vngwezHdZ", "http://ldh66210.cafe24.com/naver_callback.do");
   	var state = naver_id_login.getUniqState();
   	naver_id_login.setButton("green", 4,40);
   	naver_id_login.setDomain("http://ldh66210.cafe24.com");
