@@ -65,19 +65,19 @@
                                     <div class="background" mg-model="DetailList">
                                        <div class="running_area" >
                                            <div class="running_man">
-                                        <img ng-src="{{DetailList[0].groupImg}}"/>
+                                        <img ng-src="{{DetailList[11].groupImg}}"/>
                                             <p>{{DetailList[0].groupName}}</p>
                                            </div>
                                        </div>
                                        <div class="running_area">
                                            <div class="running_man">
-                                        <img ng-src="{{DetailList[1].groupImg}}"/>
+                                        <img ng-src="{{DetailList[12].groupImg}}"/>
                                             <p>{{DetailList[1].groupName}}</p>
                                            </div>
                                        </div>
                                        <div class="running_area">
                                             <div class="running_man">
-                                        <img ng-src="{{DetailList[2].groupImg}}"/>
+                                        <img ng-src="{{DetailList[13].groupImg}}"/>
                                             <p>{{DetailList[2].groupName}}</p>
                                            </div>
                                        </div>
