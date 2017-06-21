@@ -46,15 +46,15 @@
                                    <div class="rank_box_area">
                                     <article>
                                         <h4 class="rank_type" ng-click="changeList(1)">리뷰수</h4>
-                                        <p class="ranker" ng-model="ReviewRankList"><a href="#">{{ReviewRankList[0].groupName}}</a></p>
+                                        <p class="ranker" ng-model="ReviewRankList"><a href="#">{{ReviewRankList[11].groupName}}</a></p>
                                     </article>
                                     <article>
                                         <h4 class="rank_type" ng-click="changeList(2)">참여율</h4>
-                                        <p class="ranker" ng-model="ReviewRankList"><a href="#">{{ReviewRankList[0].groupName}}</a></p>
+                                        <p class="ranker" ng-model="ReviewRankList"><a href="#">{{ReviewRankList[11].groupName}}</a></p>
                                     </article>
                                     <article>
                                         <h4 class="rank_type" ng-click="changeList(3)">좋아요 수</h4>
-                                        <p class="ranker" ng-model="LikeRankList"><a href="#">{{LikeRankList[0].groupName}}</a></p>
+                                        <p class="ranker" ng-model="LikeRankList"><a href="#">{{LikeRankList[12].groupName}}</a></p>
                                     </article>
                                     </div>
                                     <br/>
@@ -66,19 +66,19 @@
                                        <div class="running_area" >
                                            <div class="running_man">
                                         <img ng-src="{{DetailList[11].groupImg}}"/>
-                                            <p>{{DetailList[0].groupName}}</p>
+                                            <p>{{DetailList[11].groupName}}</p>
                                            </div>
                                        </div>
                                        <div class="running_area">
                                            <div class="running_man">
                                         <img ng-src="{{DetailList[12].groupImg}}"/>
-                                            <p>{{DetailList[1].groupName}}</p>
+                                            <p>{{DetailList[12].groupName}}</p>
                                            </div>
                                        </div>
                                        <div class="running_area">
                                             <div class="running_man">
                                         <img ng-src="{{DetailList[13].groupImg}}"/>
-                                            <p>{{DetailList[2].groupName}}</p>
+                                            <p>{{DetailList[13].groupName}}</p>
                                            </div>
                                        </div>
                                     </div>
@@ -128,8 +128,8 @@
                                        </div>
                                        <div class="running_area">
                                             <div class="running_man">
-                                        <img ng-src="{{DetailList[2].restaImg}}"/>
-                                                <p>{{DetailList[2].restaTitle}}</p>
+                                        <img ng-src="{{DetailList[3].restaImg}}"/>
+                                                <p>{{DetailList[3].restaTitle}}</p>
                                            </div>
                                        </div>
                                     </div>
