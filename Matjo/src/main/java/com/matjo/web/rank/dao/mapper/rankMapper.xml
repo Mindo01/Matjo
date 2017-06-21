@@ -25,4 +25,64 @@
 		LIMIT 3;
 	</select>
 	
+	<!-- 맛집순위 조회 [CATE : 한식(리뷰수)] -->
+	<select id="selectKoreaRestaList" resultType="rankRestaBean">
+	    SELECT
+			review_resta_no as restaId, COUNT(*) as countRestaRank
+		FROM
+		  review
+		WHERE review_resta_cate LIKE "%한식%"
+		GROUP BY review_resta_no
+		ORDER BY count(*) desc
+		LIMIT 3;
+	</select>
+	
+	<!-- 맛집순위 조회 [CATE : 중식(리뷰수)] -->
+	<select id="selectChinaRestaList" resultType="rankRestaBean">
+	    SELECT
+			review_resta_no as restaId, COUNT(*) as countRestaRank
+		FROM
+		  review
+		WHERE review_resta_cate LIKE "%중식%"
+		GROUP BY review_resta_no
+		ORDER BY count(*) desc
+		LIMIT 3;
+	</select>
+	
+	<!-- 맛집순위 조회 [CATE : 일식(리뷰수)] -->
+	<select id="selectJapanRestaList" resultType="rankRestaBean">
+	    SELECT
+			review_resta_no as restaId, COUNT(*) as countRestaRank
+		FROM
+		  review
+		WHERE review_resta_cate LIKE "%일식%"
+		GROUP BY review_resta_no
+		ORDER BY count(*) desc
+		LIMIT 3;
+	</select>
+	
+	<!-- 맛집순위 조회 [CATE : 양식(리뷰수)] -->
+	<select id="selectUsaRestaList" resultType="rankRestaBean">
+	    SELECT
+			review_resta_no as restaId, COUNT(*) as countRestaRank
+		FROM
+		  review
+		WHERE review_resta_cate LIKE "%양식%"
+		GROUP BY review_resta_no
+		ORDER BY count(*) desc
+		LIMIT 3;
+	</select>
+	
+	<!-- 맛집순위 조회 [CATE : 치킨(리뷰수)] -->
+	<select id="selectChickenRestaList" resultType="rankRestaBean">
+	    SELECT
+			review_resta_no as restaId, COUNT(*) as countRestaRank
+		FROM
+		  review
+		WHERE review_resta_cate LIKE "%치킨%"
+		GROUP BY review_resta_no
+		ORDER BY count(*) desc
+		LIMIT 3;
+	</select>
+	
 </mapper>

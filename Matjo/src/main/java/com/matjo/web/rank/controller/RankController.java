@@ -41,5 +41,19 @@ public class RankController {
 		}
 		return resMap;
 	}
-	
+	// 맛집랭크 처리
+	@RequestMapping("/rank/selectRestaRankProc")
+	@ResponseBody
+	public Map<String, Object> selectRestaRankProc() 
+	{
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		try {
+			resMap = rankService.selectRankRestaList();
+			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+			resMap.put(Constants.RESULT_MSG, "맛집랭크 리스트 조회에 성공 하였습니다.");
+		} catch (Exception e) {
+			
+		}
+		return resMap;
+	}
 } // end of class

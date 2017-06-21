@@ -18,7 +18,10 @@ import com.matjo.web.common.Constants;
 import com.matjo.web.group.bean.GroupBean;
 import com.matjo.web.group.dao.GroupDao;
 import com.matjo.web.rank.bean.RankGroupBean;
+import com.matjo.web.rank.bean.RankRestaBean;
 import com.matjo.web.rank.dao.RankDao;
+import com.matjo.web.resta.bean.DaumLocalBean;
+import com.matjo.web.resta.dao.RestaDao;
 
 
 @Service
@@ -28,6 +31,8 @@ public class RankServiceImpl implements RankService{
 	private RankDao rankDao;
 	@Autowired
 	private GroupDao groupDao;
+	@Autowired
+	private RestaDao restaDao;
 	
 	// 모임 순위 조회
 	@Override
@@ -73,5 +78,86 @@ public class RankServiceImpl implements RankService{
 		
 		return resMap;
 	} // end of selectRankGroupList
+	
+	// 맛집 순위 조회
+	@Override
+	public Map<String, Object> selectRankRestaList() throws Exception {
+		
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		resMap.put(Constants.RESULT_MSG, "랭크 리스트 조회에 실패 하였습니다.");
+		
+		/** 맛집순위 조회 (한식) **/
+		List<RankRestaBean> resKoreaResta = rankDao.selectKoreaRestaList();
+		if(resKoreaResta != null && resKoreaResta.size() > 0){
+			// 맛집번호를 이용하여 맛집이름, 맛집이미지 매핑
+			for (int i = 0; i < resKoreaResta.size(); i++) {
+				DaumLocalBean dBean1 = new DaumLocalBean();
+				dBean1.setRestaId(resKoreaResta.get(i).getRestaId());
+				DaumLocalBean dBean2 = restaDao.selectResta(dBean1);
+				resKoreaResta.get(i).setRestaTitle(dBean2.getRestaTitle());
+				resKoreaResta.get(i).setRestaImg(dBean2.getRestaImgUrl());
+			}
+			resMap.put("KoreaRankList", resKoreaResta);
+		}
+		
+		/** 맛집순위 조회 (중식) **/
+		List<RankRestaBean> resChinaResta = rankDao.selectChinaRestaList();
+		if(resChinaResta != null && resChinaResta.size() > 0){
+			// 맛집번호를 이용하여 맛집이름, 맛집이미지 매핑
+			for (int i = 0; i < resChinaResta.size(); i++) {
+				DaumLocalBean dBean1 = new DaumLocalBean();
+				dBean1.setRestaId(resChinaResta.get(i).getRestaId());
+				DaumLocalBean dBean2 = restaDao.selectResta(dBean1);
+				resChinaResta.get(i).setRestaTitle(dBean2.getRestaTitle());
+				resChinaResta.get(i).setRestaImg(dBean2.getRestaImgUrl());
+			}
+			resMap.put("ChinaRankList", resChinaResta);
+		}
+		
+		/** 맛집순위 조회 (일식) **/
+		List<RankRestaBean> resJapanResta = rankDao.selectJapanRestaList();
+		if(resJapanResta != null && resJapanResta.size() > 0){
+			// 맛집번호를 이용하여 맛집이름, 맛집이미지 매핑
+			for (int i = 0; i < resJapanResta.size(); i++) {
+				DaumLocalBean dBean1 = new DaumLocalBean();
+				dBean1.setRestaId(resJapanResta.get(i).getRestaId());
+				DaumLocalBean dBean2 = restaDao.selectResta(dBean1);
+				resJapanResta.get(i).setRestaTitle(dBean2.getRestaTitle());
+				resJapanResta.get(i).setRestaImg(dBean2.getRestaImgUrl());
+			}
+			resMap.put("JapanRankList", resJapanResta);
+		}
+		
+		/** 맛집순위 조회 (양식) **/
+		List<RankRestaBean> resUsaResta = rankDao.selectUsaRestaList();
+		if(resUsaResta != null && resUsaResta.size() > 0){
+			// 맛집번호를 이용하여 맛집이름, 맛집이미지 매핑
+			for (int i = 0; i < resUsaResta.size(); i++) {
+				DaumLocalBean dBean1 = new DaumLocalBean();
+				dBean1.setRestaId(resUsaResta.get(i).getRestaId());
+				DaumLocalBean dBean2 = restaDao.selectResta(dBean1);
+				resUsaResta.get(i).setRestaTitle(dBean2.getRestaTitle());
+				resUsaResta.get(i).setRestaImg(dBean2.getRestaImgUrl());
+			}
+			resMap.put("UsaRankList", resUsaResta);
+		}
+		
+		/** 맛집순위 조회 (치킨) **/
+		List<RankRestaBean> resChickenResta = rankDao.selectChickenRestaList();
+		if(resChickenResta != null && resChickenResta.size() > 0){
+			// 맛집번호를 이용하여 맛집이름, 맛집이미지 매핑
+			for (int i = 0; i < resChickenResta.size(); i++) {
+				DaumLocalBean dBean1 = new DaumLocalBean();
+				dBean1.setRestaId(resChickenResta.get(i).getRestaId());
+				DaumLocalBean dBean2 = restaDao.selectResta(dBean1);
+				resChickenResta.get(i).setRestaTitle(dBean2.getRestaTitle());
+				resChickenResta.get(i).setRestaImg(dBean2.getRestaImgUrl());
+			}
+			resMap.put("ChickenRankList", resChickenResta);
+		}
+		
+		return resMap;
+	} // end of selectRankRestaList
 	
 } // end of class

@@ -8,6 +8,7 @@ rankApp.factory("RankService", function($http) {
 	var service = {};
 	
 	service.selectRankProc = selectRankProc;
+	service.selectRestaRankProc = selectRestaRankProc;
 	
 	return service;
 	
@@ -15,6 +16,12 @@ rankApp.factory("RankService", function($http) {
 	function selectRankProc() {
 		return $http({
 			url: "/rank/selectRankProc.do"
+		}).then(handleSuccess, handleError);
+	};
+	// 맛집 랭크 리스트 조회
+	function selectRestaRankProc() {
+		return $http({
+			url: "/rank/selectRestaRankProc.do"
 		}).then(handleSuccess, handleError);
 	};
 	

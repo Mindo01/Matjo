@@ -21,7 +21,7 @@
 </head>
 <body class="no-sidebar">
 		
-		<div id="page-wrapper" ng-modules="rankApp" ng-controller="RankController" ng-init="selectRankProc()">
+		<div id="page-wrapper" ng-modules="rankApp" ng-controller="RankController" ng-init="selectRankProc();selectRestaRankProc();">
 		
 			<!-- Main -->
 				<div class="wrapper style1">
@@ -69,19 +69,19 @@
                                     <div class="background" mg-model="DetailList">
                                        <div class="running_area" >
                                            <div class="running_man">
-                                        <img ng-src="DetailList[0].groupImg"/>
+                                        <img ng-src="{{DetailList[0].groupImg}}"/>
                                             <p>{{DetailList[0].groupName}}</p>
                                            </div>
                                        </div>
                                        <div class="running_area">
                                            <div class="running_man">
-                                        <img ng-src="DetailList[1].groupImg"/>
+                                        <img ng-src="{{DetailList[1].groupImg}}"/>
                                             <p>{{DetailList[1].groupName}}</p>
                                            </div>
                                        </div>
                                        <div class="running_area">
                                             <div class="running_man">
-                                        <img ng-src="DetailList[2].groupImg"/>
+                                        <img ng-src="{{DetailList[2].groupImg}}"/>
                                             <p>{{DetailList[2].groupName}}</p>
                                            </div>
                                        </div>
@@ -92,24 +92,24 @@
                                    <h3>:■ 부문별 랭크</h3>
                                     <div class="rank_box_area">
                                     <article>
-                                        <h4 class="rank_type">한식</h4>
-                                        <p class="ranker"><a href="#">일등맛집1</a></p>
+                                        <h4 class="rank_type" ng-click="changeRestaList(1)">한식</h4>
+                                        <p class="ranker" ng-model="KoreaRankList"><a href="#">{{KoreaRankList[0].restaTitle}}</a></p>
                                     </article>
                                     <article>
-                                        <h4 class="rank_type">양식</h4>
-                                        <p class="ranker"><a href="#">일등맛집2</a></p>
+                                        <h4 class="rank_type" ng-click="changeRestaList(2)">중식</h4>
+                                        <p class="ranker" ng-model="ChinaRankList"><a href="#">{{ChinaRankList[0].restaTitle}}</a></p>
                                     </article>
                                     <article>
-                                        <h4 class="rank_type">중식</h4>
-                                        <p class="ranker"><a href="#">일등맛집3</a></p>
+                                        <h4 class="rank_type" ng-click="changeRestaList(3)">일식</h4>
+                                        <p class="ranker" ng-model="JapanRankList"><a href="#">{{JapanRankList[0].restaTitle}}</a></p>
                                     </article>
                                     <article>
-                                        <h4 class="rank_type">일식</h4>
-                                        <p class="ranker"><a href="#">일등맛집4</a></p>
+                                        <h4 class="rank_type" ng-click="changeRestaList(4)">양식</h4>
+                                        <p class="ranker" ng-model="UsaRankList"><a href="#">{{UsaRankList[0].restaTitle}}</a></p>
                                     </article>
                                     <article>
-                                        <h4 class="rank_type">기타</h4>
-                                        <p class="ranker"><a href="#">일등맛집5</a></p>
+                                        <h4 class="rank_type" ng-click="changeRestaList(5)">치킨</h4>
+                                        <p class="ranker" ng-model="ChickenRankList"><a href="#">{{ChickenRankList[0].restaTitle}}</a></p>
                                     </article>
                                     </div>
                                     <br/>
@@ -117,23 +117,23 @@
                                      <h3>:■ 전체 랭크</h3>
                                      맛집의 전체 랭크 - 달리기
                                      <br/>
-                                    <div class="background">
+                                    <div class="background" mg-model="DetailList">
                                        <div class="running_area">
                                            <div class="running_man">
-                                        <img src=""/>
-                                            <p>일등맛집</p>
+                                        <img ng-src="{{DetailList[0].restaImg}}"/>
+                                            <p>{{DetailList[0].restaTitle}}</p>
                                            </div>
                                        </div>
                                        <div class="running_area">
                                            <div class="running_man">
-                                        <img src=""/>
-                                            <p>이등맛집</p>
+                                        <img ng-src="{{DetailList[1].restaImg}}"/>
+                                            <p>{{DetailList[1].restaTitle}}</p>
                                            </div>
                                        </div>
                                        <div class="running_area">
                                             <div class="running_man">
-                                        <img src=""/>
-                                                <p>삼등맛집</p>
+                                        <img ng-src="{{DetailList[2].restaImg}}"/>
+                                                <p>{{DetailList[2].restaTitle}}</p>
                                            </div>
                                        </div>
                                     </div>

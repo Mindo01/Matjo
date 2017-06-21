@@ -259,17 +259,14 @@ public class GroupController {
 		resMap.put(Constants.RESULT_MSG, "모임 가입 신청에 실패 하였습니다.");
 		
 		try {
-			GroupBean bean = groupService.selectApply(gBean);
-			
-			if(bean == null){
 				int res = groupService.insertGroupApply(gBean);
 				if (res > 0) {
 					resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
 					resMap.put(Constants.RESULT_MSG, "모임 가입 신청에 성공 하였습니다.");
 				}
-			}else {
-				resMap.put(Constants.RESULT_MSG, "이미 가입 신청 중 입니다.");
-			}
+				if(res == -1){
+					resMap.put(Constants.RESULT_MSG, "이미 가입 신청 중 입니다.");
+				}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
