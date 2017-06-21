@@ -54,6 +54,18 @@ public class PushController {
 			PushMsgBean.Data data = new PushMsgBean.Data();
 			data.setTitle("테스트 제목이다. 받아라");
 			data.setMessage("테스트 내용이다. 받아라");
+			
+			if ("1".equals(pushType)) {
+				data.setTitle("모임 가입 신청 알림");
+				data.setMessage("확인 후 수락 또는 거절해주세요.");
+			} else if ("2".equals(pushType)) {
+				data.setTitle("모임 가입");
+				data.setMessage("모임 가입 신청이 승인되었습니다.");
+			} else if ("3".equals(pushType)) {
+				data.setTitle("모임 가입");
+				data.setMessage("모임 가입 신청이 반려되었습니다.");
+			}
+			
 			msgBean.setData(data);
 			
 			boolean resBool = FCMSender.sendPushMsgBean(msgBean);
@@ -100,15 +112,24 @@ public class PushController {
 				
 				// 푸시메시지빈 작성
 				PushMsgBean msgBean = new PushMsgBean();
-				msgBean.setTo(toMemberBean.getMemberToken()); // 수신자 지정
+				String token = (toMemberBean.getMemberToken() == null) ? "" : toMemberBean.getMemberToken();
+				msgBean.setTo(token); // 수신자 지정
 				
 				// 데이터 생성
 				PushMsgBean.Data data = new PushMsgBean.Data();
 				data.setTitle("테스트 제목이다. 받아라");
 				data.setMessage("테스트 내용이다. 받아라");
 				
-				msgBean.setData(data); // 데이터 지정
+				if ("3".equals(pushType)) {
+					data.setTitle("모임리뷰 등록 알림");
+					data.setMessage("모임장이 새로운 모임리뷰를 등록하였습니다.");
+				} else if ("4".equals(pushType)) {
+					data.setTitle("개인리뷰 등록알림");
+					data.setMessage("모임원이 새로운 개인리뷰를 등록하였습니다.");
+				}
 				
+				msgBean.setData(data); // 데이터 지정
+				msgBeanList.add(msgBean);
 				/* 과정을 반복 */
 				
 			} // end of for

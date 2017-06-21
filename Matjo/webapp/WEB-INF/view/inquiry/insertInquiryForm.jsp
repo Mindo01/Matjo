@@ -80,7 +80,7 @@
                                         <tr>
                                             <th>제목</th>
                                             <td colspan="2">
-                                                <input type="text" id="inquiryTitle" maxlength="16" required autofocus/>
+                                                <input type="text" id="inquiryTitle" maxlength="49" required autofocus/>
                                             </td>
                                         </tr>
                                         <tr>

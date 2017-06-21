@@ -14,10 +14,15 @@
 <script type="text/javascript" src="/js/member/memberApp.js"></script>
 <script type="text/javascript" src="/js/member/memberController.js"></script>
 <c:import url="/WEB-INF/view/layout/header.jsp"></c:import>
-
+<script type="text/javascript">
+	//모바일창 빈 네비메뉴 없애기
+	$(function() {
+		$('#navButton, #navPanel').css('display', 'none');
+	});
+</script>
 <decorator:head />
 </head>
-<body>
+<body class="no-sidebar">
 
 			<!-- 내용 -->
 			<decorator:body />

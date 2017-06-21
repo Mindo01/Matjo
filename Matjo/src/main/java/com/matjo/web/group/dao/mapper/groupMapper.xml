@@ -136,7 +136,21 @@
 		  	member
 		  WHERE
 		  	member.member_no = mygroup.mygroup_member
-		) AS memberImg
+		) AS memberImg,
+		( SELECT
+			member_token
+		  FROM
+		  	member
+		  WHERE
+		  	member.member_no = mygroup.mygroup_member
+		) AS memberToken,
+		( SELECT
+			member_id
+		  FROM
+		  	member
+		  WHERE
+		  	member.member_no = mygroup.mygroup_member
+		) AS memberId
 		FROM
 			mygroup
 		WHERE
