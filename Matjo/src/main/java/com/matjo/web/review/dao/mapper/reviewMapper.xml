@@ -9,6 +9,7 @@
 	<sql id="reviewColumns">
 		review_no AS reviewNo,
 		review_group AS reviewGroupNo,
+		( SELECT group_img FROM groups WHERE group_no = review.review_group ) AS reviewGroupImg,
 		review_resta_no AS reviewRestaNo,
 		review_resta_name AS reviewRestaName,
 		review_resta_cate AS reviewRestaCate,

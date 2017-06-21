@@ -7,6 +7,7 @@ import com.matjo.web.group.bean.CommonGroupBean;
 public class ReviewBean {
 	
 	private String reviewNo;
+	private String reviewGroupImg;
 	private String reviewGroupNo;
 	private String reviewRestaNo;
 	private String reviewRestaName;
@@ -45,6 +46,12 @@ public class ReviewBean {
 	}
 	public void setReviewGroupNo(String reviewGroupNo) {
 		this.reviewGroupNo = reviewGroupNo;
+	}
+	public String getReviewGroupImg() {
+		return reviewGroupImg;
+	}
+	public void setReviewGroupImg(String reviewGroupImg) {
+		this.reviewGroupImg = reviewGroupImg;
 	}
 	public String getReviewRestaNo() {
 		return reviewRestaNo;
