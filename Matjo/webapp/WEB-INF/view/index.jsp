@@ -16,7 +16,28 @@
 	<script type="text/javascript" src="/js/rank/rankApp.js"></script>
 	<script type="text/javascript" src="/js/rank/rankController.js"></script>
 
-    <script>
+    <script type="text/javascript" language="javascript">
+
+    //이미지 미리보기 기능 구현
+	    $(function() {
+	        $("#imgFile").on('change', function(){
+	            readURL(this);
+	        });
+	    });
+	
+	    function readURL(input) {
+	        if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	
+	        reader.onload = function (e) {
+	                $('#blah').attr('src', e.target.result);
+	            }
+	
+	          reader.readAsDataURL(input.files[0]);
+	        }
+	    }
+
+    
         var searchType = 0;
         $(document).ready(function() {
             $('.bxslider').bxSlider({
@@ -236,10 +257,10 @@
                     <p>업주님이신가요? 맛조에 프로모션을 등록을 통해 효과적인 업소홍보가 가능합니다 !</p>
                     <br/><br/>
                     
-                   <form id="insertPromotion" enctype="multipart/form-data">
+                   <form id="insertPromotion" runat="server" enctype="multipart/form-data">
                     <div class="promo_form">
-                        <div class="promo_form_left">
-                            <img src="resources/images/icon_default_image.png" />
+                        <div class="promo_form_left" >
+                            <img src="resources/images/icon_default_image.png" id="blah" alt="your image" style="width:200px; height:200px;"/>
                             <input type="file" name="imgFile" id="imgFile"/>
                         </div>
                         <div class="promo_form_right">
