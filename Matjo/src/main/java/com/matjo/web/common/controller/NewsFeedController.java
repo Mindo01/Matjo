@@ -13,6 +13,7 @@ import com.matjo.web.common.Constants;
 import com.matjo.web.common.bean.NewsFeedBean;
 import com.matjo.web.common.bean.PagingBean;
 import com.matjo.web.common.service.NewsFeedService;
+import com.matjo.web.member.bean.MemberBean;
 
 @Controller
 public class NewsFeedController {
@@ -63,6 +64,23 @@ public class NewsFeedController {
 		}
 		// 그냥 목록으로 돌아가기
 		return "/newsfeed/selectNewsFeed";
+	}
+	
+	/** P : 내 알림 내역 조회 처리 */
+	@RequestMapping("/newsfeed/selectMyNotiProc")
+	@ResponseBody
+	public Map<String, Object> selectMyNotiProc(MemberBean mBean) {
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		resMap.put(Constants.RESULT_MSG, "내 알림 목록 조회에 실패했습니다.");
+		
+		List<NewsFeedBean> notiList = newsFeedService.selectMyNoti(mBean);
+		if (notiList != null) {
+			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
+			resMap.put(Constants.RESULT_MSG, "내 알림 목록 조회에 성공했습니다.");
+			resMap.put("newsFeedList", notiList);
+		}
+		return resMap;
 	}
 	
 }

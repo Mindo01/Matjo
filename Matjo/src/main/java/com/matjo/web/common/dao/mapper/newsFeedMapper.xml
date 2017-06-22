@@ -45,4 +45,41 @@
     	FROM review
     </select>
     
+    <!-- 새 모임 리뷰 등록 / 모임 가입 신청 피드 (내 알림 모음) -->
+    <select id="selectMyNoti" parameterType="memberBean" resultType="newsFeedBean">
+        SELECT
+		  review_resta_no AS groupNo,
+		  (SELECT group_name FROM groups WHERE group_no = review.review_group) AS groupName,
+		  null AS groupLeader,
+		  review_no AS reviewNo,
+		  review_resta_name AS restaName,
+		  review_resta_cate AS restaCate,
+		  (SELECT resta_img FROM resta WHERE resta_id = review.review_resta_no) AS imgPath,
+		  review_date AS regDate,
+		  2 AS type,
+		  '새 모임 리뷰가' AS typeMsg
+		FROM review
+    		WHERE review_group IN (SELECT mygroup_group FROM mygroup WHERE mygroup_member = #{memberNo})
+		UNION
+		SELECT  
+		  null,
+		  <!-- 가입 신청 들어온 모임명 -->
+	      (SELECT group_name FROM groups WHERE group_no = apply.apply_group) AS groupName,
+	      <!-- 가입 신청한 회원이름 -->
+	      (SELECT member_name FROM member WHERE member_no = apply.apply_member) AS memberName,
+	      null,
+	      <!-- 가입 신청 내용 -->
+	      apply_content AS restaName,
+	      null,
+	      <!-- 가입 신청한 회원 이미지 -->
+	      (SELECT member_img FROM member WHERE member_no = apply.apply_member) AS imgPath,
+	      <!-- 가입 신청 날짜, 시간 -->
+		  apply_date AS regDate,
+	      1 AS type,
+			  '모임 가입 신청이' AS typeMsg
+			FROM apply
+	    WHERE apply_group IN (SELECT group_no FROM groups WHERE group_leader = #{memberNo})
+			ORDER BY regDate DESC
+    </select>
+    
 </mapper>

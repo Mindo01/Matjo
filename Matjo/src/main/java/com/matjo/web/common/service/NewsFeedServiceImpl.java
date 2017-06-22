@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.matjo.web.common.bean.NewsFeedBean;
 import com.matjo.web.common.bean.PagingBean;
 import com.matjo.web.common.dao.NewsFeedDao;
+import com.matjo.web.member.bean.MemberBean;
 
 @Service
 public class NewsFeedServiceImpl implements NewsFeedService{
@@ -25,5 +26,12 @@ public class NewsFeedServiceImpl implements NewsFeedService{
 		}
 		return newsFeedDao.selectNewsFeedList(pBean);
 	}
+
+	@Override
+	public List<NewsFeedBean> selectMyNoti(MemberBean mBean) {
+		return newsFeedDao.selectMyNoti(mBean);
+	}
+	
+	
 
 }
