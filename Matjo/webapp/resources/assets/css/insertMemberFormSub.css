@@ -205,6 +205,6 @@ input:focus {
 	outline: none;
 }
 input.ng-invalid {
- 	box-shadow: 0 0 5px red;
+ 	box-shadow: 0 0 2px #ff3D00;
   	outline: none;
 }

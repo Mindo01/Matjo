@@ -8,10 +8,10 @@ package com.matjo.web.common.bean;
 public class PagingBean extends CommonBean{
 	
 	/** 한 페이지 당 보여지는 레코드의 갯수 **/
-	public static final int COUNT_PER_RECORD = 3;
+	public static final int COUNT_PER_RECORD = 10;
 	
 	/** 페이징 그룹당 보여지는 페이지의 갯수 **/
-	public static final int COUNT_PER_PAGE_GROUP = 3;
+	public static final int COUNT_PER_PAGE_GROUP = 10;
 	
 	
 	/** 요청 페이지 번호 **/

@@ -39,6 +39,10 @@
 							<li><a href="/inquiry/selectInquiryList.do">문의사항</a></li>
 						</ul></li>
 				</ul>
+					<div class="member_menu" style="color: rgba(0,0,0,0) !important;">
+						<a class="login" style="color: rgba(0,0,0,0) !important;">로그인</a>
+						<a ng-click="insertMemberForm()" style="color: rgba(0,0,0,0) !important;">회원가입</a>
+					</div>
 			</nav>
 		
 		<!-- 공통 푸터 -->
