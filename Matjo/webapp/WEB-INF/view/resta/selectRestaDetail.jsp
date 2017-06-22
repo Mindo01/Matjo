@@ -46,26 +46,21 @@
 
             //스크롤이벤트가 발생하면
             $(window).scroll(function(){
+            	var offset = $("#footer").offset();
+            	console.log("footer는 지금 "+offset.top);
+            	console.log("스크롤은 지금 : "+$(this).scrollTop());
+            	if ($(this).scrollTop() + $("#resta_div").outerHeight() < offset.top) {
                 yPosition = $win.scrollTop() - 150; //이부분을 조정해서 화면에 보이도록 맞추세요
                 if (yPosition < 0)
                 {
                     yPosition = 0;
                 }
                 $layer.animate({"top":yPosition }, {duration:speed, easing:easing, queue:false});
+            	}	
             });
 
+            viewMap();
 		});
-</script>
-
-<!-- side bar 제거 옵션-->
-<script>
-	$(document).ready(function() {
-	    $(window).scroll(function() {
-	        $(this).scrollTop() < 1500 ? $("#sidebar").fadeIn() : $("#sidebar").fadeOut()
-	    });
-	    
-	    viewMap();
-	});
 </script>
 
 
@@ -141,7 +136,7 @@ function viewMap() {
 						<hr class="first" />
 						
 						<!-- 좌측 업소정보 -->
-						<section>
+						<section id="resta_div">
 							<!-- 업소 명 -->
 							<span id="sidebar_resta_title" >${dlBean.restaTitle }</span> <br />
 							<!-- 업소 한줄 설명 -->
