@@ -157,6 +157,21 @@ public class RankServiceImpl implements RankService{
 			resMap.put("ChickenRankList", resChickenResta);
 		}
 		
+		/** 맛집순위 조회 (전체) **/
+		List<RankRestaBean> resAllResta = rankDao.selectRestaRankList();
+		if(resAllResta != null && resAllResta.size() > 0){
+			// 맛집번호를 이용하여 맛집이름, 맛집이미지 매핑
+			for (int i = 0; i < resAllResta.size(); i++) {
+				DaumLocalBean dBean1 = new DaumLocalBean();
+				dBean1.setRestaId(resAllResta.get(i).getRestaId());
+				DaumLocalBean dBean2 = restaDao.selectResta(dBean1);
+				resAllResta.get(i).setRestaTitle(dBean2.getRestaTitle());
+				resAllResta.get(i).setRestaImg(dBean2.getRestaImgUrl());
+				resAllResta.get(i).setRestaCate(dBean2.getRestaCate());
+			}
+			resMap.put("RestaRankList", resAllResta);
+		}
+		
 		return resMap;
 	} // end of selectRankRestaList
 	

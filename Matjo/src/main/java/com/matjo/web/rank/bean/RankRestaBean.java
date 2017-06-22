@@ -6,6 +6,9 @@ public class RankRestaBean {
 	private String restaTitle;
 	private String countRestaRank;
 	private String restaImg;
+	
+	private String restaCate;
+	
 	public String getRestaId() {
 		return restaId;
 	}
@@ -29,6 +32,12 @@ public class RankRestaBean {
 	}
 	public void setRestaImg(String restaImg) {
 		this.restaImg = restaImg;
+	}
+	public String getRestaCate() {
+		return restaCate;
+	}
+	public void setRestaCate(String restaCate) {
+		this.restaCate = restaCate;
 	}
 	
 	

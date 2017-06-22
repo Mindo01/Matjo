@@ -16,6 +16,7 @@ function RankController($rootScope, $scope, RankService) {
     $scope.JapanRankList = [];
     $scope.UsaRankList = [];
     $scope.ChickenRankList = [];
+    $scope.RestaRankList = [];
     
     $scope.DetailList = [];
     
@@ -87,6 +88,8 @@ function RankController($rootScope, $scope, RankService) {
     			$scope.JapanRankList = data.JapanRankList;
     			$scope.UsaRankList = data.UsaRankList;
     			$scope.ChickenRankList = data.ChickenRankList;
+    			// 전체 랭크 조회
+    			$scope.RestaRankList = data.RestaRankList;
     			
     			$scope.DetailList = $scope.KoreaRankList;
     			$scope.DetailCate2 = "한식";

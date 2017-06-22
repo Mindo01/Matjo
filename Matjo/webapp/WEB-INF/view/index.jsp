@@ -195,9 +195,9 @@
                 </article> -->
                 
                 <article>
-                    <a href="#" class="image featured"><img src="/resources/images/icon_show_more.png" alt="" ng-click="addView()"/></a>
+                    <a href="#" class="image featured" style="text-align:center;"><img style="width:200px; height:200px; margin: 0 auto;" src="http://ldh66210.cafe24.com/upload/seemore.png" alt="" ng-click="addView()"/></a>
                     <header>
-                        <h3><a href="#">더 보기</a></h3>
+                        <h3><a style="cursor:pointer;" ng-click="addView();">더 보기</a></h3>
                     </header>
                     <p>&nbsp;</p>
                 </article>
@@ -217,30 +217,36 @@
             </div>
         </section>
 		</div>
-        <div class="high_rank_div" ng-modules="rankApp" ng-controller="RankController" ng-init="selectRankProc()">
+        <div class="high_rank_div" ng-modules="rankApp" ng-controller="RankController" ng-init="selectRankProc();selectRestaRankProc();">
             <h1>상위 랭크</h1>
             <ul class="rank_area">
                 <li class="rank_item_1">
                     <div class="rank_item_box">
                         <div class="rank_item_left" ng-model="ReviewRankList">
-                            <img ng-src="ReviewRankList[0].groupImg" style="border-radius: 100%; width: 150px; height: 150px;" />
-                            <p>{{ReviewRankList[0].groupName}}</p>
-                            <strong>리뷰 수 : {{ReviewRankList[0].countGroupRank}} </strong>
+                            <img ng-src="{{ReviewRankList[0].groupImg!=null && ReviewRankList[0].groupImg != ''? ReviewRankList[0].groupImg:'http://ldh66210.cafe24.com/upload/ic_group.png' }}" style="border-radius: 100%; width: 150px; height: 150px;" />
+                            <h4><b>{{ReviewRankList[0].groupName}}</b></h4>
+                            <div style="padding: 0 3px 0 3px;">{{ReviewRankList[0].groupInfo}}</div>
                         </div>
                         <div class="rank_item_right">
-                        {{ReviewRankList[0].groupInfo}}
+                        	 <br/><br/>
+                            <img src="http://ldh66210.cafe24.com/upload/groupking.png" style="width: 130px; height: 150px;"/>
+                            <br/>
+                            <strong>리뷰 {{ReviewRankList[0].countGroupRank}}개 달성! </strong>
                         </div>
                     </div>
                 </li>
                 <li class="rank_item_2">
                     <div class="rank_item_box">
                         <div class="rank_item_left">
-                            <img src="/resources/images/item_image_02.jpg" style="border-radius: 100%; width: 150px; height: 150px;" />
-                            <p>완전일등맛집</p>
-                            <h3 class="rank_star">★ <strong>4.0</strong></h3>
+                            <img ng-src="{{RestaRankList[0].restaImg!=null && RestaRankList[0].restaImg != ''? RestaRankList[0].restaImg:'http://ldh66210.cafe24.com/upload/ic_resta.png' }}" style="border-radius: 100%; width: 150px; height: 150px;" />
+                            <h4><b>{{RestaRankList[0].restaTitle}}</b></h4>
+                            <div style="padding: 0 3px 0 3px;">{{RestaRankList[0].restaCate}}</div>
                         </div>
                         <div class="rank_item_right">
-                            	맛집 코멘트
+                        <br/><br/>
+                            <img src="http://ldh66210.cafe24.com/upload/restaking.png" style="width: 130px; height: 150px;"/>
+                            <br/>
+                            <strong>리뷰 {{RestaRankList[0].countRestaRank}}개 달성! </strong>
                         </div>
                     </div>
                 </li>

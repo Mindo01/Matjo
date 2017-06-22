@@ -28,5 +28,7 @@ public interface RankDao {
 	public List<RankRestaBean> selectUsaRestaList();
 	/** 맛집순위 조회 (치킨) **/
 	public List<RankRestaBean> selectChickenRestaList();
+	/** 맛집순위 조회 (전체) */
+	public List<RankRestaBean> selectRestaRankList();
 	
 }

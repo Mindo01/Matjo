@@ -85,4 +85,15 @@
 		LIMIT 3;
 	</select>
 	
+	<!-- 맛집순위 조회 [ 전체에서 조회 ] -->
+	<select id="selectRestaRankList" resultType="rankRestaBean">
+	    SELECT
+			review_resta_no as restaId, COUNT(*) as countRestaRank
+		FROM
+		  review
+		GROUP BY review_resta_no
+		ORDER BY count(*) desc
+		LIMIT 3;
+	</select>
+	
 </mapper>
