@@ -17,7 +17,15 @@
 </head>
 <body class="no-sidebar">
 		
-		<div id="page-wrapper" ng-modules="rankApp" ng-controller="RankController" ng-init="selectRankProc();selectRestaRankProc();">
+		<div id="page-wrapper" ng-modules="rankApp" ng-controller="RankController" ng-init="selectRankProc();">
+		
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+						</div>
+				</div>
 		
 			<!-- Main -->
 				<div class="wrapper style1">
@@ -37,8 +45,8 @@
                                 <input id="tab_group" type="radio" name="tab" checked="checked" />
                                 <input id="tab_resta" type="radio" name="tab" />
                                 <!-- 라벨 : 화면에 표시되는 탭 제목 -->
-                                <label for="tab_group">모임</label>
-                                <label for="tab_resta">맛집</label>
+                                <label for="tab_group" ng-click="selectRankProc();">모임</label>
+                                <label for="tab_resta" ng-click="selectRestaRankProc();")>맛집</label>
                                 <!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 -->
                                 <!-- 모임 탭버튼 클릭 시 화면 -->
                                 <div class="tab_group_content">
@@ -46,23 +54,23 @@
                                    <div class="rank_box_area">
                                     <article>
                                         <h4 class="rank_type" ng-click="changeList(1)">리뷰수</h4>
-                                        <p class="ranker" ng-model="ReviewRankList"><a href="#">{{ReviewRankList[11].groupName}}</a></p>
+                                        <p class="ranker" ng-model="ReviewRankList"><a href="#">{{ReviewRankList[0].groupName}}</a></p>
                                     </article>
                                     <article>
                                         <h4 class="rank_type" ng-click="changeList(2)">참여율</h4>
-                                        <p class="ranker" ng-model="ReviewRankList"><a href="#">{{ReviewRankList[11].groupName}}</a></p>
+                                        <p class="ranker" ng-model="ReviewRankList"><a href="#">{{ReviewRankList[0].groupName}}</a></p>
                                     </article>
                                     <article>
                                         <h4 class="rank_type" ng-click="changeList(3)">좋아요 수</h4>
-                                        <p class="ranker" ng-model="LikeRankList"><a href="#">{{LikeRankList[12].groupName}}</a></p>
+                                        <p class="ranker" ng-model="LikeRankList"><a href="#">{{LikeRankList[0].groupName}}</a></p>
                                     </article>
                                     </div>
                                     <br/>
                                     <!-- 모임 전체랭킹 -->
                                     <h3>:■ 전체 랭크</h3>
-                                    모임의 전체 랭크 - 달리기
+                                    모임의 전체 랭크 - {{DetailCate1}}
                                     <br/>
-                                    <div class="background" mg-model="DetailList">
+                                    <div class="background" ng-model="DetailList">
                                        <div class="running_area" >
                                            <div class="running_man">
                                         <img ng-src="{{DetailList[0].groupImg}}"/>
@@ -111,9 +119,9 @@
                                     <br/>
                                      <!-- 맛집 전체 랭킹 -->
                                      <h3>:■ 전체 랭크</h3>
-                                     맛집의 전체 랭크 - 달리기
+                                     맛집의 전체 랭크 - {{DetailCate2}}
                                      <br/>
-                                    <div class="background" mg-model="DetailList">
+                                    <div class="background" ng-model="DetailList">
                                        <div class="running_area">
                                            <div class="running_man">
                                         <img ng-src="{{DetailList[0].restaImg}}"/>

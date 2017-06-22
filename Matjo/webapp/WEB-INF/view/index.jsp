@@ -223,7 +223,7 @@
                 <li class="rank_item_1">
                     <div class="rank_item_box">
                         <div class="rank_item_left" ng-model="ReviewRankList">
-                            <img src="ReviewRankList[0].groupImg" style="border-radius: 100%; width: 150px; height: 150px;" />
+                            <img ng-src="ReviewRankList[0].groupImg" style="border-radius: 100%; width: 150px; height: 150px;" />
                             <p>{{ReviewRankList[0].groupName}}</p>
                             <strong>리뷰 수 : {{ReviewRankList[0].countGroupRank}} </strong>
                         </div>

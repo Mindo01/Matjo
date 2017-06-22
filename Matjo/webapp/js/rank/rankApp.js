@@ -15,14 +15,16 @@ rankApp.factory("RankService", function($http) {
 	// 랭크 리스트 조회
 	function selectRankProc() {
 		return $http({
-			url: "/rank/selectRankProc.do"
-		}).then(handleSuccess, handleError);
+		   url: "/rank/selectRankProc.do",
+		   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	   }).then(handleSuccess, handleError);
 	};
 	// 맛집 랭크 리스트 조회
 	function selectRestaRankProc() {
 		return $http({
-			url: "/rank/selectRestaRankProc.do"
-		}).then(handleSuccess, handleError);
+			   url: "/rank/selectRestaRankProc.do",
+			   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		   }).then(handleSuccess, handleError);
 	};
 	
 	function handleSuccess(res) {

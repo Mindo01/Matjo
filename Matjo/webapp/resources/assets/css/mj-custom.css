@@ -218,12 +218,17 @@ div .paging_number span a:hover {
     display:block
 }
 
+.rank_type {
+	cursor: pointer;
+	text-decoration: none;
+	border: 2px solid transparent;
+     border-color: #0fff;
+     border-radius: 0.8em;
+}
 .rank_type:hover {
 	 cursor: pointer;
      text-decoration: none;
-     border: 2px solid transparent;
      border-color: #FF6E40;
-     border-radius: 0.8em;
 }
 /* 라벨 기본 스타일 지정 */
 #tab_area {

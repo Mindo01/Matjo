@@ -66,11 +66,11 @@
 		  <!-- 가입 신청 들어온 모임명 -->
 	      (SELECT group_name FROM groups WHERE group_no = apply.apply_group) AS groupName,
 	      <!-- 가입 신청한 회원이름 -->
-	      (SELECT member_name FROM member WHERE member_no = apply.apply_member) AS memberName,
-	      null,
+	      (SELECT member_name FROM member WHERE member_no = apply.apply_member) AS groupLeader,
+	      null AS reviewNo,
 	      <!-- 가입 신청 내용 -->
 	      apply_content AS restaName,
-	      null,
+	      null AS restaCate,
 	      <!-- 가입 신청한 회원 이미지 -->
 	      (SELECT member_img FROM member WHERE member_no = apply.apply_member) AS imgPath,
 	      <!-- 가입 신청 날짜, 시간 -->

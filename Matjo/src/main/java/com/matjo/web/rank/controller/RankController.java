@@ -47,6 +47,8 @@ public class RankController {
 	public Map<String, Object> selectRestaRankProc() 
 	{
 		Map<String, Object> resMap = new HashMap<String, Object>();
+		resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
+		resMap.put(Constants.RESULT_MSG, "맛집랭크 리스트 조회에 실패 하였습니다.");
 		try {
 			resMap = rankService.selectRankRestaList();
 			resMap.put(Constants.RESULT, Constants.RESULT_SUCCESS);
