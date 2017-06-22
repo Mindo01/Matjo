@@ -32,7 +32,7 @@
 							<li><a href="/matjoview/matjoMemberList.do">멤버</a></li>
 						</ul></li>
 					<li><a href="/rank/selectRankForm.do">랭크</a></li>
-					<li><a href="promotion/selectPromo.do">프로모션</a></li>
+					<li><a href="/promotion/selectPromo.do">프로모션</a></li>
 					<li><a href="/notice/selectNoticeList.do">맛조센터</a>
 						<ul>
 							<li><a href="/notice/selectNoticeList.do">공지사항</a></li>
